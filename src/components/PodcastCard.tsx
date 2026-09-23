@@ -3,19 +3,24 @@ import { Icon } from './Icon'
 export function PodcastCard({
   title,
   duration,
+  href,
 }: {
   title: string
   duration: string
+  href: string
 }) {
   return (
-    <div className="group flex items-start gap-5 rounded-lg border border-hairline-gray bg-chalk-white p-5 transition-colors hover:border-slate-veil">
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-signal-blue text-chalk-white group-hover:bg-info-indigo">
-        <Icon name="play" className="h-5 w-5" />
-      </div>
-      <div>
-        <h3 className="text-base leading-base font-medium text-ink-teal">{title}</h3>
-        <p className="mt-1 text-xs leading-xs text-fog-gray">{duration}</p>
-      </div>
-    </div>
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="group flex items-center gap-4 border-t border-hairline-gray py-4 transition-colors duration-200 hover:bg-pale-mist"
+    >
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ink-teal text-ink-teal transition-colors duration-200 group-hover:border-ember-orange group-hover:bg-ember-orange group-hover:text-chalk-white">
+        <Icon name="play" className="h-4 w-4" />
+      </span>
+      <span className="min-w-0 flex-1 text-body leading-snug font-medium text-ink-teal">{title}</span>
+      <span className="tabular shrink-0 text-body-sm text-fog-gray">{duration}</span>
+    </a>
   )
 }

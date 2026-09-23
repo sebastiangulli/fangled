@@ -1,116 +1,168 @@
+import { useState } from 'react'
 import { Hero } from '../components/Hero'
 import { SectionHeading } from '../components/SectionHeading'
 import { PodcastCard } from '../components/PodcastCard'
 import { FeatureSurfaceCard } from '../components/FeatureCard'
 import { Icon } from '../components/Icon'
 import { PillButton } from '../components/PillButton'
-import { PODCASTS, FCMO_PAIN_POINTS, COMPANY } from '../data/site'
+import { PODCASTS, FCMO_PAIN_POINTS, COMPANY, SOCIAL } from '../data/site'
+
+const YOUTUBE = SOCIAL.find((s) => s.label === 'YouTube')?.href ?? '#'
+
+function PainChecklist() {
+  const [checked, setChecked] = useState<boolean[]>(() => FCMO_PAIN_POINTS.map(() => false))
+  const count = checked.filter(Boolean).length
+
+  const toggle = (i: number) =>
+    setChecked((prev) => prev.map((v, j) => (j === i ? !v : v)))
+
+  return (
+    <div className="rounded-card border border-hairline-gray bg-chalk-white p-6 md:p-8">
+      <div className="flex items-baseline justify-between gap-4 border-b border-hairline-gray pb-4">
+        <p className="text-body-sm font-medium text-ink-teal">Does this sound like your business?</p>
+        <p className="tabular shrink-0 text-body-sm text-fog-gray">
+          {count} of {FCMO_PAIN_POINTS.length}
+        </p>
+      </div>
+      <ul className="divide-y divide-hairline-gray">
+        {FCMO_PAIN_POINTS.map((point, i) => (
+          <li key={point}>
+            <label className="flex cursor-pointer items-start gap-3 py-3 text-body-sm leading-body-sm text-slate-veil transition-colors hover:text-ink-teal">
+              <input
+                type="checkbox"
+                checked={checked[i]}
+                onChange={() => toggle(i)}
+                className="peer sr-only"
+              />
+              <span
+                aria-hidden="true"
+                className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border transition-colors duration-150 ${
+                  checked[i] ? 'border-ink-teal bg-ink-teal text-chalk-white' : 'border-hairline-gray bg-chalk-white text-transparent'
+                }`}
+              >
+                <Icon name="check" className="h-3 w-3" />
+              </span>
+              {point}
+            </label>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-5 border-t border-hairline-gray pt-5">
+        <p className="min-h-[2.5rem] text-body-sm leading-body-sm text-slate-veil" aria-live="polite">
+          {count === 0
+            ? 'Tick anything that is true today. Even one is usually enough for a Fractional CMO to pay for itself.'
+            : count === 1
+              ? 'One of these is usually enough for a Fractional CMO to pay for itself.'
+              : `${count} of these at once is exactly the situation a Fractional CMO is built for.`}
+        </p>
+        {count > 0 && (
+          <div className="mt-4">
+            <PillButton to="/contact" variant="primary">
+              Talk it through
+            </PillButton>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
 
 export function About() {
   return (
     <>
       <Hero
         kicker="About Fangled Group"
-        title="A Strategy First Global Marketing & Sales Consultancy"
-        subtitle="A better way to win — turning anyone who touches your brand into a voracious advocate."
-        cta="Meet the team"
+        title="A strategy-first global marketing & sales consultancy"
+        subtitle="A better way to win: turning anyone who touches your brand into a voracious advocate."
+        cta="Book a strategy call"
         ctaTo="/contact"
       />
 
-      <section className="bg-pale-mist px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-[1280px]">
-          <div className="grid gap-12 md:grid-cols-2">
+      <section className="border-y border-hairline-gray bg-pale-mist px-6 py-20 md:py-28">
+        <div className="mx-auto grid max-w-[1280px] items-start gap-12 lg:grid-cols-2 lg:gap-20">
+          <SectionHeading
+            kicker="A better way to win"
+            title="Turning touches into brand advocates"
+          />
+          <div>
+            <p className="font-display text-[clamp(1.4rem,2.2vw,1.9rem)] leading-[1.3] text-ink-teal italic">
+              “An advocate buys again — and can’t wait to tell someone why.”
+            </p>
+            <div className="mt-6 space-y-4 text-body leading-body text-slate-veil">
+              <p>
+                Fangled Group helps you win in the U.S. and abroad with a strategy-first method: positioning,
+                market analysis, path-to-purchase evaluation, predictive sales modeling, brand development,
+                and marketing activation.
+              </p>
+              <p>
+                The result is a launch — domestic or global — that is planned, priced, and protected before
+                it spends a dollar.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-20 md:py-28">
+        <div className="mx-auto grid max-w-[1280px] items-start gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
             <SectionHeading
-              kicker="A better way to win"
-              title="Turning Touches Into Brand Advocates"
-              subtitle="A brand advocate is someone who loves your brand, products, and services. They also can't wait to shout its praises from the hilltops as they buy again and again."
+              kicker="Fractional CMO"
+              title="Top skills and performance at a fraction of the cost"
+              subtitle="Imagine a C-level marketing executive fully dedicated to your company for a fraction of the cost of a full-time hire."
             />
-            <div className="space-y-5 text-base leading-base text-slate-veil">
+            <div className="mt-6 space-y-4 text-body leading-body text-slate-veil">
               <p>
-                Fangled Group will help you in the US and abroad leveraging our “strategy first” methods to grow your business like never before. We know what is required to win here and in the global market.
+                Don’t mistake an agency for a Fractional CMO. An agency is a service vendor hired for tasks;
+                a FCMO is a fiscally responsible member of your executive team.
               </p>
               <p>
-                Fangled Group and affiliates can assist you in positioning, market analysis, path to purchase evaluation, predictive sales modeling, brand development, and marketing activation to make your launch into the domestic and global marketplace a successful one.
+                FCMOs lead workshops, evaluate the voice of the market, channel partners and competitive
+                landscape, and deliver the overall go-to-market playbook — not just tactical materials.
               </p>
             </div>
           </div>
+          <PainChecklist />
         </div>
       </section>
 
-      <section className="bg-chalk-white px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-[1280px]">
-          <div className="grid gap-12 md:grid-cols-2">
-            <div>
-              <SectionHeading
-                kicker="Fractional CMO"
-                title="Top Skills & Performance at a Fraction of the Cost"
-                subtitle="Imagine the power of having a C-level marketing executive fully dedicated to the success of your company for a fraction of the cost of hiring a full-time employee."
-              />
-              <p className="mt-5 text-base leading-base text-slate-veil">
-                Don't mistake a marketing agency for a Fractional CMO. There is an overlap in skill set, but a FCMO is a fiscally responsible member of your executive team engaged in most aspects of your business, while agencies tend to be service-vendors hired for specific tasks.
-              </p>
-              <p className="mt-4 text-base leading-base text-slate-veil">
-                FCMOs lead workshops, evaluate the voice of market, channel partners, and competitive landscape, and provide not only tactical materials but the overall strategic go-to-market playbook.
-              </p>
-            </div>
-            <div className="rounded-lg border border-hairline-gray bg-pale-mist p-6 md:p-8">
-              <p className="text-sm font-medium text-ink-teal">Does this sound like your business?</p>
-              <ul className="mt-4 space-y-3">
-                {FCMO_PAIN_POINTS.map((point) => (
-                  <li key={point} className="flex items-start gap-3 text-sm leading-sm text-slate-veil">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-soft-sky text-info-indigo">
-                      <Icon name="check" className="h-3 w-3" />
-                    </span>
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-pale-mist px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-[1280px]">
-          <div className="grid gap-12 md:grid-cols-2">
-            <div>
-              <SectionHeading
-                kicker="On the air"
-                title="Recent Podcast Episodes"
-                subtitle="Conversations on strategy, sales, exit planning, and building brand advocates."
-              />
-              <div className="mt-8">
-                <PillButton href="https://www.youtube.com/channel/UCp7ZKlIqWN9I68OXFHCerWQ" variant="secondary">
-                  Watch on YouTube
-                </PillButton>
-              </div>
-            </div>
-            <div className="grid gap-4">
-              {PODCASTS.map((episode) => (
-                <PodcastCard key={episode.title} title={episode.title} duration={episode.duration} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-chalk-white px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-[1280px]">
-          <div className="grid items-center gap-10 md:grid-cols-2">
-            <div>
-              <h2 className="text-3xl leading-3xl font-medium text-ink-teal">
-                Let's start a discussion to see how a Fractional CMO could be the game changer you seek.
-              </h2>
-              <p className="mt-4 text-lg leading-lg text-slate-veil">
-                {COMPANY.phone} · {COMPANY.email}
-              </p>
-            </div>
-            <FeatureSurfaceCard
-              title="Book a free strategy call"
-              description="No pitch decks. Just a meaningful conversation about your company and how we can help take it higher."
-              to="/contact"
+      <section className="border-t border-hairline-gray px-6 py-20 md:py-28">
+        <div className="mx-auto grid max-w-[1280px] items-start gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <SectionHeading
+              kicker="On the air"
+              title="Recent conversations"
+              subtitle="Strategy, sales, exit planning, and building brand advocates — with founders and operators from the Fangled network."
             />
+            <div className="mt-8">
+              <PillButton href={YOUTUBE} variant="secondary" icon="arrow-up-right">
+                Watch on YouTube
+              </PillButton>
+            </div>
           </div>
+          <div className="border-b border-hairline-gray">
+            {PODCASTS.map((episode) => (
+              <PodcastCard key={episode.title} title={episode.title} duration={episode.duration} href={YOUTUBE} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-20 md:py-28">
+        <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h2 className="max-w-[20ch] text-[clamp(2rem,3.6vw,3rem)] leading-[1.08] text-ink-teal text-balance">
+              Could a Fractional CMO be the game changer you seek?
+            </h2>
+            <p className="tabular mt-4 text-subheading leading-subheading text-slate-veil">
+              {COMPANY.phone} · {COMPANY.email}
+            </p>
+          </div>
+          <FeatureSurfaceCard
+            title="Book a free strategy call"
+            description="No pitch decks. Just a meaningful conversation about your company and how we can help take it higher."
+            to="/contact"
+          />
         </div>
       </section>
     </>

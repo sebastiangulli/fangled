@@ -14,29 +14,30 @@
   --color-info-indigo: #0519d5;
   --color-soft-sky: #e4eeff;
 
-  /* Typography: Graphik substitute — Inter at 400/500 only */
-  --font-graphik: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Typography: a modern sans-serif for headings and body, with a display serif for accents */
+  --font-sans: 'Archivo', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
 
   /* Type scale */
-  --text-xs: 12px;
-  --leading-xs: 1.5;
-  --text-sm: 14px;
-  --leading-sm: 1.7;
-  --text-base: 16px;
-  --leading-base: 1.5;
-  --text-lg: 18px;
-  --leading-lg: 1.33;
-  --text-xl: 20px;
-  --leading-xl: 1.2;
-  --text-3xl: 40px;
-  --leading-3xl: 1.18;
-  --text-5xl: 56px;
-  --leading-5xl: 1.1;
+  --text-caption: 12px;
+  --leading-caption: 1.5;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.6;
+  --text-body: 16px;
+  --leading-body: 1.6;
+  --text-subheading: 18px;
+  --leading-subheading: 1.45;
+  --text-heading-sm: 20px;
+  --leading-heading-sm: 1.25;
+  --text-stat: 40px;
+  --leading-stat: 1.1;
+  --text-display: 56px;
+  --leading-display: 1.06;
 
-  /* Radii */
-  --radius-lg: 12px;    /* cards, badges, inputs */
-  --radius-xl: 20px;    /* links / tab toggles */
-  --radius-full: 100px; /* buttons */
+  /* Radii — cards 12, tab toggles 20, buttons full pill */
+  --radius-card: 12px;
+  --radius-tab: 20px;
+  --radius-pill: 100px;
 }
 
 @layer base {
@@ -45,13 +46,16 @@
   }
   body {
     margin: 0;
-    font-family: var(--font-graphik);
+    font-family: var(--font-sans);
+    font-weight: 400;
     color: var(--color-ink-teal);
     background: var(--color-chalk-white);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4 {
-    font-family: var(--font-graphik);
+    font-family: var(--font-sans);
+    font-weight: 500;
     margin: 0;
   }
   p {
@@ -64,11 +68,22 @@
   button {
     font-family: inherit;
   }
+  ::selection {
+    background: rgba(12, 103, 255, 0.18);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-signal-blue);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -77,4 +92,36 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* keep drafting lines at a true 1.5px no matter how the sheet is scaled */
+  .iso :where(path, line, polyline, circle, ellipse, rect, polygon) {
+    vector-effect: non-scaling-stroke;
+  }
+  .iso text {
+    stroke: none;
+  }
+
+  /* one orchestrated entrance: strokes and fills settle in sequence.
+     Opacity (not stroke-dash) so a throttled renderer can never strand
+     a half-drawn line. */
+  .draw .ink,
+  .draw .fill-in {
+    opacity: 0;
+    animation: fill-in 0.5s ease forwards;
+    animation-delay: var(--d, 0ms);
+  }
+}
+
+@keyframes fill-in {
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .draw .ink,
+  .draw .fill-in {
+    animation: none;
+    opacity: 1;
+  }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
 }

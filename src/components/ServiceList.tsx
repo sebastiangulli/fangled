@@ -1,5 +1,3 @@
-import { Icon } from './Icon'
-
 export function ServiceList({
   title,
   items,
@@ -8,14 +6,14 @@ export function ServiceList({
   items: string[]
 }) {
   return (
-    <div className="rounded-lg border border-hairline-gray bg-chalk-white p-6 md:p-8">
-      <h3 className="text-xl leading-xl font-medium text-ink-teal">{title}</h3>
-      <ul className="mt-5 space-y-3">
+    <div>
+      <h3 className="border-b border-ink-teal pb-3 text-subheading leading-subheading font-medium text-ink-teal">
+        {title}
+      </h3>
+      <ul className="divide-y divide-hairline-gray">
         {items.map((item) => (
-          <li key={item} className="flex items-start gap-3 text-sm leading-sm text-slate-veil">
-            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-soft-sky text-info-indigo">
-              <Icon name="check" className="h-3 w-3" />
-            </span>
+          <li key={item} className="flex items-start gap-3 py-3 text-body-sm leading-body-sm text-slate-veil">
+            <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-ember-orange" />
             {item}
           </li>
         ))}

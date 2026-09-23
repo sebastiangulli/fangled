@@ -11,18 +11,24 @@ export function SectionHeading({
   align?: 'left' | 'center'
   className?: string
 }) {
+  const centered = align === 'center'
   return (
-    <div className={`${align === 'center' ? 'text-center' : 'text-left'} max-w-3xl ${className}`}>
+    <div className={`${centered ? 'text-center' : 'text-left'} max-w-3xl ${className}`}>
       {kicker && (
-        <span className="mb-1.5 block text-sm leading-sm text-fog-gray">
+        <p
+          className={`mb-3 flex items-center gap-3 text-body-sm text-fog-gray ${
+            centered ? 'justify-center' : ''
+          }`}
+        >
+          <span aria-hidden="true" className="h-px w-6 bg-ember-orange" />
           {kicker}
-        </span>
+        </p>
       )}
-      <h2 className="text-3xl leading-3xl font-medium text-ink-teal">
+      <h2 className="text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.08] text-ink-teal text-balance">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-lg leading-lg text-slate-veil">
+        <p className="mt-4 max-w-[58ch] text-subheading leading-subheading text-slate-veil">
           {subtitle}
         </p>
       )}

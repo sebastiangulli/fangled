@@ -1,63 +1,50 @@
 import { Hero } from '../components/Hero'
 import { SectionHeading } from '../components/SectionHeading'
 import { ServiceList } from '../components/ServiceList'
-import { FeatureCard, CardRow, ScrollCard } from '../components/FeatureCard'
+import { FeatureSurfaceCard } from '../components/FeatureCard'
+import { Illustration } from '../components/Illustration'
 import { GLOBAL_STRATEGY, GLOBAL_SOURCE } from '../data/site'
 
 export function GlobalTrade() {
   return (
     <>
       <Hero
-        kicker="Global Trade & Sourcing"
-        title="We Have Helped Hundreds of Companies Grow by Gaining Access to the World"
+        kicker="Global trade & sourcing"
+        title="We have helped hundreds of companies grow by gaining access to the world"
         subtitle="Market viability, sourcing, logistics, and regulatory strategy for domestic and international expansion."
         cta="Start your global plan"
         ctaTo="/contact"
+        drawing={<Illustration name="trade" animate className="mx-auto h-64 w-full max-w-md" />}
       />
 
-      <section className="bg-chalk-white px-6 py-20 md:py-28">
+      <section className="border-y border-hairline-gray bg-pale-mist px-6 py-20 md:py-28">
         <div className="mx-auto max-w-[1280px]">
-          <SectionHeading kicker="Capabilities" title="Strategy and Sourcing Under One Roof" className="mb-10" />
-          <CardRow>
-            <ScrollCard>
-              <FeatureCard
-                illustration="trade"
-                title="Build a Global Strategy"
-                description="From market entry models to message evaluation, we help you plan, price, and protect your expansion."
-                to="/contact"
-              />
-            </ScrollCard>
-            <ScrollCard>
-              <FeatureCard
-                illustration="marketing"
-                title="Find Products and Services Abroad"
-                description="Source raw materials, components, and contract manufacturers while managing inbound logistics and compliance."
-                to="/contact"
-              />
-            </ScrollCard>
-            <ScrollCard>
-              <FeatureCard
-                illustration="cmo"
-                title="Regulatory & IP Guidance"
-                description="Navigate regulatory parameters and protect intellectual property as you enter new markets."
-                to="/contact"
-              />
-            </ScrollCard>
-          </CardRow>
+          <SectionHeading
+            kicker="Build a global strategy"
+            title="Six decisions, in the order they matter"
+            className="mb-12"
+          />
+          <ol className="grid gap-10 md:grid-cols-3 md:gap-8">
+            {GLOBAL_STRATEGY.map((item, i) => (
+              <li key={item} className="border-t border-ink-teal pt-5">
+                <span className="tabular font-display text-stat leading-stat text-ember-orange">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <p className="mt-3 max-w-[30ch] text-body leading-snug font-medium text-ink-teal">{item}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <section className="bg-pale-mist px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-[1280px]">
-          <SectionHeading
-            kicker="Details"
-            title="Global Strategy and Sourcing"
-            className="mb-12"
+      <section className="px-6 py-20 md:py-28">
+        <div className="mx-auto grid max-w-[1280px] items-start gap-12 lg:grid-cols-2 lg:gap-16">
+          <ServiceList title="Find products and services abroad" items={GLOBAL_SOURCE} />
+          <FeatureSurfaceCard
+            title="Source it without the surprises"
+            description="From first factory visit to inbound logistics and compliance, one team owns the chain."
+            to="/contact"
           />
-          <div className="grid gap-6 md:grid-cols-2">
-            <ServiceList title="Build a Global Strategy to Sell Your Products or Services" items={GLOBAL_STRATEGY} />
-            <ServiceList title="Find Products and Services Abroad" items={GLOBAL_SOURCE} />
-          </div>
         </div>
       </section>
     </>
