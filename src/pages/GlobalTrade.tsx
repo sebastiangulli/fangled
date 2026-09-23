@@ -2,7 +2,6 @@ import { Hero } from '../components/Hero'
 import { SectionHeading } from '../components/SectionHeading'
 import { ServiceList } from '../components/ServiceList'
 import { FeatureSurfaceCard } from '../components/FeatureCard'
-import { Illustration } from '../components/Illustration'
 import { GLOBAL_STRATEGY, GLOBAL_SOURCE } from '../data/site'
 
 export function GlobalTrade() {
@@ -10,14 +9,14 @@ export function GlobalTrade() {
     <>
       <Hero
         kicker="Global trade & sourcing"
-        title="We have helped hundreds of companies grow by gaining access to the world"
+        title="Move into new markets with clarity"
         subtitle="Market viability, sourcing, logistics, and regulatory strategy for domestic and international expansion."
         cta="Start your global plan"
         ctaTo="/contact"
-        drawing={<Illustration name="trade" animate className="mx-auto h-64 w-full max-w-md" />}
+        drawing={<img src="/images/global-trade-port.jpg" alt="Container port and cranes at sunset" className="h-72 w-full rounded-xl object-cover" />}
       />
 
-      <section className="border-y border-hairline-gray bg-pale-mist px-6 py-20 md:py-28">
+      <section className="border-y border-line bg-paper px-6 py-20 md:py-28">
         <div className="mx-auto max-w-[1280px]">
           <SectionHeading
             kicker="Build a global strategy"
@@ -26,11 +25,11 @@ export function GlobalTrade() {
           />
           <ol className="grid gap-10 md:grid-cols-3 md:gap-8">
             {GLOBAL_STRATEGY.map((item, i) => (
-              <li key={item} className="border-t border-ink-teal pt-5">
-                <span className="tabular font-display text-stat leading-stat text-ember-orange">
+              <li key={item} className="border-t border-ink pt-5">
+                <span className="tabular font-display text-stat leading-stat text-taupe">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <p className="mt-3 max-w-[30ch] text-body leading-snug font-medium text-ink-teal">{item}</p>
+                <p className="mt-3 max-w-[30ch] text-body leading-snug font-medium text-ink">{item}</p>
               </li>
             ))}
           </ol>

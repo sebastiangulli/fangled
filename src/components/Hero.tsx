@@ -1,5 +1,4 @@
 import { PillButton } from './PillButton'
-import { Icon } from './Icon'
 
 export function Hero({
   kicker,
@@ -23,20 +22,20 @@ export function Hero({
   drawing?: React.ReactNode
 }) {
   return (
-    <section className="px-6 pb-16 pt-14 md:pb-20 md:pt-20">
-      <div className={`mx-auto max-w-[1280px] ${drawing ? 'grid items-center gap-12 lg:grid-cols-2 lg:gap-16' : ''}`}>
+    <section className="border-b border-line bg-stone px-6 py-14 md:py-20">
+      <div className={`mx-auto max-w-[1280px] ${drawing ? 'grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16' : ''}`}>
         <div>
           {kicker && (
-            <p className="mb-5 flex items-center gap-3 text-body-sm text-fog-gray">
-              <span aria-hidden="true" className="h-px w-6 bg-ember-orange" />
+            <p className="mb-5 flex items-center gap-3 text-body-sm font-medium text-brand">
+              <span aria-hidden="true" className="h-[2px] w-7 bg-taupe" />
               {kicker}
             </p>
           )}
-          <h1 className="max-w-[22ch] text-[clamp(2.6rem,5.4vw,4.5rem)] leading-[1.02] text-ink-teal text-balance">
+          <h1 className="max-w-[22ch] text-[clamp(2.6rem,5vw,4.25rem)] leading-[1.04] text-night text-balance">
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-6 max-w-[52ch] text-subheading leading-subheading text-slate-veil">
+            <p className="mt-6 max-w-[58ch] text-subheading leading-[1.65] text-slate">
               {subtitle}
             </p>
           )}
@@ -53,31 +52,8 @@ export function Hero({
             </div>
           )}
         </div>
-        {drawing && <div className="mt-12 lg:mt-0">{drawing}</div>}
+        {drawing && <div className="rounded-[1.5rem] border border-line bg-paper p-7 shadow-[0_22px_60px_-48px_#153f56] lg:p-10">{drawing}</div>}
       </div>
     </section>
-  )
-}
-
-export function HeroIcon({
-  color,
-  icon,
-}: {
-  color: 'blue' | 'orange'
-  icon: 'diamond' | 'arrow-up'
-}) {
-  const bg = color === 'blue' ? 'bg-signal-blue' : 'bg-ember-orange'
-  return (
-    <span className={`mx-1 inline-flex h-9 w-9 items-center justify-center rounded-full align-middle md:h-11 md:w-11 ${bg}`}>
-      <Icon name={icon} className="h-3.5 w-3.5 text-chalk-white md:h-4 md:w-4" />
-    </span>
-  )
-}
-
-export function HeroOutline({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="mx-1 inline-block rounded-pill border border-ink-teal px-3 py-0.5 align-middle font-display text-ink-teal italic">
-      {children}
-    </span>
   )
 }

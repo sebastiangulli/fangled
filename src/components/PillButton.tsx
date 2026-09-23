@@ -23,17 +23,17 @@ export function PillButton({
   type?: 'button' | 'submit'
 }) {
   const base =
-    'group inline-flex items-center gap-2 rounded-pill px-6 py-3 text-body font-medium transition-colors duration-200'
+    'group inline-flex min-h-12 items-center gap-3 rounded-pill px-6 py-3 text-body font-medium transition-colors duration-200'
   const styles: Record<Variant, string> = {
-    primary: 'bg-ink-teal text-chalk-white hover:bg-[#1b333b]',
-    secondary: 'border border-ink-teal text-ink-teal hover:bg-pale-mist',
-    inverse: 'bg-chalk-white text-ink-teal hover:bg-soft-sky',
+    primary: 'bg-brand text-white hover:bg-night',
+    secondary: 'border border-brand text-brand hover:bg-stone',
+    inverse: 'bg-paper text-night hover:bg-white',
   }
   const classes = `${base} ${styles[variant]} ${className}`
   const iconEl = icon && (
     <span
       className={`flex h-4 w-4 items-center justify-center rounded-full transition-transform duration-200 group-hover:translate-x-0.5 ${
-        variant === 'secondary' ? 'bg-ink-teal text-chalk-white' : 'bg-ember-orange text-chalk-white'
+        variant === 'secondary' ? 'bg-brand text-white' : 'bg-taupe text-white'
       }`}
     >
       <Icon name={icon} className="h-2.5 w-2.5" />

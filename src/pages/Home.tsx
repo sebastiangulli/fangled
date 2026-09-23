@@ -1,228 +1,222 @@
-import { Hero, HeroIcon, HeroOutline } from '../components/Hero'
-import { HeroDrawing } from '../components/Illustration'
-import { StatRow } from '../components/StatRow'
+import { Link } from 'react-router-dom'
 import { SectionHeading } from '../components/SectionHeading'
-import { FeatureCard, CardRow, ScrollCard, FeatureSurfaceCard } from '../components/FeatureCard'
 import { PillButton } from '../components/PillButton'
+import { FeatureCard } from '../components/FeatureCard'
 import { Illustration } from '../components/Illustration'
+import { Icon } from '../components/Icon'
+
+const PATHS = [
+  {
+    title: 'Marketing & sales',
+    description: 'Find the right message, build the plan, and put it to work.',
+    to: '/marketing-and-sales-consulting',
+  },
+  {
+    title: 'Global trade & sourcing',
+    description: 'Enter new markets and build a more capable supply chain.',
+    to: '/global-trade-and-sourcing',
+  },
+  {
+    title: 'Fractional CMO',
+    description: 'Bring senior marketing leadership into the business.',
+    to: '/about',
+  },
+]
 
 const METHOD = [
   {
-    n: '01',
     title: 'Listen to the market',
-    body: 'Voice-of-customer, distributor and dealer studies plus qualitative and quantitative research.',
+    body: 'Voice-of-customer, distributor, and dealer studies reveal what buyers actually value.',
   },
   {
-    n: '02',
     title: 'Prove the value',
-    body: 'Turn what you learn into a value proposition that answers your customer’s “what’s in it for me?”',
+    body: 'Turn those findings into a clear proposition and a reason to choose you.',
   },
   {
-    n: '03',
     title: 'Activate the playbook',
-    body: 'A data-driven go-to-market plan that attracts the right customers and turns them into advocates.',
+    body: 'Give marketing and sales a focused plan they can put into motion together.',
   },
 ]
 
 export function Home() {
   return (
     <>
-      <Hero
-        kicker="Fractional CMO & growth consulting"
-        title={
-          <>
-            Convert every <HeroIcon color="blue" icon="diamond" />
-            <span className="sr-only">touch</span> into a voracious{' '}
-            <HeroOutline>brand advocate</HeroOutline>
-            <HeroIcon color="orange" icon="arrow-up" />
-            <span className="sr-only">and grow</span>
-          </>
-        }
-        subtitle="The Fangled Group Strategy First Method turns every touchpoint into a reason for your market to buy again — and tell someone."
-        cta="Book a strategy call"
-        ctaTo="/contact"
-        secondaryCta="See how we work"
-        secondaryTo="/marketing-and-sales-consulting"
-        drawing={<HeroDrawing className="w-full" />}
-      />
+      <section className="bg-night text-white">
+        <div className="mx-auto grid max-w-[1280px] items-center gap-10 px-6 py-12 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16 lg:py-16">
+          <div className="py-5 lg:py-12">
+            <p className="mb-6 flex items-center gap-3 text-body-sm font-medium text-stone">
+              <span aria-hidden="true" className="h-[2px] w-8 bg-taupe" />
+              Fangled Group · Strategy first
+            </p>
+            <h1 className="max-w-[13ch] text-[clamp(3rem,5.5vw,5.25rem)] leading-[1.01] tracking-[-0.035em] text-balance">
+              Know your market. Make your next move count.
+            </h1>
+            <p className="mt-7 max-w-[52ch] text-subheading leading-[1.65] text-white/80">
+              We connect research, marketing, sales, and global trade so B2B companies can move forward with clarity.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-4">
+              <PillButton to="/contact" variant="inverse">Book a strategy call</PillButton>
+              <a href="#how-we-work" className="inline-flex min-h-12 items-center rounded-pill border border-white/45 px-6 py-3 text-body font-medium transition-colors hover:bg-white/10">
+                See how we work
+              </a>
+            </div>
+          </div>
+          <div className="relative min-h-[370px] overflow-hidden rounded-[1.5rem] rounded-tl-[7rem] lg:min-h-[560px]">
+            <img
+              src="/images/strategy-workshop.jpg"
+              alt="People collaborating around a table with market plans and material samples"
+              className="absolute inset-0 h-full w-full object-cover"
+              fetchPriority="high"
+            />
+          </div>
+        </div>
+      </section>
 
-      <StatRow />
+      <section aria-label="Explore our services" className="border-b border-line bg-white">
+        <div className="mx-auto grid max-w-[1280px] md:grid-cols-3">
+          {PATHS.map((path) => (
+            <Link
+              key={path.to}
+              to={path.to}
+              className="group flex min-h-44 flex-col justify-between gap-6 border-b border-line px-6 py-8 transition-colors hover:bg-paper md:border-b-0 md:border-r md:last:border-r-0 lg:px-9"
+            >
+              <div>
+                <h2 className="text-heading-sm font-semibold text-night">{path.title}</h2>
+                <p className="mt-2 max-w-[32ch] text-body-sm leading-body-sm text-slate">{path.description}</p>
+              </div>
+              <span className="inline-flex items-center gap-2 text-body-sm font-medium text-brand">
+                Explore service <Icon name="arrow-right" className="h-4 w-4" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-      <section className="px-6 py-20 md:py-28">
-        <div className="mx-auto grid max-w-[1280px] items-start gap-12 lg:grid-cols-2 lg:gap-20">
+      <section className="bg-paper px-6 py-16 md:py-24">
+        <div className="mx-auto grid max-w-[1280px] items-start gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <SectionHeading
             kicker="Who we are"
-            title="A growth consultancy for companies that would rather lead than chase"
+            title="A partner for the decisions that shape growth"
           />
           <div>
-            <p className="font-display text-[clamp(1.4rem,2.2vw,1.9rem)] leading-[1.3] text-ink-teal italic">
-              “Even the people who don’t buy from you today can become the loudest advocates for what you do.”
+            <p className="font-display text-[clamp(1.8rem,3vw,2.65rem)] italic leading-[1.18] text-brand">
+              The right next move starts with listening to the market.
             </p>
-            <div className="mt-6 space-y-4 text-body leading-body text-slate-veil">
+            <div className="mt-6 space-y-4 text-body leading-[1.7] text-slate">
               <p>
-                Through in-depth market research and customer analysis we help you understand your business
-                and the value proposition that resonates with your ideal customer.
+                Fangled Group helps businesses understand their customers, sharpen their value proposition, and turn insight into a go-to-market plan.
               </p>
               <p>
-                We also support businesses navigating exit planning, and assist private equity and M&A
-                professionals with research on target companies and markets.
+                We also support global sourcing and market entry, as well as exit planning and research for private equity and M&amp;A teams.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-hairline-gray bg-pale-mist px-6 py-20 md:py-28">
+      <section id="how-we-work" className="border-y border-line bg-stone/60 px-6 py-16 md:py-24">
         <div className="mx-auto max-w-[1280px]">
-          <SectionHeading
-            kicker="The Strategy First Method"
-            title="Three moves, in order, every time"
-            className="mb-12"
-          />
-          <div className="grid gap-10 md:grid-cols-3 md:gap-8">
-            {METHOD.map((step) => (
-              <div key={step.n} className="border-t border-ink-teal pt-5">
-                <span className="tabular font-display text-stat leading-stat text-ember-orange">{step.n}</span>
-                <h3 className="mt-3 text-heading-sm leading-heading-sm font-medium text-ink-teal">{step.title}</h3>
-                <p className="mt-2 max-w-[34ch] text-body-sm leading-body-sm text-slate-veil">{step.body}</p>
-              </div>
+          <div className="grid items-end gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <SectionHeading kicker="The Strategy First Method" title="Listen first. Then make the move." />
+            <p className="max-w-[50ch] text-subheading leading-[1.6] text-slate">
+              A practical sequence that keeps each decision connected to the people you want to reach.
+            </p>
+          </div>
+          <ol className="mt-12 grid gap-6 md:grid-cols-3">
+            {METHOD.map((step, index) => (
+              <li key={step.title} className="border-l-[3px] border-brand bg-paper px-6 py-7">
+                <span className="font-display text-4xl italic text-taupe">0{index + 1}</span>
+                <h3 className="mt-4 text-heading-sm font-semibold text-night">{step.title}</h3>
+                <p className="mt-3 text-body-sm leading-[1.7] text-slate">{step.body}</p>
+              </li>
             ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="bg-night px-6 py-16 text-white md:py-24">
+        <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-2 lg:gap-20">
+          <div className="min-h-[340px] overflow-hidden rounded-[1.5rem] lg:min-h-[470px]">
+            <img
+              src="/images/global-trade-port.jpg"
+              alt="Container port and cranes at sunset"
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <p className="mb-5 flex items-center gap-3 text-body-sm font-medium text-stone">
+              <span aria-hidden="true" className="h-[2px] w-8 bg-taupe" />
+              Global trade & sourcing
+            </p>
+            <h2 className="max-w-[17ch] text-[clamp(2.25rem,4vw,3.75rem)] leading-[1.08] text-balance">
+              Build your next market with a clear view.
+            </h2>
+            <p className="mt-6 max-w-[52ch] text-subheading leading-[1.65] text-white/80">
+              From market viability to sourcing, logistics, and regulatory strategy, we help you see the practical path into new markets.
+            </p>
+            <div className="mt-9">
+              <PillButton to="/global-trade-and-sourcing" variant="inverse">Explore global trade</PillButton>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-[1280px]">
-          <SectionHeading
-            kicker="Services"
-            title="How we help you win"
-            className="mb-10"
-          />
-          <CardRow>
-            <ScrollCard>
-              <FeatureCard
-                illustration="marketing"
-                title="Marketing & Sales Consulting"
-                description="Go-to-market playbooks, campaign development, branding, digital media, CRM implementation, and sales training."
-                to="/marketing-and-sales-consulting"
-              />
-            </ScrollCard>
-            <ScrollCard>
-              <FeatureCard
-                illustration="trade"
-                title="Global Trade & Sourcing"
-                description="Market viability studies, sourcing abroad, contract manufacturers, logistics, and regulatory navigation."
-                to="/global-trade-and-sourcing"
-                tone="orange"
-              />
-            </ScrollCard>
-            <ScrollCard>
-              <FeatureCard
-                illustration="cmo"
-                title="Fractional CMO"
-                description="Executive-level marketing leadership without the full-time cost. Strategy, team building, and execution."
-                to="/about"
-              />
-            </ScrollCard>
-            <ScrollCard>
-              <FeatureCard
-                illustration="cleaners"
-                title="Product Launch"
-                description="Bring disruptive innovations to market with research, positioning, and activation that builds advocates."
-                to="/products/ph-neutral-cleaners"
-                tone="orange"
-              />
-            </ScrollCard>
-          </CardRow>
-        </div>
-      </section>
-
-      <section className="border-t border-hairline-gray px-6 py-20 md:py-28">
-        <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <section className="border-b border-line bg-white px-6 py-16 md:py-24">
+        <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-2 lg:gap-20">
           <div>
             <SectionHeading
-              kicker="Beyond growth"
-              title="Exit planning & due diligence"
-              subtitle="We assist private equity firms and M&A professionals with in-depth research on target companies and markets, surfacing red flags and opportunities before the deal."
+              kicker="Fractional CMO"
+              title="Leadership that works inside the business"
+              subtitle="An experienced marketing executive can guide strategy, build the team, and connect execution to your goals without a full-time hire."
             />
             <div className="mt-8">
-              <PillButton to="/contact" variant="secondary">
-                Talk to us before you sign
-              </PillButton>
+              <PillButton to="/about">See if it fits your team</PillButton>
             </div>
           </div>
-          <FeatureSurfaceCard
-            title="Get market clarity before you move"
-            description="One conversation is usually enough to know whether the deal — or the launch — is worth your capital."
-            to="/contact"
-          />
+          <div className="rounded-[1.5rem] bg-stone/60 p-8 md:p-12">
+            <Illustration name="cmo" className="mx-auto h-64 w-full max-w-md" />
+          </div>
         </div>
       </section>
 
-      <section className="px-6 py-20 md:py-28">
+      <section className="bg-paper px-6 py-16 md:py-24">
         <div className="mx-auto max-w-[1280px]">
           <SectionHeading
-            kicker="Disruptive innovation"
-            title="Products our clients bring to market"
-            className="mb-10"
+            kicker="Innovation"
+            title="Products brought to market"
+            subtitle="We work with companies that turn meaningful technical advances into a clear reason to buy."
+            className="mb-9"
           />
           <div className="grid gap-6 md:grid-cols-2">
             <FeatureCard
               illustration="cleaners"
               title="pH Neutral Cleaning Technology"
-              description="Industrial cleaners that replace hazardous acid and alkaline chemistry — safer, compliant, and cheaper to run."
+              description="Industrial cleaning technology designed to replace hazardous acid and alkaline chemistry."
               to="/products/ph-neutral-cleaners"
             />
             <FeatureCard
               illustration="mixers"
               title="3D Mixing Technology"
-              description="Drum, pail, and IBC mixers that equalize velocity vectors for homogeneous, air-free blends."
+              description="Drum, pail, and IBC mixers engineered for more even blending without air entrainment."
               to="/products/drum-and-ibc-mixers"
-              tone="orange"
+              tone="taupe"
             />
           </div>
         </div>
       </section>
 
-      <section className="border-t border-hairline-gray bg-pale-mist px-6 py-20 md:py-28">
-        <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="order-2 lg:order-1">
-            <Illustration name="cmo" animate className="mx-auto h-56 w-full max-w-md" />
+      <section className="bg-brand px-6 py-16 text-white md:py-24">
+        <div className="mx-auto flex max-w-[1280px] flex-col justify-between gap-8 md:flex-row md:items-end">
+          <div>
+            <h2 className="max-w-[18ch] text-[clamp(2.35rem,4.5vw,4rem)] leading-[1.07] text-balance">
+              Let's talk about your next move.
+            </h2>
+            <p className="mt-5 max-w-[55ch] text-subheading leading-[1.6] text-white/85">
+              Tell us what you're trying to grow. We'll listen first and find the right place to start.
+            </p>
           </div>
-          <div className="order-1 lg:order-2">
-            <SectionHeading
-              kicker="Fractional CMO"
-              title="Executive-level marketing without the full-time cost"
-              subtitle="A seasoned C-level marketing executive, embedded in your team for a fraction of the salary — leading strategy, not just delivering tasks."
-            />
-            <div className="mt-8">
-              <PillButton to="/about" variant="primary">
-                See if a Fractional CMO fits
-              </PillButton>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-ink-teal px-6 py-20 text-chalk-white md:py-28">
-        <div className="mx-auto max-w-[1280px]">
-          <h2 className="max-w-3xl text-[clamp(2.2rem,4.4vw,3.75rem)] leading-[1.06] text-balance">
-            Ready to turn every touch into a brand advocate?
-          </h2>
-          <p className="mt-5 max-w-[52ch] text-subheading leading-subheading text-chalk-white/70">
-            Let’s discuss your goals and build a strategy tuned to your business — not a template.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-4">
-            <PillButton to="/contact" variant="inverse">
-              Book a strategy call
-            </PillButton>
-            <a
-              href="tel:+18884275609"
-              className="tabular inline-flex items-center gap-2 rounded-pill border border-white/40 px-6 py-3 text-body font-medium transition-colors duration-200 hover:border-chalk-white"
-            >
-              888.427.5609
-            </a>
-          </div>
+          <PillButton to="/contact" variant="inverse" className="shrink-0">Book a strategy call</PillButton>
         </div>
       </section>
     </>

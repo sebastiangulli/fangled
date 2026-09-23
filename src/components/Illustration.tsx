@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 
 /* Minimal 30-degree isometric toolkit. Every scene is projected from the same
@@ -31,8 +31,8 @@ function disc(cx: number, cy: number, z: number, r: number, o: P) {
 
 const dl = (ms = 0) => ({ '--d': `${ms}ms` }) as CSSProperties
 
-const INK = '#102126'
-const EMBER = '#fa4e1d'
+const INK = '#00507e'
+const EMBER = '#8f837a'
 
 function Line({ a, b, o, d = 0, dash, w = 1.5 }: { a: V3; b: V3; o: P; d?: number; dash?: string; w?: number }) {
   return <line {...seg(a, b, o)} className="ink" pathLength={1} strokeDasharray={dash} strokeWidth={w} style={dl(d)} />
@@ -249,7 +249,7 @@ export function Illustration({
 /* The hero sheet: touches enter the strategy engine and leave as advocates. */
 export function HeroDrawing({ className = '' }: { className?: string }) {
   const label = (x: number, y: number, text: string, d: number) => (
-    <text x={x} y={y} fontSize="10" fill="#677b82" fontFamily="Archivo, sans-serif" textAnchor="middle" className="fill-in" style={dl(d)}>
+    <text x={x} y={y} fontSize="10" fill="#69615b" fontFamily="Archivo, sans-serif" textAnchor="middle" className="fill-in" style={dl(d)}>
       {text}
     </text>
   )
@@ -260,9 +260,9 @@ export function HeroDrawing({ className = '' }: { className?: string }) {
       <rect x="8" y="8" width="404" height="284" className="ink" pathLength={1} strokeWidth={1} />
       <line x1="8" y1="264" x2="412" y2="264" className="ink" pathLength={1} strokeWidth={1} style={dl(60)} />
       <line x1="292" y1="264" x2="292" y2="292" className="ink" pathLength={1} strokeWidth={1} style={dl(60)} />
-      <text x="20" y="281" fontSize="9" fill="#677b82" fontFamily="Archivo, sans-serif" className="fill-in" style={dl(700)}>FANGLED GROUP / ADVOCATE ENGINE</text>
-      <text x="304" y="276" fontSize="9" fill="#677b82" fontFamily="Archivo, sans-serif" className="fill-in" style={dl(700)}>SCALE 1:1</text>
-      <text x="304" y="288" fontSize="9" fill="#677b82" fontFamily="Archivo, sans-serif" className="fill-in" style={dl(700)}>REV 2026</text>
+      <text x="20" y="281" fontSize="9" fill="#69615b" fontFamily="Archivo, sans-serif" className="fill-in" style={dl(700)}>FANGLED GROUP / ADVOCATE ENGINE</text>
+      <text x="304" y="276" fontSize="9" fill="#69615b" fontFamily="Archivo, sans-serif" className="fill-in" style={dl(700)}>SCALE 1:1</text>
+      <text x="304" y="288" fontSize="9" fill="#69615b" fontFamily="Archivo, sans-serif" className="fill-in" style={dl(700)}>REV 2026</text>
 
       {/* touches in */}
       {label(52, 96, 'touches', 120)}
@@ -313,14 +313,14 @@ export function PhScale({ className = '' }: { className?: string }) {
       {ticks.map((i) => (
         <g key={i}>
           <line x1={8 + i * 31} y1="28" x2={8 + i * 31} y2={i === 0 || i === 14 ? 54 : 40} stroke={INK} strokeWidth={1} className="draw ink" pathLength={1} style={dl(120 + i * 40)} />
-          <text x={8 + i * 31} y="70" fontSize="10" fill={i === 7 ? EMBER : '#677b82'} fontFamily="Archivo, sans-serif" textAnchor="middle" className="fill-in" style={dl(200 + i * 40)}>
+          <text x={8 + i * 31} y="70" fontSize="10" fill={i === 7 ? EMBER : '#69615b'} fontFamily="Archivo, sans-serif" textAnchor="middle" className="fill-in" style={dl(200 + i * 40)}>
             {i}
           </text>
         </g>
       ))}
       <rect x={8 + 6 * 31} y="28" width="31" height="26" fill={EMBER} className="fill-in" style={dl(820)} />
-      <text x={8 + 2 * 31} y="18" fontSize="10" fill="#677b82" fontFamily="Archivo, sans-serif" textAnchor="middle" className="fill-in" style={dl(900)}>acid: hazardous</text>
-      <text x={8 + 12 * 31} y="18" fontSize="10" fill="#677b82" fontFamily="Archivo, sans-serif" textAnchor="middle" className="fill-in" style={dl(900)}>alkaline: hazardous</text>
+      <text x={8 + 2 * 31} y="18" fontSize="10" fill="#69615b" fontFamily="Archivo, sans-serif" textAnchor="middle" className="fill-in" style={dl(900)}>acid: hazardous</text>
+      <text x={8 + 12 * 31} y="18" fontSize="10" fill="#69615b" fontFamily="Archivo, sans-serif" textAnchor="middle" className="fill-in" style={dl(900)}>alkaline: hazardous</text>
       <text x={8 + 7 * 31} y="90" fontSize="10" fill={EMBER} fontFamily="Archivo, sans-serif" fontWeight="600" textAnchor="middle" className="fill-in" style={dl(940)}>7: neutral, safe</text>
     </svg>
   )
@@ -340,7 +340,7 @@ export function VectorDiagram({ className = '' }: { className?: string }) {
       <text x="170" y="44" fontSize="11" fill={INK} fontFamily="Archivo, sans-serif" className="fill-in" style={dl(600)}>vertical</text>
       <text x="238" y="172" fontSize="11" fill={INK} fontFamily="Archivo, sans-serif" className="fill-in" style={dl(640)}>radial</text>
       <text x="150" y="112" fontSize="11" fill={INK} fontFamily="Archivo, sans-serif" className="fill-in" style={dl(680)}>circular</text>
-      <text x="160" y="208" fontSize="11" fill="#677b82" fontFamily="Archivo, sans-serif" textAnchor="middle" className="fill-in" style={dl(720)}>three vectors, equalised: no vortex, no dead zone</text>
+      <text x="160" y="208" fontSize="11" fill="#69615b" fontFamily="Archivo, sans-serif" textAnchor="middle" className="fill-in" style={dl(720)}>three vectors, equalised: no vortex, no dead zone</text>
     </svg>
   )
 }

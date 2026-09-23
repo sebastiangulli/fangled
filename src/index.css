@@ -1,24 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  /* Inthememory palette */
-  --color-ink-teal: #102126;
-  --color-slate-veil: #3d5761;
-  --color-fog-gray: #677b82;
-  --color-chalk-white: #ffffff;
-  --color-pale-mist: #f1f7f9;
-  --color-hairline-gray: #e9eef0;
-  --color-ember-orange: #fa4e1d;
-  --color-sunset-coral: #fb6338;
-  --color-signal-blue: #0c67ff;
-  --color-info-indigo: #0519d5;
-  --color-soft-sky: #e4eeff;
+  --color-brand: #00507e;
+  --color-night: #153f56;
+  --color-ink: #1f333b;
+  --color-slate: #43545a;
+  --color-muted: #69615b;
+  --color-taupe: #8f837a;
+  --color-stone: #e7e1da;
+  --color-paper: #f2eeea;
+  --color-line: #d5ccc3;
+  --color-white: #ffffff;
 
-  /* Typography: a modern sans-serif for headings and body, with a display serif for accents */
-  --font-sans: 'Archivo', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Instrument Serif', Georgia, serif;
 
-  /* Type scale */
   --text-caption: 12px;
   --leading-caption: 1.5;
   --text-body-sm: 14px;
@@ -34,94 +30,54 @@
   --text-display: 56px;
   --leading-display: 1.06;
 
-  /* Radii — cards 12, tab toggles 20, buttons full pill */
-  --radius-card: 12px;
+  --radius-card: 14px;
   --radius-tab: 20px;
   --radius-pill: 100px;
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     font-family: var(--font-sans);
-    font-weight: 400;
-    color: var(--color-ink-teal);
-    background: var(--color-chalk-white);
+    color: var(--color-ink);
+    background: var(--color-white);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-sans);
-    font-weight: 500;
+    font-weight: 600;
     margin: 0;
   }
-  p {
-    margin: 0;
-  }
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-  button {
-    font-family: inherit;
-  }
-  ::selection {
-    background: rgba(12, 103, 255, 0.18);
-  }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; }
+  ::selection { background: #8f837a55; }
   :focus-visible {
-    outline: 2px solid var(--color-signal-blue);
-    outline-offset: 2px;
-    border-radius: 4px;
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  .tabular {
-    font-variant-numeric: tabular-nums;
-  }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  /* keep drafting lines at a true 1.5px no matter how the sheet is scaled */
+  .text-balance { text-wrap: balance; }
+  .tabular { font-variant-numeric: tabular-nums; }
   .iso :where(path, line, polyline, circle, ellipse, rect, polygon) {
     vector-effect: non-scaling-stroke;
   }
-  .iso text {
-    stroke: none;
-  }
-
-  /* one orchestrated entrance: strokes and fills settle in sequence.
-     Opacity (not stroke-dash) so a throttled renderer can never strand
-     a half-drawn line. */
-  .draw .ink,
-  .draw .fill-in {
+  .iso text { stroke: none; }
+  .draw .ink, .draw .fill-in {
     opacity: 0;
     animation: fill-in 0.5s ease forwards;
     animation-delay: var(--d, 0ms);
   }
 }
 
-@keyframes fill-in {
-  to { opacity: 1; }
-}
+@keyframes fill-in { to { opacity: 1; } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .draw .ink,
-  .draw .fill-in {
-    animation: none;
-    opacity: 1;
-  }
+  .draw .ink, .draw .fill-in { animation: none; opacity: 1; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }

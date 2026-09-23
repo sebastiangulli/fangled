@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="relative flex min-h-screen flex-col text-ink-teal">
+      <div className="relative flex min-h-screen flex-col text-ink">
         <div className="relative z-10 flex min-h-screen flex-col">
           <AnnouncementBar />
           <Nav />

@@ -18,13 +18,13 @@ export function Podcasts() {
         drawing={<Illustration name="podcast" animate className="mx-auto h-64 w-full max-w-md" />}
       />
 
-      <section className="border-t border-hairline-gray px-6 py-20 md:py-28">
+      <section className="border-t border-line px-6 py-20 md:py-28">
         <div className="mx-auto max-w-[1280px]">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <h2 className="text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.08] text-ink-teal">Recent episodes</h2>
-            <p className="tabular text-body-sm text-fog-gray">{PODCASTS.length} episodes · updated monthly</p>
+            <h2 className="text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.08] text-ink">Recent episodes</h2>
+            <p className="tabular text-body-sm text-muted">{PODCASTS.length} episodes · updated monthly</p>
           </div>
-          <div className="border-b border-hairline-gray">
+          <div className="border-b border-line">
             {PODCASTS.map((episode) => (
               <PodcastCard key={episode.title} title={episode.title} duration={episode.duration} href={YOUTUBE} />
             ))}

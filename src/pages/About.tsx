@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Hero } from '../components/Hero'
+import { Illustration } from '../components/Illustration'
 import { SectionHeading } from '../components/SectionHeading'
 import { PodcastCard } from '../components/PodcastCard'
 import { FeatureSurfaceCard } from '../components/FeatureCard'
@@ -17,17 +18,17 @@ function PainChecklist() {
     setChecked((prev) => prev.map((v, j) => (j === i ? !v : v)))
 
   return (
-    <div className="rounded-card border border-hairline-gray bg-chalk-white p-6 md:p-8">
-      <div className="flex items-baseline justify-between gap-4 border-b border-hairline-gray pb-4">
-        <p className="text-body-sm font-medium text-ink-teal">Does this sound like your business?</p>
-        <p className="tabular shrink-0 text-body-sm text-fog-gray">
+    <div className="rounded-card border border-line bg-white p-6 md:p-8">
+      <div className="flex items-baseline justify-between gap-4 border-b border-line pb-4">
+        <p className="text-body-sm font-medium text-ink">Does this sound like your business?</p>
+        <p className="tabular shrink-0 text-body-sm text-muted">
           {count} of {FCMO_PAIN_POINTS.length}
         </p>
       </div>
-      <ul className="divide-y divide-hairline-gray">
+      <ul className="divide-y divide-line">
         {FCMO_PAIN_POINTS.map((point, i) => (
           <li key={point}>
-            <label className="flex cursor-pointer items-start gap-3 py-3 text-body-sm leading-body-sm text-slate-veil transition-colors hover:text-ink-teal">
+            <label className="flex cursor-pointer items-start gap-3 py-3 text-body-sm leading-body-sm text-slate transition-colors hover:text-ink">
               <input
                 type="checkbox"
                 checked={checked[i]}
@@ -37,7 +38,7 @@ function PainChecklist() {
               <span
                 aria-hidden="true"
                 className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border transition-colors duration-150 ${
-                  checked[i] ? 'border-ink-teal bg-ink-teal text-chalk-white' : 'border-hairline-gray bg-chalk-white text-transparent'
+                  checked[i] ? 'border-ink bg-ink text-white' : 'border-line bg-white text-transparent'
                 }`}
               >
                 <Icon name="check" className="h-3 w-3" />
@@ -47,8 +48,8 @@ function PainChecklist() {
           </li>
         ))}
       </ul>
-      <div className="mt-5 border-t border-hairline-gray pt-5">
-        <p className="min-h-[2.5rem] text-body-sm leading-body-sm text-slate-veil" aria-live="polite">
+      <div className="mt-5 border-t border-line pt-5">
+        <p className="min-h-[2.5rem] text-body-sm leading-body-sm text-slate" aria-live="polite">
           {count === 0
             ? 'Tick anything that is true today. Even one is usually enough for a Fractional CMO to pay for itself.'
             : count === 1
@@ -72,23 +73,24 @@ export function About() {
     <>
       <Hero
         kicker="About Fangled Group"
-        title="A strategy-first global marketing & sales consultancy"
+        title="Growth starts with understanding your market"
         subtitle="A better way to win: turning anyone who touches your brand into a voracious advocate."
         cta="Book a strategy call"
         ctaTo="/contact"
+        drawing={<Illustration name="cmo" className="mx-auto h-64 w-full max-w-md" />}
       />
 
-      <section className="border-y border-hairline-gray bg-pale-mist px-6 py-20 md:py-28">
+      <section className="border-y border-line bg-paper px-6 py-20 md:py-28">
         <div className="mx-auto grid max-w-[1280px] items-start gap-12 lg:grid-cols-2 lg:gap-20">
           <SectionHeading
             kicker="A better way to win"
             title="Turning touches into brand advocates"
           />
           <div>
-            <p className="font-display text-[clamp(1.4rem,2.2vw,1.9rem)] leading-[1.3] text-ink-teal italic">
+            <p className="font-display text-[clamp(1.4rem,2.2vw,1.9rem)] leading-[1.3] text-ink italic">
               “An advocate buys again — and can’t wait to tell someone why.”
             </p>
-            <div className="mt-6 space-y-4 text-body leading-body text-slate-veil">
+            <div className="mt-6 space-y-4 text-body leading-body text-slate">
               <p>
                 Fangled Group helps you win in the U.S. and abroad with a strategy-first method: positioning,
                 market analysis, path-to-purchase evaluation, predictive sales modeling, brand development,
@@ -111,7 +113,7 @@ export function About() {
               title="Top skills and performance at a fraction of the cost"
               subtitle="Imagine a C-level marketing executive fully dedicated to your company for a fraction of the cost of a full-time hire."
             />
-            <div className="mt-6 space-y-4 text-body leading-body text-slate-veil">
+            <div className="mt-6 space-y-4 text-body leading-body text-slate">
               <p>
                 Don’t mistake an agency for a Fractional CMO. An agency is a service vendor hired for tasks;
                 a FCMO is a fiscally responsible member of your executive team.
@@ -126,7 +128,7 @@ export function About() {
         </div>
       </section>
 
-      <section className="border-t border-hairline-gray px-6 py-20 md:py-28">
+      <section className="border-t border-line px-6 py-20 md:py-28">
         <div className="mx-auto grid max-w-[1280px] items-start gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
@@ -140,7 +142,7 @@ export function About() {
               </PillButton>
             </div>
           </div>
-          <div className="border-b border-hairline-gray">
+          <div className="border-b border-line">
             {PODCASTS.map((episode) => (
               <PodcastCard key={episode.title} title={episode.title} duration={episode.duration} href={YOUTUBE} />
             ))}
@@ -151,10 +153,10 @@ export function About() {
       <section className="px-6 py-20 md:py-28">
         <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
-            <h2 className="max-w-[20ch] text-[clamp(2rem,3.6vw,3rem)] leading-[1.08] text-ink-teal text-balance">
+            <h2 className="max-w-[20ch] text-[clamp(2rem,3.6vw,3rem)] leading-[1.08] text-ink text-balance">
               Could a Fractional CMO be the game changer you seek?
             </h2>
-            <p className="tabular mt-4 text-subheading leading-subheading text-slate-veil">
+            <p className="tabular mt-4 text-subheading leading-subheading text-slate">
               {COMPANY.phone} · {COMPANY.email}
             </p>
           </div>

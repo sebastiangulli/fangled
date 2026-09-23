@@ -7,15 +7,15 @@ import { NotFound } from './NotFound'
 function SpecBlock({ heading, body, bullets }: { heading: string; body: string; bullets?: string[] }) {
   return (
     <div>
-      <h3 className="border-b border-ink-teal pb-3 text-subheading leading-subheading font-medium text-ink-teal">
+      <h3 className="border-b border-ink pb-3 text-subheading leading-subheading font-medium text-ink">
         {heading}
       </h3>
-      {body && <p className="mt-4 text-body-sm leading-body-sm text-slate-veil">{body}</p>}
+      {body && <p className="mt-4 text-body-sm leading-body-sm text-slate">{body}</p>}
       {bullets && bullets.length > 0 && (
-        <ul className="divide-y divide-hairline-gray">
+        <ul className="divide-y divide-line">
           {bullets.map((bullet) => (
-            <li key={bullet} className="flex items-start gap-3 py-3 text-body-sm leading-body-sm text-slate-veil">
-              <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-ember-orange" />
+            <li key={bullet} className="flex items-start gap-3 py-3 text-body-sm leading-body-sm text-slate">
+              <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-taupe" />
               {bullet}
             </li>
           ))}
@@ -48,12 +48,12 @@ export function Product() {
         }
       />
 
-      <section className="border-y border-hairline-gray bg-pale-mist px-6 py-16 md:py-20">
+      <section className="border-y border-line bg-paper px-6 py-16 md:py-20">
         <div className="mx-auto max-w-[1280px]">
-          <p className="mx-auto max-w-[70ch] text-center text-subheading leading-subheading text-slate-veil">
+          <p className="mx-auto max-w-[70ch] text-center text-subheading leading-subheading text-slate">
             {product.intro}
           </p>
-          <div className="mt-12 rounded-card border border-hairline-gray bg-chalk-white p-6 md:p-10">
+          <div className="mt-12 rounded-card border border-line bg-white p-6 md:p-10">
             {diagram}
           </div>
         </div>
