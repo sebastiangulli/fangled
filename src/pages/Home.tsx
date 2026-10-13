@@ -17,7 +17,8 @@ import {
   WhyCard,
 } from '../components/Sections'
 import { spotlight, stagger } from '../lib/motion'
-import { DiligenceMini, GlobeMini, Laptop, OrgMini, PipelineMini, PlaybookMockup, PlaybookScreen } from '../components/Visuals'
+import { PlaybookShowcase } from '../components/Playbook'
+import { DiligenceMini, GlobeMini, OrgMini, PipelineMini, PlaybookMockup } from '../components/Visuals'
 import { CAPABILITIES, CMO_VS_AGENCY, COMPANY, GLOBAL_SOURCE, GLOBAL_STRATEGY, PODCASTS, PRACTICES, PRODUCT_CARDS, WHY } from '../data/site'
 
 // Bento layout, in PRACTICES order: marketing, global trade, fractional CMO, beyond growth.
@@ -84,18 +85,16 @@ export function Home() {
 
       {/* The deliverable, shown as a product */}
       <section className="overflow-hidden bg-soft pt-24 md:pt-32">
-        <SectionHeader
-          center
-          eyebrow="The deliverable"
-          title="One playbook your whole team can run."
-          intro="Segments, value proposition, voice of customer, market viability, and the launch plan, in one place and shared with sales."
-        />
+        <div className="wrap">
+          <SectionHeader
+            center
+            eyebrow="The deliverable"
+            title="One playbook your whole team can run."
+            intro="Every engagement ends in a written go-to-market playbook: what the market told us, who to sell to, why they’ll choose you, and how to launch. Built to be used by sales, not filed away."
+          />
+        </div>
         <div className="wrap mt-14 pb-20 md:mt-20 md:pb-28">
-          <div className="scroll-zoom">
-            <Laptop label="Example go-to-market playbook: path to purchase, market viability, segments by fit, voice of customer, value proposition, and launch plan">
-              <PlaybookScreen />
-            </Laptop>
-          </div>
+          <PlaybookShowcase />
         </div>
       </section>
 
