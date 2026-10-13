@@ -1,11 +1,6 @@
 import { BadgeDollarSign, Factory, Languages, Network, Package, Scale, Search, ShieldCheck, Ship } from 'lucide-react'
 import { Button } from '../components/Button'
-import {
-  CtaPanel,
-  Eyebrow,
-  PageHeader,
-  SectionHeader,
-} from '../components/Sections'
+import { CtaPanel, Eyebrow, PageHeader, PhotoTile, SectionHeader } from '../components/Sections'
 import { spotlight, stagger } from '../lib/motion'
 import { Frame, GlobeMini } from '../components/Visuals'
 import { GLOBAL_SOURCE, GLOBAL_STRATEGY } from '../data/site'
@@ -55,39 +50,29 @@ export function GlobalTrade() {
         </ul>
       </section>
 
-      <section className="relative overflow-hidden bg-night py-24 text-white md:py-32">
-        <div aria-hidden="true" className="absolute -inset-[20%] animate-drift" style={{ background: 'radial-gradient(35% 45% at 20% 15%, rgb(0 80 126 / 0.75), transparent 70%)' }} />
-        <div aria-hidden="true" className="grid-lines absolute inset-0 text-white/[0.05]" />
-        <div className="wrap relative grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <SectionHeader dark eyebrow="Sourcing" title="Find products and services abroad" intro="From the first factory visit to inbound logistics and compliance, one team owns the chain." />
-            <ul className="mt-10 space-y-3">
-              {GLOBAL_SOURCE.map((s, i) => {
-                const Icon = SOURCE_ICONS[i]
-                return (
-                  <li key={s} data-reveal style={stagger(i + 1)} className="flex items-center gap-4 rounded-2xl bg-white/[0.04] p-4 ring-1 ring-white/10">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky/15 text-sky">
-                      <Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} />
-                    </span>
-                    <span className="text-body text-white/85">{s}</span>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-          <div data-reveal="clip" className="overflow-hidden rounded-3xl ring-1 ring-white/10">
-            <img
-              src="/images/global-trade-port.webp"
-              alt="Container cranes at a port at sunset"
-              loading="lazy"
-              decoding="async"
-              width={1672}
-              height={941}
-              className="aspect-[4/3] w-full object-cover"
-            />
-          </div>
-        </div>
-      </section>
+      <PhotoTile
+        src="/images/global-trade-port.webp"
+        alt="Container cranes at a port at sunset"
+        width={1672}
+        height={941}
+        eyebrow="Sourcing"
+        title="Find products and services abroad."
+        intro="From the first factory visit to inbound logistics and compliance, one team owns the chain."
+      >
+        <ul className="mt-10 grid gap-3 md:grid-cols-3">
+          {GLOBAL_SOURCE.map((s, i) => {
+            const Icon = SOURCE_ICONS[i]
+            return (
+              <li key={s} data-reveal style={stagger(i + 1)} className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur-xl">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky/20 text-sky">
+                  <Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} />
+                </span>
+                <span className="text-body text-white/90">{s}</span>
+              </li>
+            )
+          })}
+        </ul>
+      </PhotoTile>
 
       <div className="pt-24 md:pt-32">
         <CtaPanel title="Ready to see your next market clearly?" />

@@ -1,13 +1,7 @@
 import { useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { Globe2, HeartHandshake, Rocket, UsersRound } from 'lucide-react'
 import { Button } from '../components/Button'
-import {
-  CheckList,
-  CtaPanel,
-  Eyebrow,
-  PageHeader,
-  SectionHeader,
-} from '../components/Sections'
+import { CheckList, CtaPanel, Eyebrow, PageHeader, PhotoTile, SectionHeader } from '../components/Sections'
 import { spotlight, stagger } from '../lib/motion'
 import { Frame, PipelineMini } from '../components/Visuals'
 import { SERVICES } from '../data/site'
@@ -159,27 +153,19 @@ export function Marketing() {
         </div>
       </section>
 
-      <section className="wrap grid items-center gap-14 py-24 md:py-32 lg:grid-cols-2 lg:gap-20">
-        <div data-reveal="clip" className="overflow-hidden rounded-3xl">
-          <img
-            src="/images/product-workshop.webp"
-            alt="A team discussing a product sample and research notes"
-            loading="lazy"
-            decoding="async"
-            width={1536}
-            height={1024}
-            className="aspect-[4/3] w-full object-cover"
-          />
-        </div>
-        <div>
-          <SectionHeader title="One accountable team, under one strategy." />
-          <p data-reveal className="mt-5 max-w-[46ch] text-lead text-mute">
-            Campaigns, collateral, digital, and sales enablement all trace back to the same plan, so nothing gets built that the market didn’t ask for.
-          </p>
-        </div>
-      </section>
+      <PhotoTile
+        src="/images/product-workshop.webp"
+        alt="A team discussing a product sample and research notes"
+        width={1536}
+        height={1024}
+        eyebrow="How we deliver"
+        title="One accountable team, under one strategy."
+        intro="Campaigns, collateral, digital, and sales enablement all trace back to the same plan, so nothing gets built that the market didn’t ask for."
+      />
 
-      <CtaPanel />
+      <div className="pt-24 md:pt-32">
+        <CtaPanel />
+      </div>
     </>
   )
 }

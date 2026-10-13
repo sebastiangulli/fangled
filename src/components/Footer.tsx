@@ -102,6 +102,9 @@ export function Footer() {
           </ul>
         </div>
       </div>
+      <p className="wrap relative pb-6 text-caption text-white/40">
+        Product screens, interview quotes, and charts shown on this site are illustrative examples, not client data.
+      </p>
       <div className="wrap relative flex flex-col gap-3 border-t border-white/10 py-6 text-caption text-white/50 sm:flex-row sm:justify-between">
         <p>© {new Date().getFullYear()} Fangled Tech International, d.b.a. {COMPANY.name}</p>
         <Link to="/privacy" className="hover:text-white">Privacy & legal</Link>

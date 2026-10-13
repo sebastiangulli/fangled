@@ -1,10 +1,8 @@
-import { Fragment, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { Fragment, useEffect, useRef, useState, type ComponentType, type CSSProperties, type ReactNode } from 'react'
 import { ArrowUpRight, Check, Mic, Play, Plus } from 'lucide-react'
 import { COMPANY, FAQ, METHOD, YOUTUBE } from '../data/site'
 import { Button } from './Button'
-import { stagger } from '../lib/motion'
-
-const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+import { reducedMotion, stagger } from '../lib/motion'
 
 /* ---------- Page chrome ---------- */
 
@@ -395,25 +393,93 @@ export function FeaturedEpisode({ episode }: { episode: { title: string; duratio
   )
 }
 
+export function EpisodeCard({ title, duration, i, className = '' }: { title: string; duration: string; i: number; className?: string }) {
+  return (
+    <a href={YOUTUBE} target="_blank" rel="noreferrer" className={`group block ${className}`}>
+      <div className="transition-transform duration-500 ease-out group-hover:-translate-y-1">
+        <Cover i={i} duration={duration} />
+      </div>
+      <h3 className="mt-4 text-title text-ink transition-colors group-hover:text-brand">{title}</h3>
+      <span className="mt-2 inline-flex items-center gap-1 text-small text-mute">
+        Watch on YouTube
+        <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+        <span className="sr-only">(opens in a new tab)</span>
+      </span>
+    </a>
+  )
+}
+
 export function EpisodeGrid({ episodes, offset = 0 }: { episodes: readonly { title: string; duration: string }[]; offset?: number }) {
   return (
     <ul className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
       {episodes.map((ep, i) => (
         <li key={ep.title} data-reveal style={stagger(i % 3)}>
-          <a href={YOUTUBE} target="_blank" rel="noreferrer" className="group block">
-            <div className="transition-transform duration-500 ease-out group-hover:-translate-y-1">
-              <Cover i={i + offset} duration={ep.duration} />
-            </div>
-            <h3 className="mt-4 text-title text-ink transition-colors group-hover:text-brand">{ep.title}</h3>
-            <span className="mt-2 inline-flex items-center gap-1 text-small text-mute">
-              Watch on YouTube
-              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-              <span className="sr-only">(opens in a new tab)</span>
-            </span>
-          </a>
+          <EpisodeCard {...ep} i={i + offset} />
         </li>
       ))}
     </ul>
+  )
+}
+
+/* ---------- Full-bleed photo with copy over a night scrim ---------- */
+
+export function PhotoTile({
+  id,
+  src,
+  alt,
+  width,
+  height,
+  eyebrow,
+  title,
+  intro,
+  children,
+}: {
+  id?: string
+  src: string
+  alt: string
+  width: number
+  height: number
+  eyebrow?: string
+  title: string
+  intro?: string
+  children?: ReactNode
+}) {
+  return (
+    <section id={id} className="relative flex min-h-[620px] items-end overflow-hidden bg-night text-white md:h-[88vh]">
+      <img src={src} alt={alt} loading="lazy" decoding="async" width={width} height={height} className="scroll-photo absolute inset-0 h-full w-full object-cover" />
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-night via-night/45 to-night/5" />
+      <div className="wrap relative pb-16 md:pb-24">
+        <div data-reveal className="max-w-[42rem]">
+          {eyebrow && <p className="text-small font-medium text-sky">{eyebrow}</p>}
+          <h2 className="mt-3 text-display-xl">{title}</h2>
+          {intro && <p className="mt-5 max-w-[46ch] text-lead text-white/75">{intro}</p>}
+        </div>
+        {children}
+      </div>
+    </section>
+  )
+}
+
+/* ---------- Why Fangled rail card ---------- */
+
+export function WhyCard({ icon: Icon, title, body }: { icon: ComponentType<{ className?: string; strokeWidth?: number }>; title: string; body: string }) {
+  return (
+    <div className="flex h-full min-h-[15rem] w-[17rem] flex-col rounded-3xl bg-white p-7 ring-1 ring-line sm:w-[19rem]">
+      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-soft text-brand">
+        <Icon aria-hidden="true" className="h-5 w-5" strokeWidth={1.75} />
+      </span>
+      <p className="mt-6 text-title text-ink">{title}</p>
+      <p className="mt-2 text-small text-mute">{body}</p>
+    </div>
+  )
+}
+
+/** Caption with a strong opening phrase and a muted continuation. */
+export function Lead({ strong, children }: { strong: string; children: ReactNode }) {
+  return (
+    <>
+      {strong} <span>{children}</span>
+    </>
   )
 }
 

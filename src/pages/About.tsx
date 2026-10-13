@@ -1,17 +1,18 @@
 import { useState } from 'react'
 import { BarChart3, Check, Compass, Gem, Megaphone, Microscope, Route } from 'lucide-react'
 import { Button } from '../components/Button'
+import { Highlights } from '../components/Gallery'
 import {
   CheckList,
   CtaPanel,
   Eyebrow,
   Faq,
-  MethodScroll,
+  Lead,
   PageHeader,
   SectionHeader,
 } from '../components/Sections'
 import { spotlight, stagger } from '../lib/motion'
-import { DiligenceMini, Frame } from '../components/Visuals'
+import { DiligenceMini, Frame, MethodVisual } from '../components/Visuals'
 import { BEYOND_GROWTH, CMO_CAPABILITIES, DISCIPLINES, FCMO_PAIN_POINTS } from '../data/site'
 
 const DISCIPLINE_ICONS = [Compass, Microscope, Route, BarChart3, Gem, Megaphone]
@@ -23,6 +24,13 @@ const PATH = [
   { stage: 'Advocate', body: 'They buy again, and tell others why.' },
 ]
 
+const SLIDES = [
+  { dark: true, caption: <Lead strong="Listen to the market.">Voice-of-customer, distributor, and dealer studies reveal what buyers actually value.</Lead>, visual: <MethodVisual step={0} /> },
+  { caption: <Lead strong="Prove the value.">Findings become a clear value proposition, and a reason to choose you over every alternative.</Lead>, visual: <MethodVisual step={1} /> },
+  { dark: true, caption: <Lead strong="Activate the playbook.">Marketing and sales get one data-driven plan, and move on it together.</Lead>, visual: <MethodVisual step={2} /> },
+]
+
+/** Fit check as configurator options: select what's true today. */
 function FitCheck() {
   const [checked, setChecked] = useState<Set<number>>(new Set())
   const count = checked.size
@@ -43,25 +51,28 @@ function FitCheck() {
       <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-soft">
         <div className="h-full origin-left rounded-full bg-brand transition-transform duration-300" style={{ transform: `scaleX(${count / FCMO_PAIN_POINTS.length})` }} />
       </div>
-      <ul className="mt-5 space-y-2">
-        {FCMO_PAIN_POINTS.map((point, i) => (
-          <li key={point}>
-            <label
-              className={`flex cursor-pointer items-start gap-3 rounded-xl p-3 text-small ring-1 transition-colors duration-200 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-sky ${
-                checked.has(i) ? 'bg-sky-soft text-ink ring-brand/30' : 'text-ink-2 ring-line hover:bg-soft'
-              }`}
-            >
-              <input type="checkbox" checked={checked.has(i)} onChange={() => toggle(i)} className="peer sr-only" />
-              <span
-                aria-hidden="true"
-                className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-white text-transparent ring-1 ring-line transition-colors peer-checked:bg-brand peer-checked:text-white peer-checked:ring-brand"
+      <ul className="mt-5 space-y-2.5">
+        {FCMO_PAIN_POINTS.map((point, i) => {
+          const on = checked.has(i)
+          return (
+            <li key={point}>
+              <label
+                className={`flex cursor-pointer items-start gap-3 rounded-2xl p-4 text-small ring-inset transition-[box-shadow,background-color] duration-200 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-sky ${
+                  on ? 'bg-sky-soft/60 text-ink ring-2 ring-brand' : 'bg-white text-ink-2 ring-1 ring-line hover:ring-ink/25'
+                }`}
               >
-                <Check className="h-3.5 w-3.5" strokeWidth={3} />
-              </span>
-              {point}
-            </label>
-          </li>
-        ))}
+                <input type="checkbox" checked={on} onChange={() => toggle(i)} className="sr-only" />
+                <span
+                  aria-hidden="true"
+                  className={`mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full transition-colors duration-200 ${on ? 'bg-brand text-white' : 'ring-1 ring-line'}`}
+                >
+                  {on && <Check className="h-3 w-3" strokeWidth={3.5} />}
+                </span>
+                {point}
+              </label>
+            </li>
+          )
+        })}
       </ul>
       <div className="mt-6 flex flex-col gap-4 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-small text-mute" aria-live="polite">
@@ -156,8 +167,8 @@ export function About() {
       <section className="bg-soft py-24 md:py-32">
         <div className="wrap">
           <SectionHeader eyebrow="How we work" title="The Strategy First Method" />
-          <div className="mt-10 lg:mt-4">
-            <MethodScroll />
+          <div className="mt-12">
+            <Highlights label="The Strategy First Method" slides={SLIDES} />
           </div>
         </div>
       </section>

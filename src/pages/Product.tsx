@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { Button } from '../components/Button'
+import { Gallery, PlusCard } from '../components/Gallery'
 import {
   CheckList,
   CtaPanel,
@@ -17,6 +18,9 @@ export function Product() {
   const { slug = '' } = useParams()
   const product = PRODUCTS[slug]
   if (!product) return <NotFound />
+  // First sentence leads in ink, the rest follows muted.
+  const cut = product.intro.indexOf('. ') + 1
+  const [lead, rest] = cut ? [product.intro.slice(0, cut), product.intro.slice(cut + 1)] : [product.intro, '']
 
   return (
     <>
@@ -30,18 +34,30 @@ export function Product() {
 
       <section className="wrap grid gap-6 py-24 md:py-28 lg:grid-cols-[0.4fr_1fr] lg:gap-20">
         <h2 data-reveal className="text-small font-medium text-brand">Overview</h2>
-        <p data-reveal style={stagger(1)} className="max-w-[62ch] text-[1.3rem] leading-[1.6] tracking-[-0.01em] text-ink-2">{product.intro}</p>
+        <p data-reveal style={stagger(1)} className="max-w-[56ch] text-[clamp(1.3rem,2.1vw,1.75rem)] leading-[1.4] font-medium tracking-[-0.02em] text-mute">
+          <span className="text-ink">{lead}</span> {rest}
+        </p>
       </section>
 
       <section className="bg-soft py-24 md:py-32">
-        <div className="wrap gap-5 md:columns-2">
-          {product.sections.map((s, i) => (
-            <article key={s.heading} data-reveal style={stagger(i % 2)} className="mb-5 break-inside-avoid rounded-3xl bg-white p-7 shadow-card ring-1 ring-line sm:p-9">
-              <h2 className="text-display-md text-ink">{s.heading}</h2>
-              {s.body && <p className="mt-3 text-body text-mute">{s.body}</p>}
-              {s.bullets && s.bullets.length > 0 && <CheckList items={s.bullets} className="mt-6" />}
-            </article>
-          ))}
+        <div className="wrap">
+          <SectionHeader eyebrow="Details" title="Take a closer look" intro="Open any card for the full detail." />
+        </div>
+        <div className="mt-12">
+          <Gallery label={`${product.kicker} details`}>
+            {product.sections.map((s, i) => (
+              <PlusCard
+                key={s.heading}
+                eyebrow={product.kicker}
+                title={s.heading}
+                dark={i % 2 === 1}
+                preview={<span className="line-clamp-3">{s.bullets?.[0] ?? s.body}</span>}
+              >
+                {s.body && <p className="max-w-[60ch] text-lead text-mute">{s.body}</p>}
+                {s.bullets && s.bullets.length > 0 && <CheckList items={s.bullets} className="mt-6 md:columns-2 md:gap-10 [&>li]:break-inside-avoid" />}
+              </PlusCard>
+            ))}
+          </Gallery>
         </div>
       </section>
 

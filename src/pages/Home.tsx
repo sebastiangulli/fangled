@@ -3,20 +3,22 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Check, CircleCheck, Minus } from 'lucide-react'
 import { Button, TextLink } from '../components/Button'
 import { ProductCard } from '../components/ProductCard'
+import { Gallery } from '../components/Gallery'
 import {
   CheckList,
   CtaPanel,
-  EpisodeGrid,
+  EpisodeCard,
   Faq,
   Marquee,
   MethodScroll,
   PageHeader,
   ScrollStatement,
   SectionHeader,
+  WhyCard,
 } from '../components/Sections'
 import { spotlight, stagger } from '../lib/motion'
-import { DiligenceMini, GlobeMini, OrgMini, PipelineMini, PlaybookMockup } from '../components/Visuals'
-import { CAPABILITIES, CMO_VS_AGENCY, COMPANY, GLOBAL_SOURCE, GLOBAL_STRATEGY, PODCASTS, PRACTICES, PRODUCT_CARDS } from '../data/site'
+import { DiligenceMini, GlobeMini, Laptop, OrgMini, PipelineMini, PlaybookMockup, PlaybookScreen } from '../components/Visuals'
+import { CAPABILITIES, CMO_VS_AGENCY, COMPANY, GLOBAL_SOURCE, GLOBAL_STRATEGY, PODCASTS, PRACTICES, PRODUCT_CARDS, WHY } from '../data/site'
 
 // Bento layout, in PRACTICES order: marketing, global trade, fractional CMO, beyond growth.
 const TILES: { cls: string; layout?: string; visual: ReactNode }[] = [
@@ -80,8 +82,25 @@ export function Home() {
         </div>
       </section>
 
+      {/* The deliverable, shown as a product */}
+      <section className="overflow-hidden bg-soft pt-24 md:pt-32">
+        <SectionHeader
+          center
+          eyebrow="The deliverable"
+          title="One playbook your whole team can run."
+          intro="Segments, value proposition, voice of customer, market viability, and the launch plan, in one place and shared with sales."
+        />
+        <div className="wrap mt-14 pb-20 md:mt-20 md:pb-28">
+          <div className="scroll-zoom">
+            <Laptop label="Example go-to-market playbook: path to purchase, market viability, segments by fit, voice of customer, value proposition, and launch plan">
+              <PlaybookScreen />
+            </Laptop>
+          </div>
+        </div>
+      </section>
+
       {/* Services bento */}
-      <section className="wrap pb-24 md:pb-32">
+      <section className="wrap py-24 md:py-32">
         <SectionHeader
           eyebrow="What we do"
           title="Four ways we help B2B companies grow"
@@ -215,7 +234,7 @@ export function Home() {
               decoding="async"
               width={1672}
               height={941}
-              className="aspect-[4/5] w-full object-cover sm:aspect-[4/3] lg:aspect-[4/5]"
+              className="scroll-photo aspect-[4/5] w-full object-cover sm:aspect-[4/3] lg:aspect-[4/5]"
             />
           </div>
           <div data-reveal style={stagger(4)} className="absolute inset-x-4 bottom-4 rounded-2xl bg-white/85 p-5 shadow-pop ring-1 ring-white/60 backdrop-blur-xl sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-80">
@@ -250,22 +269,40 @@ export function Home() {
         </div>
       </section>
 
-      {/* Podcasts */}
-      <section className="wrap py-24 md:py-32">
-        <SectionHeader
-          eyebrow="Podcasts"
-          title="Podcasts and round tables"
-          intro="Strategy, sales, exit planning, and building brand advocates, with founders and operators."
-          action={<Button to="/podcasts" variant="secondary" arrow>All episodes</Button>}
-        />
+      {/* Why Fangled */}
+      <section className="py-24 md:py-32">
+        <div className="wrap">
+          <SectionHeader eyebrow="Why Fangled" title="Built to be easy to start with" />
+        </div>
         <div className="mt-12">
-          <EpisodeGrid episodes={PODCASTS.slice(0, 3)} />
+          <Gallery label="Why Fangled Group">
+            {WHY.map((w) => (
+              <WhyCard key={w.title} {...w} />
+            ))}
+          </Gallery>
         </div>
       </section>
 
-      <div className="border-t border-line">
-        <Faq />
-      </div>
+      {/* Podcasts */}
+      <section className="bg-soft py-24 md:py-32">
+        <div className="wrap">
+          <SectionHeader
+            eyebrow="Podcasts"
+            title="Podcasts and round tables"
+            intro="Strategy, sales, exit planning, and building brand advocates, with founders and operators."
+            action={<Button to="/podcasts" variant="secondary" arrow>All episodes</Button>}
+          />
+        </div>
+        <div className="mt-12">
+          <Gallery label="Podcast episodes">
+            {PODCASTS.map((ep, i) => (
+              <EpisodeCard key={ep.title} {...ep} i={i} className="w-[17rem] sm:w-[22rem]" />
+            ))}
+          </Gallery>
+        </div>
+      </section>
+
+      <Faq />
 
       <CtaPanel />
     </>

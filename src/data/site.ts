@@ -1,4 +1,4 @@
-import { Flag, Globe2, Target, UserRound } from 'lucide-react'
+import { CalendarCheck, Compass, Flag, Globe2, Handshake, Layers, Target, UserRound, UsersRound } from 'lucide-react'
 
 export const COMPANY = {
   name: 'Fangled Group',
@@ -393,4 +393,13 @@ export const CAPABILITIES = [
   'Global sourcing',
   'Exit planning',
   'PE & M&A research',
+]
+
+export const WHY = [
+  { icon: CalendarCheck, title: 'Start with a free call', body: 'No pitch deck. We ask about your company and tell you honestly whether we can help.' },
+  { icon: Compass, title: 'Strategy before spend', body: 'Every campaign traces back to research on the buyers you want to reach.' },
+  { icon: Layers, title: 'Fractional or by project', body: 'An embedded executive, or a team for one launch, whatever the job needs.' },
+  { icon: Globe2, title: 'Here and abroad', body: 'Contacts and resources in the U.S. and internationally, tuned to your market.' },
+  { icon: UsersRound, title: 'A vetted network', body: 'Curated experts assembled for your project, whatever its size.' },
+  { icon: Handshake, title: 'One accountable team', body: 'Research, marketing, sales, and trade under one plan, not five vendors.' },
 ]

@@ -1,18 +1,45 @@
-import { useState, type FormEvent, type ReactNode } from 'react'
+import { useState, type FormEvent } from 'react'
 import { CircleCheck } from 'lucide-react'
 import { COMPANY } from '../data/site'
 import { Button } from './Button'
 
-const input =
-  'peer mt-2 block w-full rounded-xl bg-white px-4 py-3 text-body text-ink ring-1 ring-line outline-none ring-inset transition-shadow placeholder:text-mute/60 focus:ring-2 focus:ring-brand user-invalid:ring-2 user-invalid:ring-danger'
+const control =
+  'peer block w-full rounded-xl bg-white px-4 text-body text-ink ring-1 ring-line outline-none ring-inset transition-shadow duration-200 placeholder:text-transparent focus:ring-2 focus:ring-brand user-invalid:ring-2 user-invalid:ring-danger'
 
-function Field({ label, error, optional, className = '', children }: { label: string; error?: string; optional?: boolean; className?: string; children: ReactNode }) {
+/** Field whose label sits inside and floats up once it has focus or a value. */
+function Field({
+  name,
+  label,
+  error,
+  optional,
+  textarea,
+  type = 'text',
+  autoComplete,
+  className = '',
+}: {
+  name: string
+  label: string
+  error?: string
+  optional?: boolean
+  textarea?: boolean
+  type?: string
+  autoComplete?: string
+  className?: string
+}) {
+  const float =
+    'pointer-events-none absolute top-[15px] left-4 text-body text-mute transition-all duration-200 peer-focus:top-2 peer-focus:text-caption peer-focus:text-brand peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-caption'
   return (
-    <label className={`block text-small font-medium text-ink ${className}`}>
-      {label}
-      {optional ? <span className="font-normal text-mute"> (optional)</span> : <span aria-hidden="true" className="text-danger"> *</span>}
-      {children}
-      {error && <span className="mt-1.5 hidden text-caption font-normal text-danger peer-user-invalid:block">{error}</span>}
+    <label className={`relative block ${className}`}>
+      {textarea ? (
+        <textarea name={name} required={!optional} rows={5} placeholder={label} className={`${control} min-h-40 pt-7 pb-3`} />
+      ) : (
+        <input name={name} type={type} required={!optional} autoComplete={autoComplete} placeholder={label} className={`${control} h-14 pt-5`} />
+      )}
+      <span className={float}>
+        {label}
+        {optional ? <span className="text-mute"> (optional)</span> : <span aria-hidden="true" className="text-danger"> *</span>}
+      </span>
+      {error && <span className="mt-1.5 hidden text-caption text-danger peer-user-invalid:block">{error}</span>}
     </label>
   )
 }
@@ -33,19 +60,11 @@ export function ContactForm() {
     <form onSubmit={onSubmit} className="rounded-3xl bg-white p-6 shadow-pop ring-1 ring-line sm:p-9">
       <p className="text-title text-ink">Tell us about your company</p>
       <p className="mt-1 text-small text-mute">Fields marked * are required.</p>
-      <div className="mt-7 grid gap-5 sm:grid-cols-2">
-        <Field label="Name" error="Enter your name.">
-          <input name="name" required autoComplete="name" className={input} />
-        </Field>
-        <Field label="Work email" error="Enter an email like name@company.com.">
-          <input name="email" type="email" required autoComplete="email" className={input} />
-        </Field>
-        <Field label="Company" optional className="sm:col-span-2">
-          <input name="company" autoComplete="organization" className={input} />
-        </Field>
-        <Field label="What are you trying to grow?" error="Tell us a little about what you need." className="sm:col-span-2">
-          <textarea name="message" required rows={5} className={input} placeholder="A new market, a product launch, a sales team that needs a playbook…" />
-        </Field>
+      <div className="mt-7 grid gap-3 sm:grid-cols-2">
+        <Field name="name" label="Name" autoComplete="name" error="Enter your name." />
+        <Field name="email" label="Work email" type="email" autoComplete="email" error="Enter an email like name@company.com." />
+        <Field name="company" label="Company" autoComplete="organization" optional className="sm:col-span-2" />
+        <Field name="message" label="What are you trying to grow?" textarea error="Tell us a little about what you need." className="sm:col-span-2" />
       </div>
       <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <Button type="submit" arrow className="h-12 px-6">Send message</Button>
