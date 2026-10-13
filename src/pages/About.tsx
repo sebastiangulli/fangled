@@ -1,172 +1,214 @@
 import { useState } from 'react'
-import { Hero } from '../components/Hero'
-import { Illustration } from '../components/Illustration'
-import { SectionHeading } from '../components/SectionHeading'
-import { PodcastCard } from '../components/PodcastCard'
-import { FeatureSurfaceCard } from '../components/FeatureCard'
-import { Icon } from '../components/Icon'
-import { PillButton } from '../components/PillButton'
-import { PODCASTS, FCMO_PAIN_POINTS, COMPANY, SOCIAL } from '../data/site'
+import { BarChart3, Check, Compass, Gem, Megaphone, Microscope, Route } from 'lucide-react'
+import { Button } from '../components/Button'
+import {
+  CheckList,
+  CtaPanel,
+  Eyebrow,
+  Faq,
+  MethodScroll,
+  PageHeader,
+  SectionHeader,
+} from '../components/Sections'
+import { spotlight, stagger } from '../lib/motion'
+import { DiligenceMini, Frame } from '../components/Visuals'
+import { BEYOND_GROWTH, CMO_CAPABILITIES, DISCIPLINES, FCMO_PAIN_POINTS } from '../data/site'
 
-const YOUTUBE = SOCIAL.find((s) => s.label === 'YouTube')?.href ?? '#'
+const DISCIPLINE_ICONS = [Compass, Microscope, Route, BarChart3, Gem, Megaphone]
 
-function PainChecklist() {
-  const [checked, setChecked] = useState<boolean[]>(() => FCMO_PAIN_POINTS.map(() => false))
-  const count = checked.filter(Boolean).length
+const PATH = [
+  { stage: 'Touch', body: 'Someone meets your brand for the first time.' },
+  { stage: 'Aware', body: 'They understand what you do and why it matters.' },
+  { stage: 'Buyer', body: 'They choose you, for a reason they can repeat.' },
+  { stage: 'Advocate', body: 'They buy again, and tell others why.' },
+]
 
+function FitCheck() {
+  const [checked, setChecked] = useState<Set<number>>(new Set())
+  const count = checked.size
   const toggle = (i: number) =>
-    setChecked((prev) => prev.map((v, j) => (j === i ? !v : v)))
+    setChecked((prev) => {
+      const next = new Set(prev)
+      if (!next.delete(i)) next.add(i)
+      return next
+    })
 
   return (
-    <div className="rounded-card border border-line bg-white p-6 md:p-8">
-      <div className="flex items-baseline justify-between gap-4 border-b border-line pb-4">
-        <p className="text-body-sm font-medium text-ink">Does this sound like your business?</p>
-        <p className="tabular shrink-0 text-body-sm text-muted">
-          {count} of {FCMO_PAIN_POINTS.length}
-        </p>
+    <fieldset className="rounded-3xl bg-white p-6 shadow-float ring-1 ring-line sm:p-8">
+      <legend className="sr-only">Fractional CMO fit check</legend>
+      <div className="flex items-baseline justify-between gap-4">
+        <p className="text-title text-ink">Does this sound like your business?</p>
+        <p className="shrink-0 text-small text-mute">{count} of {FCMO_PAIN_POINTS.length}</p>
       </div>
-      <ul className="divide-y divide-line">
+      <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-soft">
+        <div className="h-full origin-left rounded-full bg-brand transition-transform duration-300" style={{ transform: `scaleX(${count / FCMO_PAIN_POINTS.length})` }} />
+      </div>
+      <ul className="mt-5 space-y-2">
         {FCMO_PAIN_POINTS.map((point, i) => (
           <li key={point}>
-            <label className="flex cursor-pointer items-start gap-3 py-3 text-body-sm leading-body-sm text-slate transition-colors hover:text-ink">
-              <input
-                type="checkbox"
-                checked={checked[i]}
-                onChange={() => toggle(i)}
-                className="peer sr-only"
-              />
+            <label
+              className={`flex cursor-pointer items-start gap-3 rounded-xl p-3 text-small ring-1 transition-colors duration-200 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-sky ${
+                checked.has(i) ? 'bg-sky-soft text-ink ring-brand/30' : 'text-ink-2 ring-line hover:bg-soft'
+              }`}
+            >
+              <input type="checkbox" checked={checked.has(i)} onChange={() => toggle(i)} className="peer sr-only" />
               <span
                 aria-hidden="true"
-                className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border transition-colors duration-150 ${
-                  checked[i] ? 'border-ink bg-ink text-white' : 'border-line bg-white text-transparent'
-                }`}
+                className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-white text-transparent ring-1 ring-line transition-colors peer-checked:bg-brand peer-checked:text-white peer-checked:ring-brand"
               >
-                <Icon name="check" className="h-3 w-3" />
+                <Check className="h-3.5 w-3.5" strokeWidth={3} />
               </span>
               {point}
             </label>
           </li>
         ))}
       </ul>
-      <div className="mt-5 border-t border-line pt-5">
-        <p className="min-h-[2.5rem] text-body-sm leading-body-sm text-slate" aria-live="polite">
+      <div className="mt-6 flex flex-col gap-4 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-small text-mute" aria-live="polite">
           {count === 0
-            ? 'Tick anything that is true today. Even one is usually enough for a Fractional CMO to pay for itself.'
+            ? 'Check anything that’s true today.'
             : count === 1
-              ? 'One of these is usually enough for a Fractional CMO to pay for itself.'
-              : `${count} of these at once is exactly the situation a Fractional CMO is built for.`}
+              ? 'One is often enough for a Fractional CMO to pay for itself.'
+              : `${count} at once is exactly what a Fractional CMO is built for.`}
         </p>
-        {count > 0 && (
-          <div className="mt-4">
-            <PillButton to="/contact" variant="primary">
-              Talk it through
-            </PillButton>
-          </div>
-        )}
+        <Button to="/contact" variant={count ? 'primary' : 'secondary'} className="shrink-0">
+          Talk it through
+        </Button>
       </div>
-    </div>
+    </fieldset>
   )
 }
 
 export function About() {
   return (
     <>
-      <Hero
-        kicker="About Fangled Group"
-        title="Growth starts with understanding your market"
-        subtitle="A better way to win: turning anyone who touches your brand into a voracious advocate."
-        cta="Book a strategy call"
-        ctaTo="/contact"
-        drawing={<Illustration name="cmo" className="mx-auto h-64 w-full max-w-md" />}
+      <PageHeader
+        eyebrow={<Eyebrow>About Fangled Group</Eyebrow>}
+        title="A better way to win."
+        intro="We turn anyone who touches your brand into a voracious advocate: a buyer who comes back, and can’t wait to tell someone why."
+        actions={<Button to="/contact" arrow>Book a strategy call</Button>}
+        aside={
+          <Frame>
+            <p className="text-caption font-medium text-mute">The path we design for</p>
+            <ol className="mt-5">
+              {PATH.map((p, i) => {
+                const last = i === PATH.length - 1
+                return (
+                  <li key={p.stage} className="relative flex gap-4 pb-6 last:pb-0">
+                    {!last && <span aria-hidden="true" className="absolute top-8 bottom-0 left-[15px] w-px bg-gradient-to-b from-sky to-line" />}
+                    <span
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-caption font-semibold ${
+                        last ? 'bg-brand text-white shadow-float' : 'bg-sky-soft text-brand'
+                      }`}
+                    >
+                      {i + 1}
+                    </span>
+                    <span className="pt-1">
+                      <span className={`block text-title ${last ? 'text-brand' : 'text-ink'}`}>{p.stage}</span>
+                      <span className="mt-0.5 block text-small text-mute">{p.body}</span>
+                    </span>
+                  </li>
+                )
+              })}
+            </ol>
+          </Frame>
+        }
       />
 
-      <section className="border-y border-line bg-paper px-6 py-20 md:py-28">
-        <div className="mx-auto grid max-w-[1280px] items-start gap-12 lg:grid-cols-2 lg:gap-20">
-          <SectionHeading
-            kicker="A better way to win"
-            title="Turning touches into brand advocates"
-          />
+      <section className="wrap py-24 md:py-32">
+        <div className="grid items-center gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
           <div>
-            <p className="font-display text-[clamp(1.4rem,2.2vw,1.9rem)] leading-[1.3] text-ink italic">
-              “An advocate buys again — and can’t wait to tell someone why.”
-            </p>
-            <div className="mt-6 space-y-4 text-body leading-body text-slate">
+            <SectionHeader eyebrow="Our approach" title="Growth starts with understanding your market" />
+            <div data-reveal className="mt-6 max-w-[56ch] space-y-5 text-lead text-mute">
               <p>
-                Fangled Group helps you win in the U.S. and abroad with a strategy-first method: positioning,
-                market analysis, path-to-purchase evaluation, predictive sales modeling, brand development,
-                and marketing activation.
+                Fangled Group helps you win in the U.S. and abroad with a strategy-first method. We find your ideal customer segments, define what they need, and build a data-driven go-to-market plan around it.
               </p>
-              <p>
-                The result is a launch — domestic or global — that is planned, priced, and protected before
-                it spends a dollar.
-              </p>
+              <p>The result is a launch, domestic or global, that’s planned, priced, and protected before it spends a dollar.</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20 md:py-28">
-        <div className="mx-auto grid max-w-[1280px] items-start gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <SectionHeading
-              kicker="Fractional CMO"
-              title="Top skills and performance at a fraction of the cost"
-              subtitle="Imagine a C-level marketing executive fully dedicated to your company for a fraction of the cost of a full-time hire."
+          <div data-reveal="clip" className="overflow-hidden rounded-3xl">
+            <img
+              src="/images/strategy-workshop.webp"
+              alt="A team working through market plans and material samples around a table"
+              loading="lazy"
+              decoding="async"
+              width={1536}
+              height={1024}
+              className="aspect-[4/3] w-full object-cover"
             />
-            <div className="mt-6 space-y-4 text-body leading-body text-slate">
-              <p>
-                Don’t mistake an agency for a Fractional CMO. An agency is a service vendor hired for tasks;
-                a FCMO is a fiscally responsible member of your executive team.
-              </p>
-              <p>
-                FCMOs lead workshops, evaluate the voice of the market, channel partners and competitive
-                landscape, and deliver the overall go-to-market playbook — not just tactical materials.
-              </p>
-            </div>
           </div>
-          <PainChecklist />
         </div>
+        <ul onPointerMove={spotlight} className="mt-16 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+          {DISCIPLINES.map((d, i) => {
+            const Icon = DISCIPLINE_ICONS[i]
+            return (
+              <li key={d} data-reveal style={stagger(i)}>
+                <div className="spot h-full rounded-2xl bg-soft p-5 ring-1 ring-line transition-colors hover:bg-white">
+                  <Icon aria-hidden="true" className="h-5 w-5 text-brand" strokeWidth={1.75} />
+                  <p className="mt-4 text-small font-medium text-ink">{d}</p>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
       </section>
 
-      <section className="border-t border-line px-6 py-20 md:py-28">
-        <div className="mx-auto grid max-w-[1280px] items-start gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <SectionHeading
-              kicker="On the air"
-              title="Recent conversations"
-              subtitle="Strategy, sales, exit planning, and building brand advocates — with founders and operators from the Fangled network."
-            />
-            <div className="mt-8">
-              <PillButton href={YOUTUBE} variant="secondary" icon="arrow-up-right">
-                Watch on YouTube
-              </PillButton>
-            </div>
-          </div>
-          <div className="border-b border-line">
-            {PODCASTS.map((episode) => (
-              <PodcastCard key={episode.title} title={episode.title} duration={episode.duration} href={YOUTUBE} />
-            ))}
+      <section className="bg-soft py-24 md:py-32">
+        <div className="wrap">
+          <SectionHeader eyebrow="How we work" title="The Strategy First Method" />
+          <div className="mt-10 lg:mt-4">
+            <MethodScroll />
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-20 md:py-28">
-        <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <h2 className="max-w-[20ch] text-[clamp(2rem,3.6vw,3rem)] leading-[1.08] text-ink text-balance">
-              Could a Fractional CMO be the game changer you seek?
-            </h2>
-            <p className="tabular mt-4 text-subheading leading-subheading text-slate">
-              {COMPANY.phone} · {COMPANY.email}
+      <section id="fractional-cmo" className="wrap grid items-start gap-14 py-24 md:py-32 lg:grid-cols-2 lg:gap-20">
+        <div className="lg:sticky lg:top-28">
+          <SectionHeader eyebrow="Fractional CMO" title="Top skills and performance at a fraction of the cost." />
+          <div className="mt-5 max-w-[50ch] space-y-4 text-lead text-mute">
+            <p>Imagine a C-level marketing executive fully dedicated to your company, without the cost of a full-time hire or the team built around one.</p>
+            <p>
+              Don’t mistake an agency for a Fractional CMO. An agency is a vendor hired for tasks. A Fractional CMO is a fiscally responsible member of your executive team who owns the strategy and the budget.
             </p>
           </div>
-          <FeatureSurfaceCard
-            title="Book a free strategy call"
-            description="No pitch decks. Just a meaningful conversation about your company and how we can help take it higher."
-            to="/contact"
-          />
+          <h3 className="mt-10 text-small font-medium text-ink">What a Fractional CMO brings</h3>
+          <CheckList items={CMO_CAPABILITIES} className="mt-4" />
+        </div>
+        <div data-reveal style={stagger(1)}>
+          <FitCheck />
         </div>
       </section>
+
+      <section id="beyond-growth" className="relative overflow-hidden bg-night py-24 text-white md:py-32">
+        <div aria-hidden="true" className="absolute inset-0" style={{ background: 'radial-gradient(50% 60% at 90% 0%, rgb(0 80 126 / 0.7), transparent 70%)' }} />
+        <div aria-hidden="true" className="grid-lines absolute inset-0 text-white/[0.05]" />
+        <div className="wrap relative grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
+          <div>
+            <SectionHeader dark eyebrow="Beyond growth" title="When it’s time to sell, or to buy." />
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              {BEYOND_GROWTH.map((b, i) => (
+                <div key={b.title} data-reveal style={stagger(i + 1)} className="rounded-3xl bg-white/[0.04] p-7 ring-1 ring-white/10">
+                  <h3 className="text-title">{b.title}</h3>
+                  <p className="mt-2 text-body text-white/65">{b.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div data-reveal style={stagger(3)} className="rounded-3xl bg-white/[0.03] p-6 ring-1 ring-white/10 sm:p-8">
+            <div className="flex items-baseline justify-between">
+              <p className="text-title">Target-company review</p>
+              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-medium text-white/70">Example</span>
+            </div>
+            <div className="mt-5">
+              <DiligenceMini dark />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Faq />
+
+      <CtaPanel title="Could a Fractional CMO be the game changer you seek?" />
     </>
   )
 }

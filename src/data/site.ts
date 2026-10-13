@@ -1,3 +1,5 @@
+import { Flag, Globe2, Target, UserRound } from 'lucide-react'
+
 export const COMPANY = {
   name: 'Fangled Group',
   fullName: 'Fangled Tech International ©',
@@ -7,14 +9,6 @@ export const COMPANY = {
   location: 'Moreland Hills, Ohio',
 }
 
-export const NAV = [
-  { label: 'Marketing & Sales', path: '/marketing-and-sales-consulting' },
-  { label: 'Global Trade', path: '/global-trade-and-sourcing' },
-  { label: 'Podcasts', path: '/podcasts' },
-  { label: 'About', path: '/about' },
-  { label: 'Contact', path: '/contact' },
-]
-
 export const SOCIAL = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/5344408' },
   { label: 'Facebook', href: 'https://www.facebook.com/FangledInternational/' },
@@ -22,11 +16,88 @@ export const SOCIAL = [
   { label: 'YouTube', href: 'https://www.youtube.com/channel/UCp7ZKlIqWN9I68OXFHCerWQ' },
 ]
 
-export const STATS = [
-  { value: '10+', label: 'Years helping B2B brands build go-to-market playbooks' },
-  { value: '100s', label: 'Companies connected to global markets and partners' },
-  { value: '$0', label: 'Toll-free call to start the conversation' },
-  { value: '1', label: 'Strategy-first method tuned to your business' },
+export const YOUTUBE = SOCIAL[3].href
+
+export const PRACTICES = [
+  {
+    title: 'Marketing & sales consulting',
+    body: 'Research who buys and why, sharpen the value proposition, and build a go-to-market plan your sales team can run.',
+    to: '/marketing-and-sales-consulting',
+    link: 'Explore marketing & sales',
+    icon: Target,
+  },
+  {
+    title: 'Global trade & sourcing',
+    body: 'Test market viability abroad, pick the right channel, and source products, materials, and manufacturers.',
+    to: '/global-trade-and-sourcing',
+    link: 'Explore global trade',
+    icon: Globe2,
+  },
+  {
+    title: 'Fractional CMO',
+    body: 'A C-level marketing executive inside your business, for a fraction of the cost of a full-time hire.',
+    to: '/about#fractional-cmo',
+    link: 'Take the fit check',
+    icon: UserRound,
+  },
+  {
+    title: 'Beyond growth',
+    body: 'Exit planning, plus target-company and market research that surfaces red flags and opportunities for PE and M&A teams.',
+    to: '/about#beyond-growth',
+    link: 'Read about exit planning',
+    icon: Flag,
+  },
+]
+
+export const METHOD = [
+  {
+    title: 'Listen to the market',
+    body: 'Voice-of-customer, distributor, and dealer studies reveal what buyers actually value, and who your ideal segments are.',
+  },
+  {
+    title: 'Prove the value',
+    body: 'Those findings become a clear value proposition and a reason to choose you over every alternative.',
+  },
+  {
+    title: 'Activate the playbook',
+    body: 'Marketing and sales get one data-driven go-to-market plan, and move on it together.',
+  },
+]
+
+export const DISCIPLINES = [
+  'Positioning',
+  'Market analysis',
+  'Path-to-purchase evaluation',
+  'Predictive sales modeling',
+  'Brand development',
+  'Marketing activation',
+]
+
+export const CMO_VS_AGENCY = [
+  { row: 'Role', agency: 'A service vendor hired for tasks', cmo: 'A fiscally responsible member of your executive team' },
+  { row: 'Owns', agency: 'Deliverables on a brief', cmo: 'The overall strategy and the marketing budget' },
+  { row: 'Delivers', agency: 'Tactical materials', cmo: 'The go-to-market playbook' },
+  { row: 'Team', agency: 'Their own account staff', cmo: 'Leads your marketing staff and vendors' },
+  { row: 'Day to day', agency: 'Outside your operations', cmo: 'Inside your operations' },
+]
+
+export const CMO_CAPABILITIES = [
+  'Technology review and implementation: CRM, marketing automation, web design, and SEO',
+  'Lead generation and nurturing programs',
+  'Leadership workshops',
+  'Voice of the market, channel partners, and the competitive landscape',
+  'The overall go-to-market playbook',
+]
+
+export const BEYOND_GROWTH = [
+  {
+    title: 'Exit planning',
+    body: 'Prepare the business, the brand, and the customer base so the value you built is the value a buyer sees.',
+  },
+  {
+    title: 'Research for PE and M&A',
+    body: 'In-depth target-company and market research, including customer diligence, that surfaces red flags and opportunities before the deal closes.',
+  },
 ]
 
 export const PODCASTS = [
@@ -35,7 +106,7 @@ export const PODCASTS = [
   { title: 'Tyler Lindley Podcast: Effective Sales Organization Management', duration: '27 min' },
   { title: 'The Exit Your Way Round Table', duration: '48 min' },
   { title: "Monte Clark's Brilliant LinkedIn Podcast", duration: '10 min' },
-  { title: 'Fractional Chief Marketing Officers Provide Top Skills & Performance at a Fraction of the Cost', duration: 'Watch now' },
+  { title: 'Fractional Chief Marketing Officers Provide Top Skills & Performance at a Fraction of the Cost', duration: 'Video' },
 ]
 
 export const SERVICES = {
@@ -267,4 +338,59 @@ export const PRIVACY_PARAGRAPHS = [
     body:
       'Although most changes are likely to be minor, Fangled Group may change its Privacy Policy from time to time, and in Fangled Tech’s sole discretion. Fangled Tech encourages visitors to frequently check this page for any changes to its Privacy Policy. Your continued use of this site after any change in this Privacy Policy will constitute your acceptance of such change.',
   },
+]
+
+export const FAQ = [
+  {
+    q: 'What is a Fractional CMO?',
+    a: 'A C-level marketing executive who works inside your company part-time. They own the marketing strategy and budget, lead your team and vendors, and deliver the go-to-market playbook, for a fraction of the cost of a full-time hire.',
+  },
+  {
+    q: 'How is that different from hiring an agency?',
+    a: 'An agency is a vendor hired for specific tasks and sits outside your daily operations. A Fractional CMO is a fiscally responsible member of your executive team, accountable for the overall strategy, not just the materials.',
+  },
+  {
+    q: 'Do you work with companies outside the U.S.?',
+    a: 'Yes. We help U.S. companies enter markets abroad and source products, materials, and manufacturers internationally, with contacts and resources in the U.S. and overseas.',
+  },
+  {
+    q: 'Can you help us prepare to sell the business?',
+    a: 'Yes. We support exit planning, and we run target-company and market research, including customer diligence, for private equity firms and M&A professionals.',
+  },
+  {
+    q: 'What does the first conversation look like?',
+    a: 'A free strategy call. No pitch deck: we ask about your company, your market, and what you’re trying to grow, then tell you honestly whether and where we can help.',
+  },
+]
+
+export const PRODUCT_CARDS = [
+  {
+    slug: 'ph-neutral-cleaners',
+    label: 'Advanced chemistry',
+    title: 'pH-neutral cleaning technology',
+    body: 'Industrial cleaners that replace hazardous acid and alkaline chemistry in parts washing, surface prep, and maintenance.',
+  },
+  {
+    slug: 'drum-and-ibc-mixers',
+    label: '3D mixing technology',
+    title: 'Drum, pail, and IBC mixers',
+    body: 'EvenMix™ blades equalize vertical, radial, and circular flow, so the whole container blends with no air pulled in.',
+  },
+]
+
+export const CAPABILITIES = [
+  'Positioning',
+  'Market research',
+  'Voice of customer studies',
+  'Go-to-market playbooks',
+  'Fractional CMO',
+  'Product launch',
+  'Branding & rebranding',
+  'CRM implementation',
+  'Sales training',
+  'Trade shows & events',
+  'Market entry',
+  'Global sourcing',
+  'Exit planning',
+  'PE & M&A research',
 ]

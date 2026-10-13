@@ -1,83 +1,248 @@
 @import "tailwindcss";
 
 @theme {
+  /* Brand: logo blue + logo taupe on a cool white canvas. */
+  --color-ink: #0b2a3f;
+  --color-ink-2: #2c4558;
+  --color-mute: #5a6b78;
+  --color-night: #061a29;
   --color-brand: #00507e;
-  --color-night: #153f56;
-  --color-ink: #1f333b;
-  --color-slate: #43545a;
-  --color-muted: #69615b;
-  --color-taupe: #8f837a;
-  --color-stone: #e7e1da;
-  --color-paper: #f2eeea;
-  --color-line: #d5ccc3;
-  --color-white: #ffffff;
+  --color-brand-deep: #003c5f;
+  --color-sky: #4fb0e3;
+  --color-sky-soft: #e6f3fb;
+  --color-sand: #dcd0c4;
+  --color-taupe: #8a7f77;
+  --color-soft: #f5f8fa;
+  --color-line: #e3e9ee;
+  --color-danger: #b42318;
 
-  --font-sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
 
-  --text-caption: 12px;
-  --leading-caption: 1.5;
-  --text-body-sm: 14px;
-  --leading-body-sm: 1.6;
-  --text-body: 16px;
-  --leading-body: 1.6;
-  --text-subheading: 18px;
-  --leading-subheading: 1.45;
-  --text-heading-sm: 20px;
-  --leading-heading-sm: 1.25;
-  --text-stat: 40px;
-  --leading-stat: 1.1;
-  --text-display: 56px;
-  --leading-display: 1.06;
+  /* Type scale: one family, weight and tracking carry the hierarchy. */
+  --text-display-2xl: clamp(2.75rem, 6.2vw, 5.25rem);
+  --text-display-2xl--line-height: 1;
+  --text-display-2xl--letter-spacing: -0.05em;
+  --text-display-2xl--font-weight: 500;
+  --text-display-xl: clamp(2.4rem, 4.8vw, 4rem);
+  --text-display-xl--line-height: 1.04;
+  --text-display-xl--letter-spacing: -0.045em;
+  --text-display-xl--font-weight: 500;
+  --text-display-lg: clamp(2rem, 3.4vw, 2.9rem);
+  --text-display-lg--line-height: 1.08;
+  --text-display-lg--letter-spacing: -0.04em;
+  --text-display-lg--font-weight: 500;
+  --text-display-md: clamp(1.45rem, 2vw, 1.75rem);
+  --text-display-md--line-height: 1.2;
+  --text-display-md--letter-spacing: -0.03em;
+  --text-display-md--font-weight: 500;
+  --text-title: 1.125rem;
+  --text-title--line-height: 1.35;
+  --text-title--letter-spacing: -0.015em;
+  --text-title--font-weight: 500;
+  --text-lead: clamp(1.0625rem, 1.3vw, 1.1875rem);
+  --text-lead--line-height: 1.6;
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.55;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.45;
 
-  --radius-card: 14px;
-  --radius-tab: 20px;
-  --radius-pill: 100px;
+  /* Elevation scale: card < float < pop. */
+  --shadow-card: 0 1px 2px rgb(11 42 63 / 0.04), 0 2px 6px -2px rgb(11 42 63 / 0.06);
+  --shadow-float: 0 1px 2px rgb(11 42 63 / 0.05), 0 12px 28px -10px rgb(0 60 95 / 0.18), 0 32px 64px -24px rgb(0 60 95 / 0.22);
+  --shadow-pop: 0 2px 4px rgb(11 42 63 / 0.06), 0 24px 48px -12px rgb(0 60 95 / 0.28);
+
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --animate-rise: rise 0.7s var(--ease-out) both;
+  --animate-grow: grow 0.9s var(--ease-out) both;
+  --animate-fade: fade 0.25s ease-out both;
+  --animate-drift: drift 22s ease-in-out infinite alternate;
+  --animate-dash: dash 1.6s linear infinite;
+  --animate-word: word 0.9s var(--ease-out) both;
+  --animate-page: page 0.45s ease-out both;
+  --animate-marquee: marquee 48s linear infinite;
+}
+
+@utility wrap {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Hero atmosphere. The diagonal cut follows the slant of the wordmark. */
+@utility mesh {
+  background:
+    radial-gradient(40% 70% at 100% 32%, #00507e 0%, rgb(0 80 126 / 0) 100%),
+    radial-gradient(32% 60% at 78% 2%, #4fb0e3 0%, rgb(79 176 227 / 0) 100%),
+    radial-gradient(30% 55% at 92% 92%, #9fd5f1 0%, rgb(159 213 241 / 0) 100%),
+    radial-gradient(36% 60% at 56% 100%, #dcd0c4 0%, rgb(220 208 196 / 0) 100%),
+    radial-gradient(60% 80% at 8% 10%, #eef6fb 0%, rgb(238 246 251 / 0) 100%),
+    #f7fafc;
+  /* Single column: text runs full width, so keep the mesh pale enough for body copy. */
+  @media (width < 64rem) {
+    background:
+      radial-gradient(90% 40% at 100% 0%, #bfe2f5 0%, rgb(191 226 245 / 0) 100%),
+      radial-gradient(80% 35% at 100% 80%, #9fd5f1 0%, rgb(159 213 241 / 0) 100%),
+      radial-gradient(70% 30% at 10% 100%, #e8ded4 0%, rgb(232 222 212 / 0) 100%),
+      #f7fafc;
+  }
+}
+
+@utility slant {
+  clip-path: polygon(0 0, 100% 0, 100% 76%, 0 100%);
+}
+
+/* Faint blueprint grid, faded at the edges. */
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%);
+}
+
+/* Cursor-following glow for cards; the pointer position comes from spotlight() in Sections.tsx. */
+@utility spot {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgb(79 176 227 / 0.16), transparent 45%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+@utility fade-x {
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
   body {
     margin: 0;
-    font-family: var(--font-sans);
+    background: #fff;
     color: var(--color-ink);
-    background: var(--color-white);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4 {
-    font-family: var(--font-sans);
-    font-weight: 600;
     margin: 0;
+    text-wrap: balance;
   }
-  p { margin: 0; }
+  p { margin: 0; text-wrap: pretty; }
   a { color: inherit; text-decoration: none; }
-  button { font-family: inherit; }
-  ::selection { background: #8f837a55; }
+  button { cursor: pointer; font: inherit; color: inherit; }
+  ::selection { background: rgb(79 176 227 / 0.3); }
   :focus-visible {
-    outline: 2px solid var(--color-brand);
+    outline: 2px solid var(--color-sky);
     outline-offset: 3px;
+    border-radius: 6px;
   }
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
 }
 
-@layer utilities {
-  .text-balance { text-wrap: balance; }
-  .tabular { font-variant-numeric: tabular-nums; }
-  .iso :where(path, line, polyline, circle, ellipse, rect, polygon) {
-    vector-effect: non-scaling-stroke;
-  }
-  .iso text { stroke: none; }
-  .draw .ink, .draw .fill-in {
+/* Scroll reveal: elements opt in with data-reveal; App adds .is-in when they enter the viewport.
+   Hidden state only exists when motion is allowed, so content never depends on it. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
     opacity: 0;
-    animation: fill-in 0.5s ease forwards;
-    animation-delay: var(--d, 0ms);
+    translate: 0 28px;
+    transition:
+      opacity 0.8s var(--ease-out),
+      translate 0.8s var(--ease-out),
+      clip-path 1.2s var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+  [data-reveal='clip'] {
+    opacity: 1;
+    translate: none;
+    clip-path: inset(10% 8% 10% 8% round 24px);
+  }
+  [data-reveal].is-in {
+    opacity: 1;
+    translate: 0 0;
+  }
+  [data-reveal='clip'].is-in {
+    clip-path: inset(0 0 0 0 round 24px);
+  }
+
+  /* Scroll-linked depth in the hero (progressive enhancement). */
+  @supports (animation-timeline: scroll()) {
+    .parallax {
+      animation: parallax linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 90vh;
+    }
   }
 }
 
-@keyframes fill-in { to { opacity: 1; } }
+@keyframes parallax {
+  to { translate: 0 var(--depth, -80px); }
+}
+
+/* FAQ: animate the disclosure where the browser can size to auto. */
+@supports (interpolate-size: allow-keywords) {
+  :root { interpolate-size: allow-keywords; }
+  details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition: block-size 0.35s var(--ease-out), content-visibility 0.35s allow-discrete;
+  }
+  details[open]::details-content { block-size: auto; }
+}
+
+@keyframes word {
+  from { transform: translateY(105%); }
+}
+@keyframes page {
+  from { opacity: 0; }
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); }
+}
+@keyframes grow {
+  from { transform: scaleX(0); }
+}
+@keyframes fade {
+  from { opacity: 0; transform: translateY(6px); }
+}
+@keyframes drift {
+  to { transform: translate3d(-4%, 3%, 0) scale(1.08); }
+}
+@keyframes dash {
+  to { stroke-dashoffset: -16; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .draw .ink, .draw .fill-in { animation: none; opacity: 1; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

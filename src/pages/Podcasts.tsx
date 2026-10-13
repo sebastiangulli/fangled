@@ -1,41 +1,34 @@
-import { Hero } from '../components/Hero'
-import { PodcastCard } from '../components/PodcastCard'
-import { PillButton } from '../components/PillButton'
-import { Illustration } from '../components/Illustration'
-import { PODCASTS, SOCIAL } from '../data/site'
-
-const YOUTUBE = SOCIAL.find((s) => s.label === 'YouTube')?.href ?? '#'
+import { Button } from '../components/Button'
+import { CtaPanel, EpisodeGrid, Eyebrow, FeaturedEpisode, PageHeader } from '../components/Sections'
+import { SocialIcon } from '../components/SocialIcon'
+import { PODCASTS, YOUTUBE } from '../data/site'
 
 export function Podcasts() {
   return (
     <>
-      <Hero
-        kicker="FangledCast"
-        title="Conversations on strategy, sales, and exit planning"
-        subtitle="Practical frameworks and real-world stories with founders, marketers, and operators from the Fangled network."
-        cta="Subscribe on YouTube"
-        ctaHref={YOUTUBE}
-        drawing={<Illustration name="podcast" animate className="mx-auto h-64 w-full max-w-md" />}
+      <PageHeader
+        eyebrow={<Eyebrow>Podcasts</Eyebrow>}
+        title="Conversations on strategy, sales, and exit planning."
+        intro="Round tables and interviews with founders, marketers, and operators, plus practical frameworks you can put to work this quarter."
+        actions={
+          <Button href={YOUTUBE}>
+            <SocialIcon name="YouTube" className="h-4.5 w-4.5" />
+            Subscribe on YouTube
+          </Button>
+        }
       />
 
-      <section className="border-t border-line px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-[1280px]">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <h2 className="text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.08] text-ink">Recent episodes</h2>
-            <p className="tabular text-body-sm text-muted">{PODCASTS.length} episodes · updated monthly</p>
-          </div>
-          <div className="border-b border-line">
-            {PODCASTS.map((episode) => (
-              <PodcastCard key={episode.title} title={episode.title} duration={episode.duration} href={YOUTUBE} />
-            ))}
-          </div>
-          <div className="mt-10">
-            <PillButton href={YOUTUBE} variant="secondary" icon="arrow-up-right">
-              Watch more on YouTube
-            </PillButton>
-          </div>
+      <section className="wrap py-24 md:py-32">
+        <div data-reveal>
+          <FeaturedEpisode episode={PODCASTS[0]} />
+        </div>
+        <h2 data-reveal className="mt-24 text-display-md text-ink">More episodes</h2>
+        <div className="mt-10">
+          <EpisodeGrid episodes={PODCASTS.slice(1)} offset={1} />
         </div>
       </section>
+
+      <CtaPanel title="Want to talk it through for your company?" />
     </>
   )
 }

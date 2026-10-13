@@ -1,78 +1,110 @@
 import { Link } from 'react-router-dom'
+import { Mail, MapPin, Phone } from 'lucide-react'
 import { COMPANY, SOCIAL } from '../data/site'
-import { Icon } from './Icon'
+import { SocialIcon } from './SocialIcon'
 import logoUrl from '../../fangled-group-logo.svg'
+import markUrl from '../../fangled-group-logomark.svg'
 
-const iconFor = (label: string) => {
-  const map: Record<string, 'linkedin' | 'facebook' | 'x' | 'youtube'> = {
-    LinkedIn: 'linkedin',
-    Facebook: 'facebook',
-    X: 'x',
-    YouTube: 'youtube',
-  }
-  return map[label] || 'x'
-}
+const COLUMNS = [
+  {
+    title: 'Services',
+    links: [
+      { label: 'Marketing & sales', to: '/marketing-and-sales-consulting' },
+      { label: 'Global trade & sourcing', to: '/global-trade-and-sourcing' },
+      { label: 'Fractional CMO', to: '/about#fractional-cmo' },
+      { label: 'Exit planning', to: '/about#beyond-growth' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About', to: '/about' },
+      { label: 'Podcasts', to: '/podcasts' },
+      { label: 'pH-neutral cleaners', to: '/products/ph-neutral-cleaners' },
+      { label: '3D mixing technology', to: '/products/drum-and-ibc-mixers' },
+    ],
+  },
+]
+
+const CONTACT = [
+  { icon: Phone, label: `${COMPANY.phone} (toll free)`, href: COMPANY.phoneHref },
+  { icon: Mail, label: COMPANY.email, href: `mailto:${COMPANY.email}` },
+  { icon: MapPin, label: COMPANY.location },
+]
 
 export function Footer() {
   return (
-    <footer className="bg-night px-6 pb-10 pt-16 text-white">
-      <div className="mx-auto max-w-[1280px]">
-        <p className="max-w-3xl font-sans text-[clamp(2rem,4vw,3.25rem)] font-medium leading-[1.08] text-balance">
-          Strategy first — here and abroad.
-        </p>
-
-        <div className="mt-12 grid gap-12 border-t border-white/15 pt-12 md:grid-cols-4">
-          <div className="md:col-span-2">
-            <Link to="/" className="inline-flex rounded-lg bg-paper px-4 py-3" aria-label="Fangled Group home">
-              <img src={logoUrl} alt="Fangled Group" className="h-9 w-auto" />
-            </Link>
-            <p className="mt-4 max-w-sm text-body-sm leading-body-sm text-white/70">
-              Fractional CMO and business growth consultancy for B2B brands, in the U.S. and in global markets.
-            </p>
-            <div className="mt-6 flex gap-3">
-              {SOCIAL.map((item) => (
+    <footer className="relative overflow-hidden bg-night text-white">
+      <img
+        src={markUrl}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-24 -bottom-28 w-[720px] max-w-none opacity-[0.05] brightness-0 invert"
+      />
+      <div className="wrap relative grid gap-12 pt-20 pb-14 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
+        <div>
+          <Link to="/" aria-label="Fangled Group home" className="inline-block">
+            <img src={logoUrl} alt="" className="h-7 w-auto brightness-0 invert" />
+          </Link>
+          <p className="mt-5 max-w-[30ch] text-small text-white/60">
+            Strategy-first marketing, sales, and global trade consulting for B2B companies.
+          </p>
+          <ul className="mt-7 flex gap-2">
+            {SOCIAL.map((s) => (
+              <li key={s.label}>
                 <a
-                  key={item.label}
-                  href={item.href}
+                  href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors duration-200 hover:border-taupe hover:text-taupe"
-                  aria-label={item.label}
+                  aria-label={s.label}
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 text-white/70 ring-1 ring-white/10 transition-colors hover:bg-white/10 hover:text-white"
                 >
-                  <Icon name={iconFor(item.label)} className="h-4 w-4" />
+                  <SocialIcon name={s.label} />
                 </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {COLUMNS.map((col) => (
+          <div key={col.title}>
+            <h2 className="text-small font-medium text-white">{col.title}</h2>
+            <ul className="mt-4 space-y-3">
+              {col.links.map((l) => (
+                <li key={l.label}>
+                  <Link to={l.to} className="text-small text-white/60 transition-colors hover:text-white">{l.label}</Link>
+                </li>
               ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-body-sm font-medium text-white">Services</h3>
-            <ul className="space-y-2 text-body-sm leading-body-sm text-white/70">
-              <li><Link to="/marketing-and-sales-consulting" className="transition-colors hover:text-white">Marketing & Sales Consulting</Link></li>
-              <li><Link to="/global-trade-and-sourcing" className="transition-colors hover:text-white">Global Trade & Sourcing</Link></li>
-              <li><Link to="/about" className="transition-colors hover:text-white">Fractional CMO</Link></li>
-              <li><Link to="/podcasts" className="transition-colors hover:text-white">Podcasts</Link></li>
             </ul>
           </div>
+        ))}
 
-          <div>
-            <h3 className="mb-4 text-body-sm font-medium text-white">Contact</h3>
-            <ul className="space-y-2 text-body-sm leading-body-sm text-white/70">
-              <li><a href={COMPANY.phoneHref} className="tabular transition-colors hover:text-white">{COMPANY.phone}</a></li>
-              <li><a href={`mailto:${COMPANY.email}`} className="transition-colors hover:text-white">{COMPANY.email}</a></li>
-              <li>{COMPANY.location}</li>
-            </ul>
-          </div>
+        <div>
+          <h2 className="text-small font-medium text-white">Contact</h2>
+          <ul className="mt-4 space-y-3">
+            {CONTACT.map((c) => {
+              const inner = (
+                <>
+                  <c.icon aria-hidden="true" className="h-4 w-4 shrink-0 text-sky" />
+                  {c.label}
+                </>
+              )
+              return (
+                <li key={c.label}>
+                  {c.href ? (
+                    <a href={c.href} className="flex items-center gap-2.5 text-small text-white/60 transition-colors hover:text-white">{inner}</a>
+                  ) : (
+                    <span className="flex items-center gap-2.5 text-small text-white/60">{inner}</span>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
         </div>
-
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/15 pt-8 text-caption leading-caption text-white/50 md:flex-row">
-          <p>
-            © {new Date().getFullYear()} {COMPANY.fullName} ·{' '}
-            <Link to="/privacy" className="transition-colors hover:text-white">Privacy & Legal</Link> ·{' '}
-            <Link to="/contact" className="transition-colors hover:text-white">Contact</Link>
-          </p>
-          <p className="tabular">Moreland Hills, Ohio · 41.5°N 81.4°W</p>
-        </div>
+      </div>
+      <div className="wrap relative flex flex-col gap-3 border-t border-white/10 py-6 text-caption text-white/50 sm:flex-row sm:justify-between">
+        <p>© {new Date().getFullYear()} Fangled Tech International, d.b.a. {COMPANY.name}</p>
+        <Link to="/privacy" className="hover:text-white">Privacy & legal</Link>
       </div>
     </footer>
   )
