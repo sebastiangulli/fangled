@@ -1,0 +1,16 @@
+{
+  "eyebrow": "Podcasts",
+  "title": "Conversations on strategy, sales, and exit planning.",
+  "intro": "Round tables and interviews with founders, marketers, and operators, plus practical frameworks you can put to work this quarter.",
+  "subscribeLabel": "Subscribe on YouTube",
+  "featured": {
+    "label": "Featured episode",
+    "blurb": "A round table on customer diligence: what buyers look for in your customer base before a deal.",
+    "watchLabel": "Watch on YouTube"
+  },
+  "moreTitle": "More episodes",
+  "cardWatchLabel": "Watch on YouTube",
+  "cta": {
+    "title": "Want to talk it through for your company?"
+  }
+}

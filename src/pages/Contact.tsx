@@ -4,24 +4,21 @@ import { ContactForm } from '../components/ContactForm'
 import { Eyebrow, Mesh } from '../components/Sections'
 import { stagger } from '../lib/motion'
 import { COMPANY } from '../data/site'
+import contact from '../content/contact.json'
 
 const CHANNELS = [
-  { icon: Phone, label: 'Call toll free', value: COMPANY.phone, href: COMPANY.phoneHref },
-  { icon: Mail, label: 'Email', value: COMPANY.email, href: `mailto:${COMPANY.email}` },
-  { icon: MapPin, label: 'Office', value: COMPANY.location },
+  { icon: Phone, label: contact.channels.call, value: COMPANY.phone, href: COMPANY.phoneHref },
+  { icon: Mail, label: contact.channels.email, value: COMPANY.email, href: `mailto:${COMPANY.email}` },
+  { icon: MapPin, label: contact.channels.office, value: COMPANY.location },
 ]
 
-const NEXT = [
-  { title: 'You send a note', body: 'A few lines on your company and what you want to grow.' },
-  { title: 'We set up a free strategy call', body: 'No pitch deck. We ask questions and listen.' },
-  { title: 'You get an honest answer', body: 'Where we can help, where to start, or who can help better.' },
-]
+const NEXT = contact.next.steps
 
 const rise = (ms: number) => ({ animationDelay: `${ms}ms` })
 
 export function Contact() {
   useEffect(() => {
-    document.title = 'Contact | Fangled Group'
+    document.title = contact.docTitle
   }, [])
 
   return (
@@ -30,12 +27,10 @@ export function Contact() {
       <div className="wrap relative grid gap-14 pt-32 pb-24 md:pt-40 md:pb-32 lg:grid-cols-[1fr_1.1fr] lg:gap-x-20 lg:gap-y-14">
         <div>
           <div className="animate-rise">
-            <Eyebrow>Contact</Eyebrow>
+            <Eyebrow>{contact.eyebrow}</Eyebrow>
           </div>
-          <h1 className="mt-6 max-w-[13ch] animate-rise text-display-xl text-ink" style={rise(80)}>Let’s start a conversation.</h1>
-          <p className="mt-6 max-w-[44ch] animate-rise text-lead text-ink-2" style={rise(180)}>
-            Tell us what you’re trying to grow. We’ll listen first, then tell you honestly whether we can help.
-          </p>
+          <h1 className="mt-6 max-w-[13ch] animate-rise text-display-xl text-ink" style={rise(80)}>{contact.title}</h1>
+          <p className="mt-6 max-w-[44ch] animate-rise text-lead text-ink-2" style={rise(180)}>{contact.intro}</p>
 
           <ul className="mt-10 grid animate-rise gap-3" style={rise(280)}>
             {CHANNELS.map((c) => {
@@ -67,7 +62,7 @@ export function Contact() {
           <ContactForm />
         </div>
         <div data-reveal style={stagger(1)}>
-          <h2 className="text-title text-ink">What happens next</h2>
+          <h2 className="text-title text-ink">{contact.next.title}</h2>
           <ol className="mt-5">
             {NEXT.map((n, i) => (
               <li key={n.title} className="relative flex gap-4 pb-6 last:pb-0">

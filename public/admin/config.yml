@@ -1,0 +1,1247 @@
+# Decap CMS config for the Fangled site (editing panel at /admin).
+# Each field must exist in the matching src/content/*.json file (npm run check:cms enforces this).
+backend:
+  name: github
+  repo: sebastiangulli/fangled
+  branch: main
+  auth_endpoint: api/auth
+publish_mode: simple
+media_folder: public/images
+public_folder: /images
+collections:
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Home
+        file: src/content/home.json
+        fields:
+          - label: Browser tab title
+            name: docTitle
+            widget: string
+          - label: Pill above the headline
+            name: badge
+            widget: object
+            collapsed: true
+            fields:
+              - label: Tag (e.g. New)
+                name: tag
+                widget: string
+              - label: Text
+                name: text
+                widget: string
+          - label: Headline
+            name: title
+            widget: string
+          - label: Intro paragraph
+            name: intro
+            widget: text
+          - label: Three short promises under the buttons
+            name: promises
+            widget: list
+            field:
+              label: Text
+              name: item
+              widget: string
+          - label: Scrolling ticker of capabilities
+            name: capabilities
+            widget: list
+            field:
+              label: Text
+              name: item
+              widget: string
+          - label: Big statement
+            name: statement
+            widget: object
+            collapsed: true
+            fields:
+              - label: Statement
+                name: text
+                widget: text
+              - label: Link text
+                name: linkLabel
+                widget: string
+          - label: "Section: The deliverable"
+            name: deliverable
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label above the title
+                name: eyebrow
+                widget: string
+                required: false
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+                required: false
+          - label: "Section: What we do (the four cards come from Shared content)"
+            name: services
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label above the title
+                name: eyebrow
+                widget: string
+                required: false
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+                required: false
+          - label: "Section: Strategy First Method"
+            name: method
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label above the title
+                name: eyebrow
+                widget: string
+                required: false
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+                required: false
+              - label: The three steps
+                name: steps
+                widget: list
+                fields:
+                  - label: Step title
+                    name: title
+                    widget: string
+                  - label: Step text
+                    name: body
+                    widget: text
+                min: 3
+                max: 3
+                hint: "Fixed at 3 items: the page design has exactly 3 slots. Edit the text, not the count."
+                summary: "{{fields.title}}"
+          - label: "Section: Fractional CMO"
+            name: cmo
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+              - label: Main button text
+                name: primaryLabel
+                widget: string
+              - label: Second button text
+                name: secondaryLabel
+                widget: string
+              - label: "Column name: agency"
+                name: agencyLabel
+                widget: string
+              - label: "Column name: Fractional CMO"
+                name: cmoLabel
+                widget: string
+              - label: Table description for screen readers
+                name: tableCaption
+                widget: string
+              - label: Comparison rows
+                name: rows
+                widget: list
+                fields:
+                  - label: Row name
+                    name: row
+                    widget: string
+                  - label: Agency
+                    name: agency
+                    widget: text
+                  - label: Fractional CMO
+                    name: cmo
+                    widget: text
+                summary: "{{fields.row}}"
+          - label: "Section: Global trade & sourcing (the checklists come from Shared content)"
+            name: globalTrade
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label above the title
+                name: eyebrow
+                widget: string
+                required: false
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+                required: false
+              - label: Link text
+                name: linkLabel
+                widget: string
+              - label: Title of the "also source abroad" card
+                name: cardTitle
+                widget: string
+          - label: "Section: Products (the cards come from Products)"
+            name: products
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label above the title
+                name: eyebrow
+                widget: string
+                required: false
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+                required: false
+          - label: "Section: Why Fangled"
+            name: why
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Cards
+                name: items
+                widget: list
+                fields:
+                  - label: Icon
+                    name: icon
+                    widget: select
+                    options:
+                      - Target
+                      - Globe2
+                      - UserRound
+                      - Flag
+                      - CalendarCheck
+                      - Compass
+                      - Layers
+                      - UsersRound
+                      - Handshake
+                      - Rocket
+                      - HeartHandshake
+                  - label: Title
+                    name: title
+                    widget: string
+                  - label: Text
+                    name: body
+                    widget: text
+                summary: "{{fields.title}}"
+          - label: "Section: Podcasts (the episodes come from Shared content)"
+            name: podcasts
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label above the title
+                name: eyebrow
+                widget: string
+                required: false
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+                required: false
+              - label: Button text
+                name: buttonLabel
+                widget: string
+      - name: about
+        label: About
+        file: src/content/about.json
+        fields:
+          - label: Small label above the title
+            name: eyebrow
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Intro text
+            name: intro
+            widget: text
+          - label: "Card: the path we design for"
+            name: path
+            widget: object
+            collapsed: true
+            fields:
+              - label: Card title
+                name: title
+                widget: string
+              - label: Stages
+                name: stages
+                widget: list
+                fields:
+                  - label: Stage name
+                    name: stage
+                    widget: string
+                  - label: Description
+                    name: body
+                    widget: text
+                summary: "{{fields.stage}}"
+          - label: "Section: Our approach"
+            name: approach
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Paragraphs
+                name: paragraphs
+                widget: list
+                field:
+                  label: Text
+                  name: item
+                  widget: string
+              - label: Disciplines (small tiles)
+                name: disciplines
+                widget: list
+                field:
+                  label: Text
+                  name: item
+                  widget: string
+          - label: "Section: Strategy First Method"
+            name: method
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: The three steps
+                name: slides
+                widget: list
+                fields:
+                  - label: Bold opening
+                    name: strong
+                    widget: string
+                  - label: Rest of the sentence
+                    name: text
+                    widget: text
+                min: 3
+                max: 3
+                hint: "Fixed at 3 items: the page design has exactly 3 slots. Edit the text, not the count."
+                summary: "{{fields.strong}}"
+          - label: "Section: Fractional CMO"
+            name: fractionalCmo
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Paragraphs
+                name: paragraphs
+                widget: list
+                field:
+                  label: Text
+                  name: item
+                  widget: string
+              - label: Title of the checklist
+                name: capabilitiesTitle
+                widget: string
+              - label: Checklist
+                name: capabilities
+                widget: list
+                field:
+                  label: Text
+                  name: item
+                  widget: string
+          - label: Fit check (interactive checklist)
+            name: fitCheck
+            widget: object
+            collapsed: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Statements to tick
+                name: painPoints
+                widget: list
+                field:
+                  label: Text
+                  name: item
+                  widget: string
+              - label: Message when nothing is ticked
+                name: hintNone
+                widget: string
+              - label: Message when one is ticked
+                name: hintOne
+                widget: string
+              - label: Message when several are ticked
+                name: hintMany
+                widget: string
+                hint: "Keep {count}: it is replaced by the number ticked."
+              - label: Button text
+                name: button
+                widget: string
+          - label: "Section: Beyond growth"
+            name: beyondGrowth
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Cards
+                name: cards
+                widget: list
+                fields:
+                  - label: Title
+                    name: title
+                    widget: string
+                  - label: Text
+                    name: body
+                    widget: text
+                summary: "{{fields.title}}"
+              - label: Title of the example card
+                name: reviewTitle
+                widget: string
+              - label: Badge on the example card
+                name: exampleBadge
+                widget: string
+          - label: Closing call-to-action box
+            name: cta
+            widget: object
+            collapsed: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+            hint: Only the title is set here. The text and buttons come from Site-wide settings > Closing call-to-action.
+      - name: marketing
+        label: Marketing & sales consulting
+        file: src/content/marketing.json
+        fields:
+          - label: Small label above the title
+            name: eyebrow
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Intro text
+            name: intro
+            widget: text
+          - label: Button text
+            name: button
+            widget: string
+          - label: Pipeline example card
+            name: pipeline
+            widget: object
+            collapsed: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Badge
+                name: badge
+                widget: string
+              - label: "Legend: with a playbook"
+                name: withPlaybook
+                widget: string
+              - label: "Legend: without one"
+                name: withoutOne
+                widget: string
+          - label: "Section: Why Fangled"
+            name: pillars
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Cards
+                name: items
+                widget: list
+                fields:
+                  - label: Icon
+                    name: icon
+                    widget: select
+                    options:
+                      - Target
+                      - Globe2
+                      - UserRound
+                      - Flag
+                      - CalendarCheck
+                      - Compass
+                      - Layers
+                      - UsersRound
+                      - Handshake
+                      - Rocket
+                      - HeartHandshake
+                  - label: Title
+                    name: title
+                    widget: string
+                  - label: Text
+                    name: body
+                    widget: text
+                summary: "{{fields.title}}"
+          - label: "Section: Capabilities"
+            name: capabilities
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+              - label: Button text
+                name: button
+                widget: string
+              - label: Button on the Fractional CMO tab
+                name: fitCheckButton
+                widget: string
+              - label: Service tabs
+                name: groups
+                widget: list
+                fields:
+                  - label: Tab name
+                    name: label
+                    widget: string
+                  - label: Heading
+                    name: title
+                    widget: string
+                  - label: Services
+                    name: items
+                    widget: list
+                    field:
+                      label: Text
+                      name: item
+                      widget: string
+                min: 4
+                max: 4
+                hint: "Fixed at 4 items: the page design has exactly 4 slots. Edit the text, not the count."
+                summary: "{{fields.label}}"
+          - label: Photo section
+            name: photo
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label above the title
+                name: eyebrow
+                widget: string
+                required: false
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+                required: false
+      - name: global-trade
+        label: Global trade & sourcing
+        file: src/content/global-trade.json
+        fields:
+          - label: Small label above the title
+            name: eyebrow
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Intro text
+            name: intro
+            widget: text
+          - label: Button text
+            name: button
+            widget: string
+          - label: "Section: Build a global strategy (the six items come from Shared content)"
+            name: strategy
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label above the title
+                name: eyebrow
+                widget: string
+                required: false
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+                required: false
+          - label: "Photo section: Sourcing (the three items come from Shared content)"
+            name: sourcing
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label above the title
+                name: eyebrow
+                widget: string
+                required: false
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+                required: false
+          - label: Closing call-to-action box
+            name: cta
+            widget: object
+            collapsed: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+            hint: Only the title is set here. The text and buttons come from Site-wide settings > Closing call-to-action.
+      - name: podcasts
+        label: Podcasts
+        file: src/content/podcasts.json
+        fields:
+          - label: Small label above the title
+            name: eyebrow
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Intro text
+            name: intro
+            widget: text
+          - label: Subscribe button text
+            name: subscribeLabel
+            widget: string
+          - label: Featured episode (the first episode in Shared content)
+            name: featured
+            widget: object
+            collapsed: true
+            fields:
+              - label: Label
+                name: label
+                widget: string
+              - label: Description
+                name: blurb
+                widget: text
+              - label: Link text
+                name: watchLabel
+                widget: string
+          - label: Title above the other episodes
+            name: moreTitle
+            widget: string
+          - label: Link text under each episode
+            name: cardWatchLabel
+            widget: string
+          - label: Closing call-to-action box
+            name: cta
+            widget: object
+            collapsed: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+            hint: Only the title is set here. The text and buttons come from Site-wide settings > Closing call-to-action.
+      - name: contact
+        label: Contact
+        file: src/content/contact.json
+        fields:
+          - label: Browser tab title
+            name: docTitle
+            widget: string
+          - label: Small label above the title
+            name: eyebrow
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Intro text
+            name: intro
+            widget: text
+          - label: Contact method names
+            name: channels
+            widget: object
+            collapsed: true
+            fields:
+              - label: Phone
+                name: call
+                widget: string
+              - label: Email
+                name: email
+                widget: string
+              - label: Office
+                name: office
+                widget: string
+            hint: The phone number, email and address themselves are in Site-wide settings > Company.
+          - label: What happens next
+            name: next
+            widget: object
+            collapsed: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Steps
+                name: steps
+                widget: list
+                fields:
+                  - label: Step title
+                    name: title
+                    widget: string
+                  - label: Step text
+                    name: body
+                    widget: text
+                summary: "{{fields.title}}"
+          - label: Contact form
+            name: form
+            widget: object
+            collapsed: true
+            fields:
+              - label: Form title
+                name: title
+                widget: string
+              - label: Required fields note
+                name: requiredNote
+                widget: string
+              - label: Name field label
+                name: name
+                widget: string
+              - label: Name error message
+                name: nameError
+                widget: string
+              - label: Email field label
+                name: email
+                widget: string
+              - label: Email error message
+                name: emailError
+                widget: string
+              - label: Company field label
+                name: company
+                widget: string
+              - label: Message field label
+                name: message
+                widget: string
+              - label: Message error message
+                name: messageError
+                widget: string
+              - label: Word shown next to optional fields
+                name: optional
+                widget: string
+              - label: Send button text
+                name: submit
+                widget: string
+              - label: Note next to the button
+                name: note
+                widget: string
+              - label: Message after sending
+                name: successText
+                widget: text
+              - label: Start of the email subject line
+                name: emailSubject
+                widget: string
+      - name: privacy
+        label: Privacy & legal
+        file: src/content/privacy.json
+        fields:
+          - label: Small label above the title
+            name: eyebrow
+            widget: string
+          - label: Title
+            name: title
+            widget: string
+          - label: Intro text
+            name: intro
+            widget: text
+          - label: Sections
+            name: sections
+            widget: list
+            fields:
+              - label: Heading
+                name: heading
+                widget: string
+              - label: Text
+                name: body
+                widget: text
+            summary: "{{fields.heading}}"
+      - name: products
+        label: Products
+        file: src/content/products.json
+        fields:
+          - label: Texts shared by both product pages
+            name: page
+            widget: object
+            collapsed: true
+            fields:
+              - label: Link text on product cards
+                name: readBrief
+                widget: string
+              - label: Button text
+                name: askButton
+                widget: string
+              - label: '"Overview" label'
+                name: overviewLabel
+                widget: string
+              - label: "Details: small label"
+                name: detailsEyebrow
+                widget: string
+              - label: "Details: title"
+                name: detailsTitle
+                widget: string
+              - label: "Details: intro"
+                name: detailsIntro
+                widget: string
+              - label: '"Also launched": small label'
+                name: alsoEyebrow
+                widget: string
+              - label: '"Also launched": title'
+                name: alsoTitle
+                widget: string
+              - label: "Closing box: title"
+                name: ctaTitle
+                widget: string
+              - label: "Closing box: text"
+                name: ctaBody
+                widget: text
+          - label: Products
+            name: items
+            widget: object
+            collapsed: false
+            fields:
+              - label: pH-neutral cleaners
+                name: ph-neutral-cleaners
+                widget: object
+                collapsed: true
+                fields:
+                  - label: Name in the menu and footer
+                    name: navLabel
+                    widget: string
+                  - label: Product card (shown on Home and on the other product page)
+                    name: card
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - label: Small label
+                        name: label
+                        widget: string
+                      - label: Title
+                        name: title
+                        widget: string
+                      - label: Text
+                        name: body
+                        widget: text
+                  - label: Small label on the product page
+                    name: kicker
+                    widget: string
+                  - label: Page title
+                    name: title
+                    widget: string
+                  - label: Page subtitle
+                    name: subtitle
+                    widget: string
+                  - label: Overview paragraph
+                    name: intro
+                    widget: text
+                    hint: The first sentence is shown in dark text, the rest in grey.
+                  - label: Detail cards
+                    name: sections
+                    widget: list
+                    fields:
+                      - label: Heading
+                        name: heading
+                        widget: string
+                      - label: Paragraph
+                        name: body
+                        widget: text
+                        required: false
+                      - label: Bullet points
+                        name: bullets
+                        widget: list
+                        field:
+                          label: Text
+                          name: item
+                          widget: string
+                        required: false
+                    summary: "{{fields.heading}}"
+              - label: Drum, pail & IBC mixers
+                name: drum-and-ibc-mixers
+                widget: object
+                collapsed: true
+                fields:
+                  - label: Name in the menu and footer
+                    name: navLabel
+                    widget: string
+                  - label: Product card (shown on Home and on the other product page)
+                    name: card
+                    widget: object
+                    collapsed: true
+                    fields:
+                      - label: Small label
+                        name: label
+                        widget: string
+                      - label: Title
+                        name: title
+                        widget: string
+                      - label: Text
+                        name: body
+                        widget: text
+                  - label: Small label on the product page
+                    name: kicker
+                    widget: string
+                  - label: Page title
+                    name: title
+                    widget: string
+                  - label: Page subtitle
+                    name: subtitle
+                    widget: string
+                  - label: Overview paragraph
+                    name: intro
+                    widget: text
+                    hint: The first sentence is shown in dark text, the rest in grey.
+                  - label: Detail cards
+                    name: sections
+                    widget: list
+                    fields:
+                      - label: Heading
+                        name: heading
+                        widget: string
+                      - label: Paragraph
+                        name: body
+                        widget: text
+                        required: false
+                      - label: Bullet points
+                        name: bullets
+                        widget: list
+                        field:
+                          label: Text
+                          name: item
+                          widget: string
+                        required: false
+                    summary: "{{fields.heading}}"
+  - name: site
+    label: Site-wide
+    files:
+      - name: site
+        label: Site-wide settings
+        file: src/content/site.json
+        fields:
+          - label: Company
+            name: company
+            widget: object
+            collapsed: true
+            fields:
+              - label: Short name
+                name: name
+                widget: string
+              - label: Legal name
+                name: fullName
+                widget: string
+              - label: Phone number
+                name: phone
+                widget: string
+                hint: "Format: 888.427.5609. The call link is built from it automatically."
+              - label: Email
+                name: email
+                widget: string
+              - label: Location
+                name: location
+                widget: string
+          - label: Social links
+            name: social
+            widget: list
+            fields:
+              - label: Network
+                name: label
+                widget: select
+                options:
+                  - LinkedIn
+                  - Facebook
+                  - X
+                  - YouTube
+              - label: Link (full web address)
+                name: href
+                widget: string
+            summary: "{{fields.label}}"
+          - label: Main button text (used across the site)
+            name: bookCall
+            widget: string
+          - label: Word before the phone number on buttons
+            name: callPrefix
+            widget: string
+          - label: Top menu
+            name: nav
+            widget: object
+            collapsed: true
+            fields:
+              - label: Services menu name
+                name: servicesLabel
+                widget: string
+              - label: Products box title
+                name: productsTitle
+                widget: string
+              - label: Menu links
+                name: links
+                widget: list
+                fields:
+                  - label: Link text
+                    name: label
+                    widget: string
+                  - label: Goes to
+                    name: to
+                    widget: select
+                    options:
+                      - label: Home
+                        value: /
+                      - label: About
+                        value: /about
+                      - label: "About: Fractional CMO section"
+                        value: /about#fractional-cmo
+                      - label: "About: Exit planning section"
+                        value: /about#beyond-growth
+                      - label: Marketing & sales consulting
+                        value: /marketing-and-sales-consulting
+                      - label: Global trade & sourcing
+                        value: /global-trade-and-sourcing
+                      - label: Podcasts
+                        value: /podcasts
+                      - label: Contact
+                        value: /contact
+                      - label: Privacy & legal
+                        value: /privacy
+                      - label: "Product: pH-neutral cleaners"
+                        value: /products/ph-neutral-cleaners
+                      - label: "Product: Drum & IBC mixers"
+                        value: /products/drum-and-ibc-mixers
+                summary: "{{fields.label}}"
+          - label: Footer
+            name: footer
+            widget: object
+            collapsed: true
+            fields:
+              - label: Tagline
+                name: tagline
+                widget: text
+              - label: Link columns
+                name: columns
+                widget: list
+                fields:
+                  - label: Column title
+                    name: title
+                    widget: string
+                  - label: Links
+                    name: links
+                    widget: list
+                    fields:
+                      - label: Link text
+                        name: label
+                        widget: string
+                      - label: Goes to
+                        name: to
+                        widget: select
+                        options:
+                          - label: Home
+                            value: /
+                          - label: About
+                            value: /about
+                          - label: "About: Fractional CMO section"
+                            value: /about#fractional-cmo
+                          - label: "About: Exit planning section"
+                            value: /about#beyond-growth
+                          - label: Marketing & sales consulting
+                            value: /marketing-and-sales-consulting
+                          - label: Global trade & sourcing
+                            value: /global-trade-and-sourcing
+                          - label: Podcasts
+                            value: /podcasts
+                          - label: Contact
+                            value: /contact
+                          - label: Privacy & legal
+                            value: /privacy
+                          - label: "Product: pH-neutral cleaners"
+                            value: /products/ph-neutral-cleaners
+                          - label: "Product: Drum & IBC mixers"
+                            value: /products/drum-and-ibc-mixers
+                    summary: "{{fields.label}}"
+                summary: "{{fields.title}}"
+              - label: Contact column title
+                name: contactTitle
+                widget: string
+              - label: Text after the phone number
+                name: tollFree
+                widget: string
+              - label: Disclaimer line
+                name: disclaimer
+                widget: text
+              - label: Copyright line
+                name: copyright
+                widget: string
+                hint: The year is added automatically.
+              - label: Privacy link text
+                name: privacyLabel
+                widget: string
+          - label: Closing call-to-action box
+            name: cta
+            widget: object
+            collapsed: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Text
+                name: body
+                widget: text
+          - label: FAQ (appears on Home and About)
+            name: faq
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Text before the phone number
+                name: callText
+                widget: string
+              - label: Questions
+                name: items
+                widget: list
+                fields:
+                  - label: Question
+                    name: q
+                    widget: string
+                  - label: Answer
+                    name: a
+                    widget: text
+                summary: "{{fields.q}}"
+          - label: Page not found (404)
+            name: notFound
+            widget: object
+            collapsed: true
+            fields:
+              - label: Small label
+                name: eyebrow
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Intro text
+                name: intro
+                widget: text
+              - label: Home button text
+                name: homeLabel
+                widget: string
+              - label: Contact button text
+                name: contactLabel
+                widget: string
+      - name: shared
+        label: Shared content (appears on several pages)
+        file: src/content/shared.json
+        fields:
+          - label: The four services (Home cards and top menu)
+            name: practices
+            widget: list
+            fields:
+              - label: Icon
+                name: icon
+                widget: select
+                options:
+                  - Target
+                  - Globe2
+                  - UserRound
+                  - Flag
+                  - CalendarCheck
+                  - Compass
+                  - Layers
+                  - UsersRound
+                  - Handshake
+                  - Rocket
+                  - HeartHandshake
+              - label: Title
+                name: title
+                widget: string
+              - label: Text
+                name: body
+                widget: text
+              - label: Link text on Home
+                name: link
+                widget: string
+              - label: Goes to
+                name: to
+                widget: select
+                options:
+                  - label: Home
+                    value: /
+                  - label: About
+                    value: /about
+                  - label: "About: Fractional CMO section"
+                    value: /about#fractional-cmo
+                  - label: "About: Exit planning section"
+                    value: /about#beyond-growth
+                  - label: Marketing & sales consulting
+                    value: /marketing-and-sales-consulting
+                  - label: Global trade & sourcing
+                    value: /global-trade-and-sourcing
+                  - label: Podcasts
+                    value: /podcasts
+                  - label: Contact
+                    value: /contact
+                  - label: Privacy & legal
+                    value: /privacy
+                  - label: "Product: pH-neutral cleaners"
+                    value: /products/ph-neutral-cleaners
+                  - label: "Product: Drum & IBC mixers"
+                    value: /products/drum-and-ibc-mixers
+            min: 4
+            max: 4
+            hint: "Fixed at 4 items: the page design has exactly 4 slots. Edit the text, not the count."
+            summary: "{{fields.title}}"
+          - label: Global strategy items (Home checklist and Global trade cards)
+            name: globalStrategy
+            widget: list
+            field:
+              label: Text
+              name: item
+              widget: string
+          - label: Sourcing items (Home card and Global trade photo)
+            name: globalSource
+            widget: list
+            field:
+              label: Text
+              name: item
+              widget: string
+          - label: Podcast episodes (Home, Podcasts page)
+            name: podcasts
+            widget: list
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Length (e.g. 25 min)
+                name: duration
+                widget: string
+            min: 1
+            summary: "{{fields.title}}"
+            hint: The first episode is the featured one on the Podcasts page.

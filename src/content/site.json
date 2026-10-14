@@ -1,0 +1,137 @@
+{
+  "company": {
+    "name": "Fangled Group",
+    "fullName": "Fangled Tech International ©",
+    "phone": "888.427.5609",
+    "email": "info@fangledtech.com",
+    "location": "Moreland Hills, Ohio"
+  },
+  "social": [
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/company/5344408"
+    },
+    {
+      "label": "Facebook",
+      "href": "https://www.facebook.com/FangledInternational/"
+    },
+    {
+      "label": "X",
+      "href": "https://twitter.com/Fangled_Int"
+    },
+    {
+      "label": "YouTube",
+      "href": "https://www.youtube.com/channel/UCp7ZKlIqWN9I68OXFHCerWQ"
+    }
+  ],
+  "bookCall": "Book a strategy call",
+  "callPrefix": "Call",
+  "nav": {
+    "servicesLabel": "Services",
+    "productsTitle": "Products we’ve launched",
+    "links": [
+      {
+        "label": "Podcasts",
+        "to": "/podcasts"
+      },
+      {
+        "label": "About",
+        "to": "/about"
+      },
+      {
+        "label": "Contact",
+        "to": "/contact"
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Strategy-first marketing, sales, and global trade consulting for B2B companies.",
+    "columns": [
+      {
+        "title": "Services",
+        "links": [
+          {
+            "label": "Marketing & sales",
+            "to": "/marketing-and-sales-consulting"
+          },
+          {
+            "label": "Global trade & sourcing",
+            "to": "/global-trade-and-sourcing"
+          },
+          {
+            "label": "Fractional CMO",
+            "to": "/about#fractional-cmo"
+          },
+          {
+            "label": "Exit planning",
+            "to": "/about#beyond-growth"
+          }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          {
+            "label": "About",
+            "to": "/about"
+          },
+          {
+            "label": "Podcasts",
+            "to": "/podcasts"
+          },
+          {
+            "label": "pH-neutral cleaners",
+            "to": "/products/ph-neutral-cleaners"
+          },
+          {
+            "label": "3D mixing technology",
+            "to": "/products/drum-and-ibc-mixers"
+          }
+        ]
+      }
+    ],
+    "contactTitle": "Contact",
+    "tollFree": "(toll free)",
+    "disclaimer": "Product screens, interview quotes, and charts shown on this site are illustrative examples, not client data.",
+    "copyright": "Fangled Tech International, d.b.a. Fangled Group",
+    "privacyLabel": "Privacy & legal"
+  },
+  "cta": {
+    "title": "Let’s talk about your next move.",
+    "body": "Tell us what you’re trying to grow. We’ll listen first, then tell you honestly where to start."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Questions we hear often",
+    "callText": "Something else on your mind? Call us at",
+    "items": [
+      {
+        "q": "What is a Fractional CMO?",
+        "a": "A C-level marketing executive who works inside your company part-time. They own the marketing strategy and budget, lead your team and vendors, and deliver the go-to-market playbook, for a fraction of the cost of a full-time hire."
+      },
+      {
+        "q": "How is that different from hiring an agency?",
+        "a": "An agency is a vendor hired for specific tasks and sits outside your daily operations. A Fractional CMO is a fiscally responsible member of your executive team, accountable for the overall strategy, not just the materials."
+      },
+      {
+        "q": "Do you work with companies outside the U.S.?",
+        "a": "Yes. We help U.S. companies enter markets abroad and source products, materials, and manufacturers internationally, with contacts and resources in the U.S. and overseas."
+      },
+      {
+        "q": "Can you help us prepare to sell the business?",
+        "a": "Yes. We support exit planning, and we run target-company and market research, including customer diligence, for private equity firms and M&A professionals."
+      },
+      {
+        "q": "What does the first conversation look like?",
+        "a": "A free strategy call. No pitch deck: we ask about your company, your market, and what you’re trying to grow, then tell you honestly whether and where we can help."
+      }
+    ]
+  },
+  "notFound": {
+    "eyebrow": "Page not found",
+    "title": "This page has moved, or never existed.",
+    "intro": "Check the address, or head back to the home page.",
+    "homeLabel": "Back to home",
+    "contactLabel": "Contact us"
+  }
+}

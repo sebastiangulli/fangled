@@ -1,0 +1,44 @@
+{
+  "docTitle": "Contact | Fangled Group",
+  "eyebrow": "Contact",
+  "title": "Let’s start a conversation.",
+  "intro": "Tell us what you’re trying to grow. We’ll listen first, then tell you honestly whether we can help.",
+  "channels": {
+    "call": "Call toll free",
+    "email": "Email",
+    "office": "Office"
+  },
+  "next": {
+    "title": "What happens next",
+    "steps": [
+      {
+        "title": "You send a note",
+        "body": "A few lines on your company and what you want to grow."
+      },
+      {
+        "title": "We set up a free strategy call",
+        "body": "No pitch deck. We ask questions and listen."
+      },
+      {
+        "title": "You get an honest answer",
+        "body": "Where we can help, where to start, or who can help better."
+      }
+    ]
+  },
+  "form": {
+    "title": "Tell us about your company",
+    "requiredNote": "Fields marked * are required.",
+    "name": "Name",
+    "nameError": "Enter your name.",
+    "email": "Work email",
+    "emailError": "Enter an email like name@company.com.",
+    "company": "Company",
+    "message": "What are you trying to grow?",
+    "messageError": "Tell us a little about what you need.",
+    "optional": "(optional)",
+    "submit": "Send message",
+    "note": "Opens your email app with the message ready to send.",
+    "successText": "Your email app should open with the message ready. If it didn’t, write to",
+    "emailSubject": "Strategy call request from"
+  }
+}

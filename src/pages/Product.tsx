@@ -12,6 +12,9 @@ import { stagger } from '../lib/motion'
 import { ProductCard } from '../components/ProductCard'
 import { Frame, ProductVisual } from '../components/Visuals'
 import { PRODUCT_CARDS, PRODUCTS } from '../data/site'
+import productsContent from '../content/products.json'
+
+const page = productsContent.page
 import { NotFound } from './NotFound'
 
 export function Product() {
@@ -28,12 +31,12 @@ export function Product() {
         eyebrow={<Eyebrow>{product.kicker}</Eyebrow>}
         title={product.title}
         intro={product.subtitle}
-        actions={<Button to="/contact" arrow>Ask about this product</Button>}
+        actions={<Button to="/contact" arrow>{page.askButton}</Button>}
         aside={<Frame><ProductVisual slug={slug} /></Frame>}
       />
 
       <section className="wrap grid gap-6 py-24 md:py-28 lg:grid-cols-[0.4fr_1fr] lg:gap-20">
-        <h2 data-reveal className="text-small font-medium text-brand">Overview</h2>
+        <h2 data-reveal className="text-small font-medium text-brand">{page.overviewLabel}</h2>
         <p data-reveal style={stagger(1)} className="max-w-[56ch] text-[clamp(1.3rem,2.1vw,1.75rem)] leading-[1.4] font-medium tracking-[-0.02em] text-mute">
           <span className="text-ink">{lead}</span> {rest}
         </p>
@@ -41,7 +44,7 @@ export function Product() {
 
       <section className="bg-soft py-24 md:py-32">
         <div className="wrap">
-          <SectionHeader eyebrow="Details" title="Take a closer look" intro="Open any card for the full detail." />
+          <SectionHeader eyebrow={page.detailsEyebrow} title={page.detailsTitle} intro={page.detailsIntro} />
         </div>
         <div className="mt-12">
           <Gallery label={`${product.kicker} details`}>
@@ -62,7 +65,7 @@ export function Product() {
       </section>
 
       <section className="wrap py-24 md:py-32">
-        <SectionHeader eyebrow="Also launched" title="Another product we brought to market" />
+        <SectionHeader eyebrow={page.alsoEyebrow} title={page.alsoTitle} />
         <div data-reveal className="mt-12 max-w-[36rem]">
           {PRODUCT_CARDS.filter((p) => p.slug !== slug).map((p) => (
             <ProductCard key={p.slug} product={p} compact />
@@ -71,7 +74,7 @@ export function Product() {
       </section>
 
       <div>
-        <CtaPanel title="Want this on your line?" body="Tell us about your application. We’ll tell you whether it’s a fit and what a trial looks like." />
+        <CtaPanel title={page.ctaTitle} body={page.ctaBody} />
       </div>
     </>
   )

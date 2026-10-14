@@ -1,0 +1,97 @@
+{
+  "eyebrow": "Marketing & sales consulting",
+  "title": "Turn market understanding into sales momentum.",
+  "intro": "Strategic marketing, business development, and sales, planned together and run by one accountable team.",
+  "button": "Let’s talk growth",
+  "pipeline": {
+    "title": "Pipeline",
+    "badge": "Example",
+    "withPlaybook": "With a playbook",
+    "withoutOne": "Without one"
+  },
+  "pillars": {
+    "eyebrow": "Why Fangled",
+    "title": "Built around what the market tells us",
+    "items": [
+      {
+        "icon": "Rocket",
+        "title": "Unlock exponential growth",
+        "body": "A strategy-first plan tailored to your business, proven with companies worldwide."
+      },
+      {
+        "icon": "HeartHandshake",
+        "title": "Turn customers into advocates",
+        "body": "Build a loyal following that buys your products and actively promotes them."
+      },
+      {
+        "icon": "Globe2",
+        "title": "Global reach, local expertise",
+        "body": "Contacts and resources in the U.S. and abroad, tuned to your market."
+      },
+      {
+        "icon": "UsersRound",
+        "title": "Build your dream team",
+        "body": "A curated network of vetted experts, assembled for your project, whatever its size."
+      }
+    ]
+  },
+  "capabilities": {
+    "eyebrow": "Capabilities",
+    "title": "What we can take off your plate",
+    "intro": "Tell us your goals and we’ll build a custom strategy, then stay to run it with you.",
+    "button": "Contact us today",
+    "fitCheckButton": "Take the fit check",
+    "groups": [
+      {
+        "label": "Marketing",
+        "title": "Marketing & business development",
+        "items": [
+          "Marketing campaign development and execution",
+          "Go-To-Market playbook development",
+          "Strategic product launch and development",
+          "Strategic prospecting and lead nurturing programs",
+          "Total branding & rebranding initiatives",
+          "Voice of consumer, distributor, or dealer studies",
+          "Comprehensive qualitative and quantitative market research",
+          "Graphic design and collateral development",
+          "Public relations, advertising, and media management",
+          "Event and trade show design and management",
+          "Total project management"
+        ]
+      },
+      {
+        "label": "Sales",
+        "title": "Sales consulting",
+        "items": [
+          "CRM (Salesforce or alternative) implementation, training, and management",
+          "Sales training and coaching",
+          "Candidate screening and evaluation",
+          "Strategic campaign development",
+          "Inside sales call center management"
+        ]
+      },
+      {
+        "label": "Digital",
+        "title": "Digital media",
+        "items": [
+          "Web site creation, updates, and development including e-commerce",
+          "Web site management including customer service and client management",
+          "Comprehensive digital campaigns",
+          "Social media campaign development and management"
+        ]
+      },
+      {
+        "label": "Fractional CMO",
+        "title": "Fractional CMO",
+        "items": [
+          "An embedded C-Level Marketing Executive when a full-time executive is cost prohibitive"
+        ]
+      }
+    ]
+  },
+  "photo": {
+    "eyebrow": "How we deliver",
+    "title": "One accountable team, under one strategy.",
+    "intro": "Campaigns, collateral, digital, and sales enablement all trace back to the same plan, so nothing gets built that the market didn’t ask for."
+  }
+}

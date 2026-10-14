@@ -1,33 +1,15 @@
 import { Link } from 'react-router-dom'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { COMPANY, SOCIAL } from '../data/site'
+import site from '../content/site.json'
 import { SocialIcon } from './SocialIcon'
 import logoUrl from '../../fangled-group-logo.svg'
 import markUrl from '../../fangled-group-logomark.svg'
 
-const COLUMNS = [
-  {
-    title: 'Services',
-    links: [
-      { label: 'Marketing & sales', to: '/marketing-and-sales-consulting' },
-      { label: 'Global trade & sourcing', to: '/global-trade-and-sourcing' },
-      { label: 'Fractional CMO', to: '/about#fractional-cmo' },
-      { label: 'Exit planning', to: '/about#beyond-growth' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { label: 'About', to: '/about' },
-      { label: 'Podcasts', to: '/podcasts' },
-      { label: 'pH-neutral cleaners', to: '/products/ph-neutral-cleaners' },
-      { label: '3D mixing technology', to: '/products/drum-and-ibc-mixers' },
-    ],
-  },
-]
+const f = site.footer
 
 const CONTACT = [
-  { icon: Phone, label: `${COMPANY.phone} (toll free)`, href: COMPANY.phoneHref },
+  { icon: Phone, label: `${COMPANY.phone} ${f.tollFree}`, href: COMPANY.phoneHref },
   { icon: Mail, label: COMPANY.email, href: `mailto:${COMPANY.email}` },
   { icon: MapPin, label: COMPANY.location },
 ]
@@ -46,9 +28,7 @@ export function Footer() {
           <Link to="/" aria-label="Fangled Group home" className="inline-block">
             <img src={logoUrl} alt="" className="h-7 w-auto brightness-0 invert" />
           </Link>
-          <p className="mt-5 max-w-[30ch] text-small text-white/60">
-            Strategy-first marketing, sales, and global trade consulting for B2B companies.
-          </p>
+          <p className="mt-5 max-w-[30ch] text-small text-white/60">{f.tagline}</p>
           <ul className="mt-7 flex gap-2">
             {SOCIAL.map((s) => (
               <li key={s.label}>
@@ -66,7 +46,7 @@ export function Footer() {
           </ul>
         </div>
 
-        {COLUMNS.map((col) => (
+        {f.columns.map((col) => (
           <div key={col.title}>
             <h2 className="text-small font-medium text-white">{col.title}</h2>
             <ul className="mt-4 space-y-3">
@@ -80,7 +60,7 @@ export function Footer() {
         ))}
 
         <div>
-          <h2 className="text-small font-medium text-white">Contact</h2>
+          <h2 className="text-small font-medium text-white">{f.contactTitle}</h2>
           <ul className="mt-4 space-y-3">
             {CONTACT.map((c) => {
               const inner = (
@@ -102,12 +82,10 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <p className="wrap relative pb-6 text-caption text-white/40">
-        Product screens, interview quotes, and charts shown on this site are illustrative examples, not client data.
-      </p>
+      <p className="wrap relative pb-6 text-caption text-white/40">{f.disclaimer}</p>
       <div className="wrap relative flex flex-col gap-3 border-t border-white/10 py-6 text-caption text-white/50 sm:flex-row sm:justify-between">
-        <p>© {new Date().getFullYear()} Fangled Tech International, d.b.a. {COMPANY.name}</p>
-        <Link to="/privacy" className="hover:text-white">Privacy & legal</Link>
+        <p>© {new Date().getFullYear()} {f.copyright}</p>
+        <Link to="/privacy" className="hover:text-white">{f.privacyLabel}</Link>
       </div>
     </footer>
   )

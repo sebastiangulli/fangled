@@ -1,0 +1,71 @@
+{
+  "practices": [
+    {
+      "icon": "Target",
+      "title": "Marketing & sales consulting",
+      "body": "Research who buys and why, sharpen the value proposition, and build a go-to-market plan your sales team can run.",
+      "to": "/marketing-and-sales-consulting",
+      "link": "Explore marketing & sales"
+    },
+    {
+      "icon": "Globe2",
+      "title": "Global trade & sourcing",
+      "body": "Test market viability abroad, pick the right channel, and source products, materials, and manufacturers.",
+      "to": "/global-trade-and-sourcing",
+      "link": "Explore global trade"
+    },
+    {
+      "icon": "UserRound",
+      "title": "Fractional CMO",
+      "body": "A C-level marketing executive inside your business, for a fraction of the cost of a full-time hire.",
+      "to": "/about#fractional-cmo",
+      "link": "Take the fit check"
+    },
+    {
+      "icon": "Flag",
+      "title": "Beyond growth",
+      "body": "Exit planning, plus target-company and market research that surfaces red flags and opportunities for PE and M&A teams.",
+      "to": "/about#beyond-growth",
+      "link": "Read about exit planning"
+    }
+  ],
+  "globalStrategy": [
+    "Market viability study",
+    "Distribution vs. Representatives vs. Direct sales vs. Foreign presence",
+    "Multicultural message evaluation",
+    "Regulatory parameters",
+    "Pricing and logistical strategies",
+    "Strategic protection of intellectual property and legal issues"
+  ],
+  "globalSource": [
+    "Source products, raw materials, and components",
+    "Source contract manufacturers",
+    "Manage inbound logistics and regulatory issues"
+  ],
+  "podcasts": [
+    {
+      "title": "Exit Your Way Business Round Table: Customer Diligence",
+      "duration": "25 min"
+    },
+    {
+      "title": "Strategic Marketing is Changing, What You Need to Know",
+      "duration": "48 min"
+    },
+    {
+      "title": "Tyler Lindley Podcast: Effective Sales Organization Management",
+      "duration": "27 min"
+    },
+    {
+      "title": "The Exit Your Way Round Table",
+      "duration": "48 min"
+    },
+    {
+      "title": "Monte Clark's Brilliant LinkedIn Podcast",
+      "duration": "10 min"
+    },
+    {
+      "title": "Fractional Chief Marketing Officers Provide Top Skills & Performance at a Fraction of the Cost",
+      "duration": "Video"
+    }
+  ]
+}

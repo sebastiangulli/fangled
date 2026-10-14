@@ -1,16 +1,17 @@
 import { Button } from '../components/Button'
 import { Eyebrow, PageHeader } from '../components/Sections'
+import site from '../content/site.json'
 
 export function NotFound() {
   return (
     <PageHeader
-      eyebrow={<Eyebrow>Page not found</Eyebrow>}
-      title="This page has moved, or never existed."
-      intro="Check the address, or head back to the home page."
+      eyebrow={<Eyebrow>{site.notFound.eyebrow}</Eyebrow>}
+      title={site.notFound.title}
+      intro={site.notFound.intro}
       actions={
         <>
-          <Button to="/" arrow>Back to home</Button>
-          <Button to="/contact" variant="secondary">Contact us</Button>
+          <Button to="/" arrow>{site.notFound.homeLabel}</Button>
+          <Button to="/contact" variant="secondary">{site.notFound.contactLabel}</Button>
         </>
       }
     />

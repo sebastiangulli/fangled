@@ -2,18 +2,19 @@ import { Button } from '../components/Button'
 import { CtaPanel, EpisodeGrid, Eyebrow, FeaturedEpisode, PageHeader } from '../components/Sections'
 import { SocialIcon } from '../components/SocialIcon'
 import { PODCASTS, YOUTUBE } from '../data/site'
+import podcasts from '../content/podcasts.json'
 
 export function Podcasts() {
   return (
     <>
       <PageHeader
-        eyebrow={<Eyebrow>Podcasts</Eyebrow>}
-        title="Conversations on strategy, sales, and exit planning."
-        intro="Round tables and interviews with founders, marketers, and operators, plus practical frameworks you can put to work this quarter."
+        eyebrow={<Eyebrow>{podcasts.eyebrow}</Eyebrow>}
+        title={podcasts.title}
+        intro={podcasts.intro}
         actions={
           <Button href={YOUTUBE}>
             <SocialIcon name="YouTube" className="h-4.5 w-4.5" />
-            Subscribe on YouTube
+            {podcasts.subscribeLabel}
           </Button>
         }
       />
@@ -22,13 +23,13 @@ export function Podcasts() {
         <div data-reveal>
           <FeaturedEpisode episode={PODCASTS[0]} />
         </div>
-        <h2 data-reveal className="mt-24 text-display-md text-ink">More episodes</h2>
+        <h2 data-reveal className="mt-24 text-display-md text-ink">{podcasts.moreTitle}</h2>
         <div className="mt-10">
           <EpisodeGrid episodes={PODCASTS.slice(1)} offset={1} />
         </div>
       </section>
 
-      <CtaPanel title="Want to talk it through for your company?" />
+      <CtaPanel title={podcasts.cta.title} />
     </>
   )
 }

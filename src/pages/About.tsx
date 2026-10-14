@@ -13,21 +13,21 @@ import {
 } from '../components/Sections'
 import { spotlight, stagger } from '../lib/motion'
 import { DiligenceMini, Frame, MethodVisual } from '../components/Visuals'
-import { BEYOND_GROWTH, CMO_CAPABILITIES, DISCIPLINES, FCMO_PAIN_POINTS } from '../data/site'
+import site from '../content/site.json'
+import about from '../content/about.json'
+
+const PATH = about.path.stages
+const DISCIPLINES = about.approach.disciplines
+const FCMO_PAIN_POINTS = about.fitCheck.painPoints
+const BEYOND_GROWTH = about.beyondGrowth.cards
+const CMO_CAPABILITIES = about.fractionalCmo.capabilities
 
 const DISCIPLINE_ICONS = [Compass, Microscope, Route, BarChart3, Gem, Megaphone]
 
-const PATH = [
-  { stage: 'Touch', body: 'Someone meets your brand for the first time.' },
-  { stage: 'Aware', body: 'They understand what you do and why it matters.' },
-  { stage: 'Buyer', body: 'They choose you, for a reason they can repeat.' },
-  { stage: 'Advocate', body: 'They buy again, and tell others why.' },
-]
-
 const SLIDES = [
-  { dark: true, caption: <Lead strong="Listen to the market.">Voice-of-customer, distributor, and dealer studies reveal what buyers actually value.</Lead>, visual: <MethodVisual step={0} /> },
-  { caption: <Lead strong="Prove the value.">Findings become a clear value proposition, and a reason to choose you over every alternative.</Lead>, visual: <MethodVisual step={1} /> },
-  { dark: true, caption: <Lead strong="Activate the playbook.">Marketing and sales get one data-driven plan, and move on it together.</Lead>, visual: <MethodVisual step={2} /> },
+  { dark: true, caption: <Lead strong={about.method.slides[0].strong}>{about.method.slides[0].text}</Lead>, visual: <MethodVisual step={0} /> },
+  { caption: <Lead strong={about.method.slides[1].strong}>{about.method.slides[1].text}</Lead>, visual: <MethodVisual step={1} /> },
+  { dark: true, caption: <Lead strong={about.method.slides[2].strong}>{about.method.slides[2].text}</Lead>, visual: <MethodVisual step={2} /> },
 ]
 
 /** Fit check as configurator options: select what's true today. */
@@ -45,7 +45,7 @@ function FitCheck() {
     <fieldset className="rounded-3xl bg-white p-6 shadow-float ring-1 ring-line sm:p-8">
       <legend className="sr-only">Fractional CMO fit check</legend>
       <div className="flex items-baseline justify-between gap-4">
-        <p className="text-title text-ink">Does this sound like your business?</p>
+        <p className="text-title text-ink">{about.fitCheck.title}</p>
         <p className="shrink-0 text-small text-mute">{count} of {FCMO_PAIN_POINTS.length}</p>
       </div>
       <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-soft">
@@ -77,13 +77,13 @@ function FitCheck() {
       <div className="mt-6 flex flex-col gap-4 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-small text-mute" aria-live="polite">
           {count === 0
-            ? 'Check anything that’s true today.'
+            ? about.fitCheck.hintNone
             : count === 1
-              ? 'One is often enough for a Fractional CMO to pay for itself.'
-              : `${count} at once is exactly what a Fractional CMO is built for.`}
+              ? about.fitCheck.hintOne
+              : about.fitCheck.hintMany.replace('{count}', String(count))}
         </p>
         <Button to="/contact" variant={count ? 'primary' : 'secondary'} className="shrink-0">
-          Talk it through
+          {about.fitCheck.button}
         </Button>
       </div>
     </fieldset>
@@ -94,13 +94,13 @@ export function About() {
   return (
     <>
       <PageHeader
-        eyebrow={<Eyebrow>About Fangled Group</Eyebrow>}
-        title="A better way to win."
-        intro="We turn anyone who touches your brand into a voracious advocate: a buyer who comes back, and can’t wait to tell someone why."
-        actions={<Button to="/contact" arrow>Book a strategy call</Button>}
+        eyebrow={<Eyebrow>{about.eyebrow}</Eyebrow>}
+        title={about.title}
+        intro={about.intro}
+        actions={<Button to="/contact" arrow>{site.bookCall}</Button>}
         aside={
           <Frame>
-            <p className="text-caption font-medium text-mute">The path we design for</p>
+            <p className="text-caption font-medium text-mute">{about.path.title}</p>
             <ol className="mt-5">
               {PATH.map((p, i) => {
                 const last = i === PATH.length - 1
@@ -129,12 +129,11 @@ export function About() {
       <section className="wrap py-24 md:py-32">
         <div className="grid items-center gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
           <div>
-            <SectionHeader eyebrow="Our approach" title="Growth starts with understanding your market" />
+            <SectionHeader eyebrow={about.approach.eyebrow} title={about.approach.title} />
             <div data-reveal className="mt-6 max-w-[56ch] space-y-5 text-lead text-mute">
-              <p>
-                Fangled Group helps you win in the U.S. and abroad with a strategy-first method. We find your ideal customer segments, define what they need, and build a data-driven go-to-market plan around it.
-              </p>
-              <p>The result is a launch, domestic or global, that’s planned, priced, and protected before it spends a dollar.</p>
+              {about.approach.paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
             </div>
           </div>
           <div data-reveal="clip" className="overflow-hidden rounded-3xl">
@@ -151,7 +150,7 @@ export function About() {
         </div>
         <ul onPointerMove={spotlight} className="mt-16 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
           {DISCIPLINES.map((d, i) => {
-            const Icon = DISCIPLINE_ICONS[i]
+            const Icon = DISCIPLINE_ICONS[i % DISCIPLINE_ICONS.length]
             return (
               <li key={d} data-reveal style={stagger(i)}>
                 <div className="spot h-full rounded-2xl bg-soft p-5 ring-1 ring-line transition-colors hover:bg-white">
@@ -166,7 +165,7 @@ export function About() {
 
       <section className="bg-soft py-24 md:py-32">
         <div className="wrap">
-          <SectionHeader eyebrow="How we work" title="The Strategy First Method" />
+          <SectionHeader eyebrow={about.method.eyebrow} title={about.method.title} />
           <div className="mt-12">
             <Highlights label="The Strategy First Method" slides={SLIDES} />
           </div>
@@ -175,14 +174,13 @@ export function About() {
 
       <section id="fractional-cmo" className="wrap grid items-start gap-14 py-24 md:py-32 lg:grid-cols-2 lg:gap-20">
         <div className="lg:sticky lg:top-28">
-          <SectionHeader eyebrow="Fractional CMO" title="Top skills and performance at a fraction of the cost." />
+          <SectionHeader eyebrow={about.fractionalCmo.eyebrow} title={about.fractionalCmo.title} />
           <div className="mt-5 max-w-[50ch] space-y-4 text-lead text-mute">
-            <p>Imagine a C-level marketing executive fully dedicated to your company, without the cost of a full-time hire or the team built around one.</p>
-            <p>
-              Don’t mistake an agency for a Fractional CMO. An agency is a vendor hired for tasks. A Fractional CMO is a fiscally responsible member of your executive team who owns the strategy and the budget.
-            </p>
+            {about.fractionalCmo.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
           </div>
-          <h3 className="mt-10 text-small font-medium text-ink">What a Fractional CMO brings</h3>
+          <h3 className="mt-10 text-small font-medium text-ink">{about.fractionalCmo.capabilitiesTitle}</h3>
           <CheckList items={CMO_CAPABILITIES} className="mt-4" />
         </div>
         <div data-reveal style={stagger(1)}>
@@ -195,7 +193,7 @@ export function About() {
         <div aria-hidden="true" className="grid-lines absolute inset-0 text-white/[0.05]" />
         <div className="wrap relative grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
           <div>
-            <SectionHeader dark eyebrow="Beyond growth" title="When it’s time to sell, or to buy." />
+            <SectionHeader dark eyebrow={about.beyondGrowth.eyebrow} title={about.beyondGrowth.title} />
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {BEYOND_GROWTH.map((b, i) => (
                 <div key={b.title} data-reveal style={stagger(i + 1)} className="rounded-3xl bg-white/[0.04] p-7 ring-1 ring-white/10">
@@ -207,8 +205,8 @@ export function About() {
           </div>
           <div data-reveal style={stagger(3)} className="rounded-3xl bg-white/[0.03] p-6 ring-1 ring-white/10 sm:p-8">
             <div className="flex items-baseline justify-between">
-              <p className="text-title">Target-company review</p>
-              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-medium text-white/70">Example</span>
+              <p className="text-title">{about.beyondGrowth.reviewTitle}</p>
+              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-medium text-white/70">{about.beyondGrowth.exampleBadge}</span>
             </div>
             <div className="mt-5">
               <DiligenceMini dark />
@@ -219,7 +217,7 @@ export function About() {
 
       <Faq />
 
-      <CtaPanel title="Could a Fractional CMO be the game changer you seek?" />
+      <CtaPanel title={about.cta.title} />
     </>
   )
 }

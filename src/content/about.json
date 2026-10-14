@@ -1,0 +1,112 @@
+{
+  "eyebrow": "About Fangled Group",
+  "title": "A better way to win.",
+  "intro": "We turn anyone who touches your brand into a voracious advocate: a buyer who comes back, and can’t wait to tell someone why.",
+  "path": {
+    "title": "The path we design for",
+    "stages": [
+      {
+        "stage": "Touch",
+        "body": "Someone meets your brand for the first time."
+      },
+      {
+        "stage": "Aware",
+        "body": "They understand what you do and why it matters."
+      },
+      {
+        "stage": "Buyer",
+        "body": "They choose you, for a reason they can repeat."
+      },
+      {
+        "stage": "Advocate",
+        "body": "They buy again, and tell others why."
+      }
+    ]
+  },
+  "approach": {
+    "eyebrow": "Our approach",
+    "title": "Growth starts with understanding your market",
+    "paragraphs": [
+      "Fangled Group helps you win in the U.S. and abroad with a strategy-first method. We find your ideal customer segments, define what they need, and build a data-driven go-to-market plan around it.",
+      "The result is a launch, domestic or global, that’s planned, priced, and protected before it spends a dollar."
+    ],
+    "disciplines": [
+      "Positioning",
+      "Market analysis",
+      "Path-to-purchase evaluation",
+      "Predictive sales modeling",
+      "Brand development",
+      "Marketing activation"
+    ]
+  },
+  "method": {
+    "eyebrow": "How we work",
+    "title": "The Strategy First Method",
+    "slides": [
+      {
+        "strong": "Listen to the market.",
+        "text": "Voice-of-customer, distributor, and dealer studies reveal what buyers actually value."
+      },
+      {
+        "strong": "Prove the value.",
+        "text": "Findings become a clear value proposition, and a reason to choose you over every alternative."
+      },
+      {
+        "strong": "Activate the playbook.",
+        "text": "Marketing and sales get one data-driven plan, and move on it together."
+      }
+    ]
+  },
+  "fractionalCmo": {
+    "eyebrow": "Fractional CMO",
+    "title": "Top skills and performance at a fraction of the cost.",
+    "paragraphs": [
+      "Imagine a C-level marketing executive fully dedicated to your company, without the cost of a full-time hire or the team built around one.",
+      "Don’t mistake an agency for a Fractional CMO. An agency is a vendor hired for tasks. A Fractional CMO is a fiscally responsible member of your executive team who owns the strategy and the budget."
+    ],
+    "capabilitiesTitle": "What a Fractional CMO brings",
+    "capabilities": [
+      "Technology review and implementation: CRM, marketing automation, web design, and SEO",
+      "Lead generation and nurturing programs",
+      "Leadership workshops",
+      "Voice of the market, channel partners, and the competitive landscape",
+      "The overall go-to-market playbook"
+    ]
+  },
+  "fitCheck": {
+    "title": "Does this sound like your business?",
+    "painPoints": [
+      "Your Sales team is often distracted from actively selling by trying to create their own materials or being bogged down in marketing admin.",
+      "You lack inside expertise to gather and interpret market data.",
+      "You have had issues recruiting a seasoned professional.",
+      "Your marketing needs have peaks and valleys you wish could scale without hiring and firing.",
+      "You have had communication issues and financial creep managing agencies not involved in daily operations.",
+      "You plan to eventually hire a VP Marketing or CMO but need a head start on your go-to-market plan.",
+      "You have several business units that do not require an individual marketing executive for each.",
+      "You just purchased or acquired a business that requires a jump start, rebranding, or turnaround strategy."
+    ],
+    "hintNone": "Check anything that’s true today.",
+    "hintOne": "One is often enough for a Fractional CMO to pay for itself.",
+    "hintMany": "{count} at once is exactly what a Fractional CMO is built for.",
+    "button": "Talk it through"
+  },
+  "beyondGrowth": {
+    "eyebrow": "Beyond growth",
+    "title": "When it’s time to sell, or to buy.",
+    "cards": [
+      {
+        "title": "Exit planning",
+        "body": "Prepare the business, the brand, and the customer base so the value you built is the value a buyer sees."
+      },
+      {
+        "title": "Research for PE and M&A",
+        "body": "In-depth target-company and market research, including customer diligence, that surfaces red flags and opportunities before the deal closes."
+      }
+    ],
+    "reviewTitle": "Target-company review",
+    "exampleBadge": "Example"
+  },
+  "cta": {
+    "title": "Could a Fractional CMO be the game changer you seek?"
+  }
+}

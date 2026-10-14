@@ -1,0 +1,154 @@
+{
+  "docTitle": "Fangled Group | Strategy-first growth consultancy",
+  "badge": {
+    "tag": "New",
+    "text": "Take the Fractional CMO fit check"
+  },
+  "title": "Turn every touch into an advocate for your brand.",
+  "intro": "Fangled Group is a strategy-first growth consultancy. We research your market, sharpen your value proposition, and build the go-to-market playbook your marketing and sales teams run, at home and abroad.",
+  "promises": [
+    "Free strategy call",
+    "U.S. and global markets",
+    "Fractional or project-based"
+  ],
+  "capabilities": [
+    "Positioning",
+    "Market research",
+    "Voice of customer studies",
+    "Go-to-market playbooks",
+    "Fractional CMO",
+    "Product launch",
+    "Branding & rebranding",
+    "CRM implementation",
+    "Sales training",
+    "Trade shows & events",
+    "Market entry",
+    "Global sourcing",
+    "Exit planning",
+    "PE & M&A research"
+  ],
+  "statement": {
+    "text": "Most marketing starts with what a company wants to say. Ours starts with what the market needs to hear. That’s how a first touch becomes a buyer, and a buyer becomes an advocate.",
+    "linkLabel": "More about our approach"
+  },
+  "deliverable": {
+    "eyebrow": "The deliverable",
+    "title": "One playbook your whole team can run.",
+    "intro": "Every engagement ends in a written go-to-market playbook: what the market told us, who to sell to, why they’ll choose you, and how to launch. Built to be used by sales, not filed away."
+  },
+  "services": {
+    "eyebrow": "What we do",
+    "title": "Four ways we help B2B companies grow",
+    "intro": "Each one starts in the same place: understanding the people you want to reach."
+  },
+  "method": {
+    "eyebrow": "How we work",
+    "title": "The Strategy First Method",
+    "intro": "Every plan starts by listening to the market, so every dollar after it is aimed at someone who wants to buy.",
+    "steps": [
+      {
+        "title": "Listen to the market",
+        "body": "Voice-of-customer, distributor, and dealer studies reveal what buyers actually value, and who your ideal segments are."
+      },
+      {
+        "title": "Prove the value",
+        "body": "Those findings become a clear value proposition and a reason to choose you over every alternative."
+      },
+      {
+        "title": "Activate the playbook",
+        "body": "Marketing and sales get one data-driven go-to-market plan, and move on it together."
+      }
+    ]
+  },
+  "cmo": {
+    "eyebrow": "Fractional CMO",
+    "title": "A senior marketing executive, without the full-time hire.",
+    "intro": "A Fractional CMO joins your leadership team part-time. They lead workshops, read the market and the competition, and own the go-to-market playbook.",
+    "primaryLabel": "Take the fit check",
+    "secondaryLabel": "Talk to us",
+    "tableCaption": "How a Fractional CMO differs from a marketing agency",
+    "agencyLabel": "Agency",
+    "cmoLabel": "Fractional CMO",
+    "rows": [
+      {
+        "row": "Role",
+        "agency": "A service vendor hired for tasks",
+        "cmo": "A fiscally responsible member of your executive team"
+      },
+      {
+        "row": "Owns",
+        "agency": "Deliverables on a brief",
+        "cmo": "The overall strategy and the marketing budget"
+      },
+      {
+        "row": "Delivers",
+        "agency": "Tactical materials",
+        "cmo": "The go-to-market playbook"
+      },
+      {
+        "row": "Team",
+        "agency": "Their own account staff",
+        "cmo": "Leads your marketing staff and vendors"
+      },
+      {
+        "row": "Day to day",
+        "agency": "Outside your operations",
+        "cmo": "Inside your operations"
+      }
+    ]
+  },
+  "globalTrade": {
+    "eyebrow": "Global trade & sourcing",
+    "title": "Plan the entry before you ship a single pallet.",
+    "intro": "From market viability to sourcing, logistics, and regulation, we map the practical route into new markets.",
+    "linkLabel": "Explore global trade & sourcing",
+    "cardTitle": "We also source abroad"
+  },
+  "products": {
+    "eyebrow": "Disruptive innovation",
+    "title": "Products we’ve brought to market",
+    "intro": "Technical advances still need a clear reason to buy. Here are two we’ve helped launch."
+  },
+  "why": {
+    "eyebrow": "Why Fangled",
+    "title": "Built to be easy to start with",
+    "items": [
+      {
+        "icon": "CalendarCheck",
+        "title": "Start with a free call",
+        "body": "No pitch deck. We ask about your company and tell you honestly whether we can help."
+      },
+      {
+        "icon": "Compass",
+        "title": "Strategy before spend",
+        "body": "Every campaign traces back to research on the buyers you want to reach."
+      },
+      {
+        "icon": "Layers",
+        "title": "Fractional or by project",
+        "body": "An embedded executive, or a team for one launch, whatever the job needs."
+      },
+      {
+        "icon": "Globe2",
+        "title": "Here and abroad",
+        "body": "Contacts and resources in the U.S. and internationally, tuned to your market."
+      },
+      {
+        "icon": "UsersRound",
+        "title": "A vetted network",
+        "body": "Curated experts assembled for your project, whatever its size."
+      },
+      {
+        "icon": "Handshake",
+        "title": "One accountable team",
+        "body": "Research, marketing, sales, and trade under one plan, not five vendors."
+      }
+    ]
+  },
+  "podcasts": {
+    "eyebrow": "Podcasts",
+    "title": "Podcasts and round tables",
+    "intro": "Strategy, sales, exit planning, and building brand advocates, with founders and operators.",
+    "buttonLabel": "All episodes"
+  }
+}

@@ -1,24 +1,13 @@
 import { useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react'
-import { Globe2, HeartHandshake, Rocket, UsersRound } from 'lucide-react'
 import { Button } from '../components/Button'
 import { CheckList, CtaPanel, Eyebrow, PageHeader, PhotoTile, SectionHeader } from '../components/Sections'
 import { spotlight, stagger } from '../lib/motion'
 import { Frame, PipelineMini } from '../components/Visuals'
-import { SERVICES } from '../data/site'
+import { iconFor } from '../data/site'
+import marketing from '../content/marketing.json'
 
-const PILLARS = [
-  { icon: Rocket, title: 'Unlock exponential growth', body: 'A strategy-first plan tailored to your business, proven with companies worldwide.' },
-  { icon: HeartHandshake, title: 'Turn customers into advocates', body: 'Build a loyal following that buys your products and actively promotes them.' },
-  { icon: Globe2, title: 'Global reach, local expertise', body: 'Contacts and resources in the U.S. and abroad, tuned to your market.' },
-  { icon: UsersRound, title: 'Build your dream team', body: 'A curated network of vetted experts, assembled for your project, whatever its size.' },
-]
-
-const GROUPS = [
-  { label: 'Marketing', title: 'Marketing & business development', items: SERVICES.marketing },
-  { label: 'Sales', title: 'Sales consulting', items: SERVICES.sales },
-  { label: 'Digital', title: 'Digital media', items: SERVICES.digital },
-  { label: 'Fractional CMO', title: 'Fractional CMO', items: SERVICES.fractional },
-]
+const PILLARS = marketing.pillars.items.map((p) => ({ ...p, icon: iconFor(p.icon) }))
+const GROUPS = marketing.capabilities.groups
 
 function Capabilities() {
   const [active, setActive] = useState(0)
@@ -86,9 +75,9 @@ function Capabilities() {
             <p className="text-small text-mute">{g.items.length} {g.items.length === 1 ? 'service' : 'services'}</p>
           </div>
           <CheckList items={g.items} className="mt-7 grid gap-x-10 gap-y-4 space-y-0 md:grid-cols-2" />
-          {g.label === 'Fractional CMO' && (
+          {active === GROUPS.length - 1 && (
             <div className="mt-8">
-              <Button to="/about#fractional-cmo" variant="secondary" arrow>Take the fit check</Button>
+              <Button to="/about#fractional-cmo" variant="secondary" arrow>{marketing.capabilities.fitCheckButton}</Button>
             </div>
           )}
         </div>
@@ -101,29 +90,29 @@ export function Marketing() {
   return (
     <>
       <PageHeader
-        eyebrow={<Eyebrow>Marketing & sales consulting</Eyebrow>}
-        title="Turn market understanding into sales momentum."
-        intro="Strategic marketing, business development, and sales, planned together and run by one accountable team."
-        actions={<Button to="/contact" arrow>Let’s talk growth</Button>}
+        eyebrow={<Eyebrow>{marketing.eyebrow}</Eyebrow>}
+        title={marketing.title}
+        intro={marketing.intro}
+        actions={<Button to="/contact" arrow>{marketing.button}</Button>}
         aside={
           <Frame>
             <div className="flex items-baseline justify-between">
-              <p className="text-title text-ink">Pipeline</p>
-              <span className="rounded-full bg-sky-soft px-2 py-0.5 text-[11px] font-medium text-brand">Example</span>
+              <p className="text-title text-ink">{marketing.pipeline.title}</p>
+              <span className="rounded-full bg-sky-soft px-2 py-0.5 text-[11px] font-medium text-brand">{marketing.pipeline.badge}</span>
             </div>
             <div className="mt-6">
               <PipelineMini />
             </div>
             <div className="mt-5 flex gap-5 text-caption text-mute">
-              <span className="flex items-center gap-2"><span className="h-0.5 w-5 rounded bg-brand" />With a playbook</span>
-              <span className="flex items-center gap-2"><span className="h-0.5 w-5 rounded border-t-2 border-dashed border-taupe" />Without one</span>
+              <span className="flex items-center gap-2"><span className="h-0.5 w-5 rounded bg-brand" />{marketing.pipeline.withPlaybook}</span>
+              <span className="flex items-center gap-2"><span className="h-0.5 w-5 rounded border-t-2 border-dashed border-taupe" />{marketing.pipeline.withoutOne}</span>
             </div>
           </Frame>
         }
       />
 
       <section className="wrap py-24 md:py-32">
-        <SectionHeader eyebrow="Why Fangled" title="Built around what the market tells us" />
+        <SectionHeader eyebrow={marketing.pillars.eyebrow} title={marketing.pillars.title} />
         <ul onPointerMove={spotlight} className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {PILLARS.map((p, i) => (
             <li key={p.title} data-reveal style={stagger(i)}>
@@ -142,10 +131,10 @@ export function Marketing() {
       <section className="bg-soft py-24 md:py-32">
         <div className="wrap">
           <SectionHeader
-            eyebrow="Capabilities"
-            title="What we can take off your plate"
-            intro="Tell us your goals and we’ll build a custom strategy, then stay to run it with you."
-            action={<Button to="/contact">Contact us today</Button>}
+            eyebrow={marketing.capabilities.eyebrow}
+            title={marketing.capabilities.title}
+            intro={marketing.capabilities.intro}
+            action={<Button to="/contact">{marketing.capabilities.button}</Button>}
           />
           <div data-reveal>
             <Capabilities />
@@ -158,9 +147,9 @@ export function Marketing() {
         alt="A team discussing a product sample and research notes"
         width={1536}
         height={1024}
-        eyebrow="How we deliver"
-        title="One accountable team, under one strategy."
-        intro="Campaigns, collateral, digital, and sales enablement all trace back to the same plan, so nothing gets built that the market didn’t ask for."
+        eyebrow={marketing.photo.eyebrow}
+        title={marketing.photo.title}
+        intro={marketing.photo.intro}
       />
 
       <div className="pt-24 md:pt-32">

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Fangled Group | Edit site</title>
+  </head>
+  <body>
+    <!-- Decap CMS: the editing panel. Config in config.yml; login via /api/auth (GitHub). -->
+    <script src="https://unpkg.com/decap-cms@3.8.4/dist/decap-cms.js" integrity="sha384-JNjmpWfdPuQ3I7ac38W0teoHcVxx7YdfDVpcgehfGqcu6ZBt26m/nmmBM2FzuO41" crossorigin="anonymous"></script>
+    <script>
+      // The OAuth endpoint lives on the same origin as the site, so no hardcoded URL.
+      CMS.init({ config: { backend: { base_url: window.location.origin } } })
+    </script>
+  </body>
+</html>

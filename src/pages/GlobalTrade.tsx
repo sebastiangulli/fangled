@@ -4,6 +4,7 @@ import { CtaPanel, Eyebrow, PageHeader, PhotoTile, SectionHeader } from '../comp
 import { spotlight, stagger } from '../lib/motion'
 import { Frame, GlobeMini } from '../components/Visuals'
 import { GLOBAL_SOURCE, GLOBAL_STRATEGY } from '../data/site'
+import trade from '../content/global-trade.json'
 
 const STRATEGY_ICONS = [Search, Network, Languages, Scale, BadgeDollarSign, ShieldCheck]
 const SOURCE_ICONS = [Package, Factory, Ship]
@@ -12,10 +13,10 @@ export function GlobalTrade() {
   return (
     <>
       <PageHeader
-        eyebrow={<Eyebrow>Global trade & sourcing</Eyebrow>}
-        title="Move into new markets with a clear plan."
-        intro="Market viability, sourcing, logistics, and regulatory strategy for domestic and international expansion."
-        actions={<Button to="/contact" arrow>Start your global plan</Button>}
+        eyebrow={<Eyebrow>{trade.eyebrow}</Eyebrow>}
+        title={trade.title}
+        intro={trade.intro}
+        actions={<Button to="/contact" arrow>{trade.button}</Button>}
         aside={
           <Frame>
             <GlobeMini className="mx-auto h-auto w-full max-w-[340px]" />
@@ -29,13 +30,13 @@ export function GlobalTrade() {
 
       <section className="wrap py-24 md:py-32">
         <SectionHeader
-          eyebrow="Build a global strategy"
-          title="Six questions before you enter a market"
-          intro="We answer the questions that decide whether, and how, you should go."
+          eyebrow={trade.strategy.eyebrow}
+          title={trade.strategy.title}
+          intro={trade.strategy.intro}
         />
         <ul onPointerMove={spotlight} className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {GLOBAL_STRATEGY.map((item, i) => {
-            const Icon = STRATEGY_ICONS[i]
+            const Icon = STRATEGY_ICONS[i % STRATEGY_ICONS.length]
             return (
               <li key={item} data-reveal style={stagger(i)}>
                 <div className="spot group h-full rounded-3xl bg-soft p-7 ring-1 ring-line transition-colors duration-300 hover:bg-white">
@@ -55,13 +56,13 @@ export function GlobalTrade() {
         alt="Container cranes at a port at sunset"
         width={1672}
         height={941}
-        eyebrow="Sourcing"
-        title="Find products and services abroad."
-        intro="From the first factory visit to inbound logistics and compliance, one team owns the chain."
+        eyebrow={trade.sourcing.eyebrow}
+        title={trade.sourcing.title}
+        intro={trade.sourcing.intro}
       >
         <ul className="mt-10 grid gap-3 md:grid-cols-3">
           {GLOBAL_SOURCE.map((s, i) => {
-            const Icon = SOURCE_ICONS[i]
+            const Icon = SOURCE_ICONS[i % SOURCE_ICONS.length]
             return (
               <li key={s} data-reveal style={stagger(i + 1)} className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur-xl">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky/20 text-sky">
@@ -75,7 +76,7 @@ export function GlobalTrade() {
       </PhotoTile>
 
       <div className="pt-24 md:pt-32">
-        <CtaPanel title="Ready to see your next market clearly?" />
+        <CtaPanel title={trade.cta.title} />
       </div>
     </>
   )

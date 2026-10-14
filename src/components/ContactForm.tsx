@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { CircleCheck } from 'lucide-react'
 import { COMPANY } from '../data/site'
+import contact from '../content/contact.json'
 import { Button } from './Button'
 
 const control =
@@ -37,12 +38,14 @@ function Field({
       )}
       <span className={float}>
         {label}
-        {optional ? <span className="text-mute"> (optional)</span> : <span aria-hidden="true" className="text-danger"> *</span>}
+        {optional ? <span className="text-mute"> {contact.form.optional}</span> : <span aria-hidden="true" className="text-danger"> *</span>}
       </span>
       {error && <span className="mt-1.5 hidden text-caption text-danger peer-user-invalid:block">{error}</span>}
     </label>
   )
 }
+
+const c = contact.form
 
 // ponytail: no backend yet, so the form drafts an email instead of dropping the message. Swap for a form endpoint when one exists.
 export function ContactForm() {
@@ -52,30 +55,30 @@ export function ContactForm() {
     e.preventDefault()
     const f = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>
     const body = `${f.message}\n\n${f.name}${f.company ? `, ${f.company}` : ''}\n${f.email}`
-    window.location.href = `mailto:${COMPANY.email}?subject=${encodeURIComponent(`Strategy call request from ${f.name}`)}&body=${encodeURIComponent(body)}`
+    window.location.href = `mailto:${COMPANY.email}?subject=${encodeURIComponent(`${c.emailSubject} ${f.name}`)}&body=${encodeURIComponent(body)}`
     setSent(true)
   }
 
   return (
     <form onSubmit={onSubmit} className="rounded-3xl bg-white p-6 shadow-pop ring-1 ring-line sm:p-9">
-      <p className="text-title text-ink">Tell us about your company</p>
-      <p className="mt-1 text-small text-mute">Fields marked * are required.</p>
+      <p className="text-title text-ink">{c.title}</p>
+      <p className="mt-1 text-small text-mute">{c.requiredNote}</p>
       <div className="mt-7 grid gap-3 sm:grid-cols-2">
-        <Field name="name" label="Name" autoComplete="name" error="Enter your name." />
-        <Field name="email" label="Work email" type="email" autoComplete="email" error="Enter an email like name@company.com." />
-        <Field name="company" label="Company" autoComplete="organization" optional className="sm:col-span-2" />
-        <Field name="message" label="What are you trying to grow?" textarea error="Tell us a little about what you need." className="sm:col-span-2" />
+        <Field name="name" label={c.name} autoComplete="name" error={c.nameError} />
+        <Field name="email" label={c.email} type="email" autoComplete="email" error={c.emailError} />
+        <Field name="company" label={c.company} autoComplete="organization" optional className="sm:col-span-2" />
+        <Field name="message" label={c.message} textarea error={c.messageError} className="sm:col-span-2" />
       </div>
       <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <Button type="submit" arrow className="h-12 px-6">Send message</Button>
-        <p className="text-caption text-mute sm:max-w-[26ch] sm:text-right">Opens your email app with the message ready to send.</p>
+        <Button type="submit" arrow className="h-12 px-6">{c.submit}</Button>
+        <p className="text-caption text-mute sm:max-w-[26ch] sm:text-right">{c.note}</p>
       </div>
       <div aria-live="polite">
         {sent && (
           <p className="mt-6 flex animate-fade gap-3 rounded-2xl bg-sky-soft p-4 text-small text-ink">
             <CircleCheck aria-hidden="true" className="h-5 w-5 shrink-0 text-brand" />
             <span>
-              Your email app should open with the message ready. If it didn’t, write to{' '}
+              {c.successText}{' '}
               <a href={`mailto:${COMPANY.email}`} className="font-medium text-brand underline underline-offset-2">{COMPANY.email}</a>.
             </span>
           </p>

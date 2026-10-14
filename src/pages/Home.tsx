@@ -19,7 +19,13 @@ import {
 import { spotlight, stagger } from '../lib/motion'
 import { PlaybookShowcase } from '../components/Playbook'
 import { DiligenceMini, GlobeMini, OrgMini, PipelineMini, PlaybookMockup } from '../components/Visuals'
-import { CAPABILITIES, CMO_VS_AGENCY, COMPANY, GLOBAL_SOURCE, GLOBAL_STRATEGY, PODCASTS, PRACTICES, PRODUCT_CARDS, WHY } from '../data/site'
+import { COMPANY, GLOBAL_SOURCE, GLOBAL_STRATEGY, PODCASTS, PRACTICES, PRODUCT_CARDS, iconFor } from '../data/site'
+import site from '../content/site.json'
+import home from '../content/home.json'
+
+const CAPABILITIES = home.capabilities
+const CMO_VS_AGENCY = home.cmo.rows
+const WHY = home.why.items.map((w) => ({ ...w, icon: iconFor(w.icon) }))
 
 // Bento layout, in PRACTICES order: marketing, global trade, fractional CMO, beyond growth.
 const TILES: { cls: string; layout?: string; visual: ReactNode }[] = [
@@ -33,35 +39,33 @@ const TILES: { cls: string; layout?: string; visual: ReactNode }[] = [
   { cls: '', visual: <DiligenceMini /> },
 ]
 
-const PROMISES = ['Free strategy call', 'U.S. and global markets', 'Fractional or project-based']
-
 export function Home() {
   return (
     <>
       <PageHeader
         size="2xl"
-        docTitle="Fangled Group | Strategy-first growth consultancy"
+        docTitle={home.docTitle}
         eyebrow={
           <Link
             to="/about#fractional-cmo"
             className="group inline-flex items-center gap-2 rounded-full bg-white/70 py-1 pr-3 pl-1 text-caption font-medium text-ink-2 ring-1 ring-line backdrop-blur transition-colors hover:bg-white"
           >
-            <span className="rounded-full bg-brand px-2 py-0.5 text-white">New</span>
-            Take the Fractional CMO fit check
+            <span className="rounded-full bg-brand px-2 py-0.5 text-white">{home.badge.tag}</span>
+            {home.badge.text}
             <ArrowRight aria-hidden="true" className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </Link>
         }
-        title="Turn every touch into an advocate for your brand."
-        intro="Fangled Group is a strategy-first growth consultancy. We research your market, sharpen your value proposition, and build the go-to-market playbook your marketing and sales teams run, at home and abroad."
+        title={home.title}
+        intro={home.intro}
         actions={
           <>
-            <Button to="/contact" arrow>Book a strategy call</Button>
-            <Button href={COMPANY.phoneHref} variant="secondary">Call {COMPANY.phone}</Button>
+            <Button to="/contact" arrow>{site.bookCall}</Button>
+            <Button href={COMPANY.phoneHref} variant="secondary">{site.callPrefix} {COMPANY.phone}</Button>
           </>
         }
         meta={
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
-            {PROMISES.map((p) => (
+            {home.promises.map((p) => (
               <li key={p} className="flex items-center gap-2 text-small text-ink-2">
                 <CircleCheck aria-hidden="true" className="h-4 w-4 text-brand" />
                 {p}
@@ -77,9 +81,9 @@ export function Home() {
       </section>
 
       <section className="wrap py-28 md:py-40">
-        <ScrollStatement text="Most marketing starts with what a company wants to say. Ours starts with what the market needs to hear. That’s how a first touch becomes a buyer, and a buyer becomes an advocate." />
+        <ScrollStatement text={home.statement.text} />
         <div data-reveal className="mt-10">
-          <TextLink to="/about">More about our approach</TextLink>
+          <TextLink to="/about">{home.statement.linkLabel}</TextLink>
         </div>
       </section>
 
@@ -88,9 +92,9 @@ export function Home() {
         <div className="wrap">
           <SectionHeader
             center
-            eyebrow="The deliverable"
-            title="One playbook your whole team can run."
-            intro="Every engagement ends in a written go-to-market playbook: what the market told us, who to sell to, why they’ll choose you, and how to launch. Built to be used by sales, not filed away."
+            eyebrow={home.deliverable.eyebrow}
+            title={home.deliverable.title}
+            intro={home.deliverable.intro}
           />
         </div>
         <div className="wrap mt-14 pb-20 md:mt-20 md:pb-28">
@@ -101,9 +105,9 @@ export function Home() {
       {/* Services bento */}
       <section className="wrap py-24 md:py-32">
         <SectionHeader
-          eyebrow="What we do"
-          title="Four ways we help B2B companies grow"
-          intro="Each one starts in the same place: understanding the people you want to reach."
+          eyebrow={home.services.eyebrow}
+          title={home.services.title}
+          intro={home.services.intro}
         />
         <ul onPointerMove={spotlight} className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
           {PRACTICES.map((p, i) => (
@@ -134,9 +138,9 @@ export function Home() {
       <section className="bg-soft py-24 md:py-32">
         <div className="wrap">
           <SectionHeader
-            eyebrow="How we work"
-            title="The Strategy First Method"
-            intro="Every plan starts by listening to the market, so every dollar after it is aimed at someone who wants to buy."
+            eyebrow={home.method.eyebrow}
+            title={home.method.title}
+            intro={home.method.intro}
           />
           <div className="mt-10 lg:mt-4">
             <MethodScroll />
@@ -150,14 +154,12 @@ export function Home() {
         <div aria-hidden="true" className="grid-lines absolute inset-0 text-white/[0.05]" />
         <div className="wrap relative grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-20">
           <div data-reveal>
-            <p className="text-small font-medium text-sky">Fractional CMO</p>
-            <h2 className="mt-3 text-display-lg">A senior marketing executive, without the full-time hire.</h2>
-            <p className="mt-5 max-w-[46ch] text-lead text-white/65">
-              A Fractional CMO joins your leadership team part-time. They lead workshops, read the market and the competition, and own the go-to-market playbook.
-            </p>
+            <p className="text-small font-medium text-sky">{home.cmo.eyebrow}</p>
+            <h2 className="mt-3 text-display-lg">{home.cmo.title}</h2>
+            <p className="mt-5 max-w-[46ch] text-lead text-white/65">{home.cmo.intro}</p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Button to="/about#fractional-cmo" variant="light" arrow>Take the fit check</Button>
-              <Button to="/contact" variant="ghost-light">Talk to us</Button>
+              <Button to="/about#fractional-cmo" variant="light" arrow>{home.cmo.primaryLabel}</Button>
+              <Button to="/contact" variant="ghost-light">{home.cmo.secondaryLabel}</Button>
             </div>
           </div>
 
@@ -172,18 +174,18 @@ export function Home() {
                   </dd>
                   <dd className="mt-1 flex gap-2 text-small text-white/50">
                     <Minus aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-white/30" />
-                    Agency: {r.agency.charAt(0).toLowerCase() + r.agency.slice(1)}
+                    {home.cmo.agencyLabel}: {r.agency.charAt(0).toLowerCase() + r.agency.slice(1)}
                   </dd>
                 </div>
               ))}
             </dl>
             <table className="hidden w-full border-collapse text-left text-small sm:table">
-              <caption className="sr-only">How a Fractional CMO differs from a marketing agency</caption>
+              <caption className="sr-only">{home.cmo.tableCaption}</caption>
               <thead>
                 <tr>
                   <td className="w-[22%]" />
-                  <th scope="col" className="px-4 py-4 font-medium text-white/55">Agency</th>
-                  <th scope="col" className="rounded-t-2xl bg-white/[0.07] px-4 py-4 font-medium text-white">Fractional CMO</th>
+                  <th scope="col" className="px-4 py-4 font-medium text-white/55">{home.cmo.agencyLabel}</th>
+                  <th scope="col" className="rounded-t-2xl bg-white/[0.07] px-4 py-4 font-medium text-white">{home.cmo.cmoLabel}</th>
                 </tr>
               </thead>
               <tbody>
@@ -213,15 +215,13 @@ export function Home() {
       {/* Global trade */}
       <section className="wrap grid items-center gap-14 py-24 md:py-32 lg:grid-cols-2 lg:gap-20">
         <div>
-          <SectionHeader eyebrow="Global trade & sourcing" title="Plan the entry before you ship a single pallet." />
-          <p data-reveal className="mt-4 max-w-[48ch] text-lead text-mute">
-            From market viability to sourcing, logistics, and regulation, we map the practical route into new markets.
-          </p>
+          <SectionHeader eyebrow={home.globalTrade.eyebrow} title={home.globalTrade.title} />
+          <p data-reveal className="mt-4 max-w-[48ch] text-lead text-mute">{home.globalTrade.intro}</p>
           <div data-reveal style={stagger(1)}>
             <CheckList items={GLOBAL_STRATEGY} className="mt-8" />
           </div>
           <div data-reveal style={stagger(2)} className="mt-10">
-            <TextLink to="/global-trade-and-sourcing">Explore global trade & sourcing</TextLink>
+            <TextLink to="/global-trade-and-sourcing">{home.globalTrade.linkLabel}</TextLink>
           </div>
         </div>
         <div className="relative">
@@ -237,7 +237,7 @@ export function Home() {
             />
           </div>
           <div data-reveal style={stagger(4)} className="absolute inset-x-4 bottom-4 rounded-2xl bg-white/85 p-5 shadow-pop ring-1 ring-white/60 backdrop-blur-xl sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-80">
-            <p className="text-caption font-medium text-mute">We also source abroad</p>
+            <p className="text-caption font-medium text-mute">{home.globalTrade.cardTitle}</p>
             <ul className="mt-3 space-y-2.5">
               {GLOBAL_SOURCE.map((s) => (
                 <li key={s} className="flex gap-2.5 text-small text-ink">
@@ -254,9 +254,9 @@ export function Home() {
       <section className="bg-soft py-24 md:py-32">
         <div className="wrap">
           <SectionHeader
-            eyebrow="Disruptive innovation"
-            title="Products we’ve brought to market"
-            intro="Technical advances still need a clear reason to buy. Here are two we’ve helped launch."
+            eyebrow={home.products.eyebrow}
+            title={home.products.title}
+            intro={home.products.intro}
           />
           <ul onPointerMove={spotlight} className="mt-14 grid gap-5 md:grid-cols-2">
             {PRODUCT_CARDS.map((p, i) => (
@@ -271,7 +271,7 @@ export function Home() {
       {/* Why Fangled */}
       <section className="py-24 md:py-32">
         <div className="wrap">
-          <SectionHeader eyebrow="Why Fangled" title="Built to be easy to start with" />
+          <SectionHeader eyebrow={home.why.eyebrow} title={home.why.title} />
         </div>
         <div className="mt-12">
           <Gallery label="Why Fangled Group">
@@ -286,10 +286,10 @@ export function Home() {
       <section className="bg-soft py-24 md:py-32">
         <div className="wrap">
           <SectionHeader
-            eyebrow="Podcasts"
-            title="Podcasts and round tables"
-            intro="Strategy, sales, exit planning, and building brand advocates, with founders and operators."
-            action={<Button to="/podcasts" variant="secondary" arrow>All episodes</Button>}
+            eyebrow={home.podcasts.eyebrow}
+            title={home.podcasts.title}
+            intro={home.podcasts.intro}
+            action={<Button to="/podcasts" variant="secondary" arrow>{home.podcasts.buttonLabel}</Button>}
           />
         </div>
         <div className="mt-12">

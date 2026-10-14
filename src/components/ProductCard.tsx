@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { ProductVisual } from './Visuals'
 import type { PRODUCT_CARDS } from '../data/site'
+import products from '../content/products.json'
 
 export function ProductCard({ product, compact = false }: { product: (typeof PRODUCT_CARDS)[number]; compact?: boolean }) {
   return (
@@ -19,7 +20,7 @@ export function ProductCard({ product, compact = false }: { product: (typeof PRO
         <h3 className="mt-1.5 text-display-md text-ink">{product.title}</h3>
         <p className="mt-3 flex-1 text-body text-mute">{product.body}</p>
         <span className="mt-6 inline-flex items-center gap-1.5 text-small font-medium text-brand">
-          Read the product brief
+          {products.page.readBrief}
           <ArrowRight aria-hidden="true" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
         </span>
       </div>

@@ -1,0 +1,146 @@
+{
+  "page": {
+    "readBrief": "Read the product brief",
+    "askButton": "Ask about this product",
+    "overviewLabel": "Overview",
+    "detailsEyebrow": "Details",
+    "detailsTitle": "Take a closer look",
+    "detailsIntro": "Open any card for the full detail.",
+    "alsoEyebrow": "Also launched",
+    "alsoTitle": "Another product we brought to market",
+    "ctaTitle": "Want this on your line?",
+    "ctaBody": "Tell us about your application. We’ll tell you whether it’s a fit and what a trial looks like."
+  },
+  "items": {
+    "ph-neutral-cleaners": {
+      "navLabel": "pH-neutral cleaners",
+      "card": {
+        "label": "Advanced chemistry",
+        "title": "pH-neutral cleaning technology",
+        "body": "Industrial cleaners that replace hazardous acid and alkaline chemistry in parts washing, surface prep, and maintenance."
+      },
+      "kicker": "Advanced Chemistry",
+      "title": "pH Neutral Cleaning Technology for Industrial Applications",
+      "subtitle": "Our products make dangerous acid & alkaline cleaners obsolete",
+      "intro": "We formulate pH neutral cleaners that outperform and replace hazardous alkaline and acidic industrial cleaners used to prepare surfaces for coating and many other cleaning applications. Our formulas enhance employee and environmental safety, reduce maintenance on equipment, and save money across a limitless range of industrial applications including metal parts washing, floor cleaning, equipment maintenance, surface preparation, and more.",
+      "sections": [
+        {
+          "heading": "Finish Quality and Adhesion",
+          "body": "",
+          "bullets": [
+            "Opened nooks/pores or receptor sights create better tooth for paint",
+            "Soils completely removed leads to better adhesion",
+            "No etching of surfaces necessary for powder coating to bond properly",
+            "Enhanced drying minimizes water spots"
+          ]
+        },
+        {
+          "heading": "Safety / Environment",
+          "body": "",
+          "bullets": [
+            "Non hazmat materials are safer for employees",
+            "No need for special hazmat shipping or material handling",
+            "Neutral cleaners should never be dumped directly into the environment"
+          ]
+        },
+        {
+          "heading": "Eased Regulatory Compliance",
+          "body": "",
+          "bullets": [
+            "No need for hazmat reporting or compliance (SARA title III)",
+            "Can be approved for non-hazmat removal depending on local municipality rules",
+            "Reduced need for hazmat clean-up equipment and materials",
+            "No need for hazmat specialized material handling equipment"
+          ]
+        },
+        {
+          "heading": "Lower Cost",
+          "body": "",
+          "bullets": [
+            "Pre-treatment equipment can cost significantly less because fewer pre-treatment steps are needed",
+            "Increased efficiency = lower cost",
+            "Less machinery = smaller production footprint",
+            "No hazmat disposal nor shipping costs",
+            "Lower chemical inventory"
+          ]
+        },
+        {
+          "heading": "Application Processes",
+          "body": "Our pH-neutral cleaners work across spray washing, immersion washing, vibratory burr removal, and pressure washing — typically from 130°F to 200°F. Existing alkaline washers can usually be neutralized to transition to pH-neutral products.",
+          "bullets": []
+        }
+      ]
+    },
+    "drum-and-ibc-mixers": {
+      "navLabel": "3D mixing technology",
+      "card": {
+        "label": "3D mixing technology",
+        "title": "Drum, pail, and IBC mixers",
+        "body": "EvenMix™ blades equalize vertical, radial, and circular flow, so the whole container blends with no air pulled in."
+      },
+      "kicker": "3D Mixing Technology",
+      "title": "Drum, Pail, & IBC Mixers Featuring 3D Mixing Technology",
+      "subtitle": "A revolution in advanced mixing technology",
+      "intro": "3D MIXING occurs when we equalize the 3 velocity vectors (radial, circular, and vertical) eliminating air inducing vortexes and evenly mixing and blending the total volume of materials in a container.",
+      "sections": [
+        {
+          "heading": "The Solution Replacing Existing Ineffective Blades",
+          "body": "Fixed pitch blades create strong vertical velocity vectors drawing in air and leaving materials on the bottom. Impeller-style blades promote vertical movement but lack radial and circular motion, drawing unwanted air into the mix. Radial blades create mostly horizontal motion with almost no vertical or circular mixing. Our 3D approach solves all three.",
+          "bullets": []
+        },
+        {
+          "heading": "EvenMix™ Blade Designs",
+          "body": "",
+          "bullets": [
+            "Blade attends entire container volume",
+            "Variable Pitch – 90 degree to 30 degrees creates 3D flow",
+            "Bottom pump eliminates dead zones",
+            "Designed for strength and low-weight",
+            "Low drag for efficient power transfer from EvenMix™ motor",
+            "Round shaft with square or hex drive end"
+          ]
+        },
+        {
+          "heading": "EvenMix™ Benefits",
+          "body": "",
+          "bullets": [
+            "No air entrainment",
+            "Mixes evenly throughout the container and at lower speeds",
+            "Faster mixing (low cycle time)",
+            "Will not bend in cases of drum collapse",
+            "No need for welded pin on drum bottom",
+            "Compatible with existing drives (square drives)",
+            "Robust mixing in a wide range of viscosity",
+            "Cost competitive"
+          ]
+        },
+        {
+          "heading": "3D IBC Mixers",
+          "body": "",
+          "bullets": [
+            "Can be installed prior to shipping IBC or inserted at the mixing location",
+            "16” 3D mixing blade provides superior mixing performance",
+            "Advanced folding blade fits through 6” center bung",
+            "Pinless shaft guide system modified to easily fit IBC center cap",
+            "Passed UN certification testing",
+            "Seals lid to avoid contamination"
+          ]
+        },
+        {
+          "heading": "EvenMix™ Mixer Motors",
+          "body": "",
+          "bullets": [
+            "Air or electric drives",
+            "Designed for use with EvenMix™ and others",
+            "Lightweight precision engineered for longer life and durability",
+            "Easy to couple and drive mixers",
+            "160 RPM with only 13 CFM (air) or 4 watts (electric)",
+            "Oil free for use with paints and other sensitive materials",
+            "Comprehensively field tested",
+            "Designed and manufactured in USA by EvenMix™"
+          ]
+        }
+      ]
+    }
+  }
+}

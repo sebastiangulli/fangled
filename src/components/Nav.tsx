@@ -1,20 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ArrowUpRight, Blend, ChevronDown, Droplets, Menu, Phone, X } from 'lucide-react'
-import { COMPANY, PRACTICES } from '../data/site'
+import { COMPANY, PRACTICES, PRODUCTS as PRODUCT_PAGES } from '../data/site'
+import site from '../content/site.json'
 import { Button } from './Button'
 import logoUrl from '../../fangled-group-logo.svg'
 
-const PRODUCTS = [
-  { label: 'pH-neutral cleaners', to: '/products/ph-neutral-cleaners', icon: Droplets },
-  { label: '3D mixing technology', to: '/products/drum-and-ibc-mixers', icon: Blend },
-]
+const PRODUCT_ICONS = { 'ph-neutral-cleaners': Droplets, 'drum-and-ibc-mixers': Blend } as const
+const PRODUCTS = Object.entries(PRODUCT_PAGES).map(([slug, p]) => ({
+  label: p.navLabel,
+  to: `/products/${slug}`,
+  icon: PRODUCT_ICONS[slug as keyof typeof PRODUCT_ICONS] ?? Blend,
+}))
 
-const LINKS = [
-  { label: 'Podcasts', to: '/podcasts' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
-]
+const LINKS = site.nav.links
 
 const linkCls = ({ isActive }: { isActive: boolean }) =>
   `rounded-full px-3.5 py-2 text-small font-medium transition-colors ${isActive ? 'text-brand' : 'text-ink-2 hover:text-ink'}`
@@ -98,7 +97,7 @@ export function Nav() {
                 onMouseEnter={() => setMega(true)}
                 className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-small font-medium transition-colors ${inServices ? 'text-brand' : 'text-ink-2 hover:text-ink'}`}
               >
-                Services
+                {site.nav.servicesLabel}
                 <ChevronDown aria-hidden="true" className={`h-4 w-4 transition-transform duration-200 ${mega ? 'rotate-180' : ''}`} />
               </button>
               {mega && (
@@ -116,7 +115,7 @@ export function Nav() {
                       </Link>
                     ))}
                     <div className="col-start-3 row-span-2 row-start-1 flex flex-col rounded-2xl bg-night p-5 text-white">
-                      <p className="text-caption text-white/60">Products we’ve launched</p>
+                      <p className="text-caption text-white/60">{site.nav.productsTitle}</p>
                       <ul className="mt-3 space-y-1">
                         {PRODUCTS.map((p) => (
                           <li key={p.to}>
@@ -128,7 +127,7 @@ export function Nav() {
                         ))}
                       </ul>
                       <Link to="/contact" className="mt-auto flex items-center gap-1 pt-6 text-small font-medium text-sky hover:text-white">
-                        Book a strategy call
+                        {site.bookCall}
                         <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
                       </Link>
                     </div>
@@ -149,7 +148,7 @@ export function Nav() {
             <Phone aria-hidden="true" className="h-4 w-4" />
             {COMPANY.phone}
           </a>
-          <Button to="/contact" className="h-10">Book a strategy call</Button>
+          <Button to="/contact" className="h-10">{site.bookCall}</Button>
         </div>
 
         <button
@@ -167,7 +166,7 @@ export function Nav() {
       {mobile && (
         <nav id="mobile-menu" aria-label="Mobile" onClick={closeOnLink} className="fixed inset-x-0 top-[4.75rem] bottom-0 animate-fade overflow-y-auto bg-white lg:hidden">
           <div className="wrap pt-2 pb-10">
-            <p className="text-caption text-mute">Services</p>
+            <p className="text-caption text-mute">{site.nav.servicesLabel}</p>
             <ul className="mt-1">
               {PRACTICES.map((p) => (
                 <li key={p.title}>
@@ -190,8 +189,8 @@ export function Nav() {
               ))}
             </ul>
             <div className="mt-8 grid gap-3">
-              <Button to="/contact">Book a strategy call</Button>
-              <Button href={COMPANY.phoneHref} variant="secondary">Call {COMPANY.phone}</Button>
+              <Button to="/contact">{site.bookCall}</Button>
+              <Button href={COMPANY.phoneHref} variant="secondary">{site.callPrefix} {COMPANY.phone}</Button>
             </div>
           </div>
         </nav>

@@ -1,8 +1,13 @@
 import { Fragment, useEffect, useRef, useState, type ComponentType, type CSSProperties, type ReactNode } from 'react'
 import { ArrowUpRight, Check, Mic, Play, Plus } from 'lucide-react'
-import { COMPANY, FAQ, METHOD, YOUTUBE } from '../data/site'
+import { COMPANY, FAQ, YOUTUBE } from '../data/site'
+import site from '../content/site.json'
+import home from '../content/home.json'
+import podcasts from '../content/podcasts.json'
 import { Button } from './Button'
 import { reducedMotion, stagger } from '../lib/motion'
+
+const METHOD = home.method.steps
 
 /* ---------- Page chrome ---------- */
 
@@ -380,11 +385,11 @@ export function FeaturedEpisode({ episode }: { episode: { title: string; duratio
     >
       <Cover i={0} duration={episode.duration} large />
       <div className="flex flex-col justify-center p-6 lg:p-10">
-        <p className="text-small font-medium text-brand">Featured episode</p>
+        <p className="text-small font-medium text-brand">{podcasts.featured.label}</p>
         <h2 className="mt-3 text-display-md text-ink transition-colors group-hover:text-brand">{episode.title}</h2>
-        <p className="mt-4 text-body text-mute">A round table on customer diligence: what buyers look for in your customer base before a deal.</p>
+        <p className="mt-4 text-body text-mute">{podcasts.featured.blurb}</p>
         <span className="mt-8 inline-flex items-center gap-1.5 text-small font-medium text-brand">
-          Watch on YouTube
+          {podcasts.featured.watchLabel}
           <ArrowUpRight aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           <span className="sr-only">(opens in a new tab)</span>
         </span>
@@ -401,7 +406,7 @@ export function EpisodeCard({ title, duration, i, className = '' }: { title: str
       </div>
       <h3 className="mt-4 text-title text-ink transition-colors group-hover:text-brand">{title}</h3>
       <span className="mt-2 inline-flex items-center gap-1 text-small text-mute">
-        Watch on YouTube
+        {podcasts.cardWatchLabel}
         <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
         <span className="sr-only">(opens in a new tab)</span>
       </span>
@@ -489,9 +494,9 @@ export function Faq() {
   return (
     <section className="wrap grid gap-12 py-24 md:py-32 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
       <div>
-        <SectionHeader eyebrow="FAQ" title="Questions we hear often" />
+        <SectionHeader eyebrow={site.faq.eyebrow} title={site.faq.title} />
         <p data-reveal className="mt-4 max-w-[36ch] text-lead text-mute">
-          Something else on your mind? Call us at{' '}
+          {site.faq.callText}{' '}
           <a href={COMPANY.phoneHref} className="font-medium text-brand hover:text-brand-deep">{COMPANY.phone}</a>.
         </p>
       </div>
@@ -515,8 +520,8 @@ export function Faq() {
 /* ---------- Closing call to action ---------- */
 
 export function CtaPanel({
-  title = 'Let’s talk about your next move.',
-  body = 'Tell us what you’re trying to grow. We’ll listen first, then tell you honestly where to start.',
+  title = site.cta.title,
+  body = site.cta.body,
 }: {
   title?: string
   body?: string
@@ -530,8 +535,8 @@ export function CtaPanel({
           <h2 className="text-display-xl">{title}</h2>
           <p className="mx-auto mt-5 max-w-[46ch] text-lead text-white/70">{body}</p>
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            <Button to="/contact" variant="light" arrow>Book a strategy call</Button>
-            <Button href={COMPANY.phoneHref} variant="ghost-light">Call {COMPANY.phone}</Button>
+            <Button to="/contact" variant="light" arrow>{site.bookCall}</Button>
+            <Button href={COMPANY.phoneHref} variant="ghost-light">{site.callPrefix} {COMPANY.phone}</Button>
           </div>
         </div>
       </div>

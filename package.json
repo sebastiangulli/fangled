@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run check:cms && tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:cms": "node scripts/check-cms.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.56.0",
@@ -24,6 +25,7 @@
     "oxlint": "^1.81.0",
     "tailwindcss": "^4.0.0",
     "typescript": "~6.0.2",
-    "vite": "^8.3.0"
+    "vite": "^8.3.0",
+    "yaml": "^2.9.1"
   }
 }
