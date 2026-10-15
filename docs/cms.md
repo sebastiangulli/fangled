@@ -29,3 +29,4 @@ Andrew entra en `https://<tu-dominio>/admin` → *Login with GitHub*.
 - **Agregar un texto editable**: agregalo al JSON, al `config.yml` (mismo nombre de campo) y usalo en el componente.
 - Los íconos se eligen por nombre; si agregás uno, sumalo a `ICONS` en `src/data/site.ts` y a la lista `select` de `config.yml`.
 - Local: `/admin` necesita el login de GitHub en un dominio real; en local editá los JSON a mano.
+- El dominio de producción está fijo en `base_url` de `public/admin/config.yml`; si cambia el dominio, actualizalo ahí y en la OAuth App.

@@ -4,6 +4,7 @@ backend:
   name: github
   repo: sebastiangulli/fangled
   branch: main
+  base_url: https://fangledgroup.vercel.app
   auth_endpoint: api/auth
 publish_mode: simple
 media_folder: public/images
