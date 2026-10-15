@@ -8,13 +8,14 @@ import markUrl from '../../fangled-group-logomark.svg'
 
 const f = site.footer
 
-const CONTACT = [
+const contacts = () => [
   { icon: Phone, label: `${COMPANY.phone} ${f.tollFree}`, href: COMPANY.phoneHref },
   { icon: Mail, label: COMPANY.email, href: `mailto:${COMPANY.email}` },
   { icon: MapPin, label: COMPANY.location },
 ]
 
 export function Footer() {
+  const CONTACT = contacts()
   return (
     <footer className="relative overflow-hidden bg-night text-white">
       <img

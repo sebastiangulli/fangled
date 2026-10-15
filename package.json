@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run check:cms && tsc -b && vite build",
+    "build": "npm run check:cms && tsc -b && vite build && vite build --mode admin-preview",
     "lint": "oxlint",
     "preview": "vite preview",
     "check:cms": "node scripts/check-cms.mjs"

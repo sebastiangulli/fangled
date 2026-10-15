@@ -9,16 +9,19 @@ import productsContent from '../content/products.json'
 const ICONS: Record<string, LucideIcon> = { Target, Globe2, UserRound, Flag, CalendarCheck, Compass, Layers, UsersRound, Handshake, Rocket, HeartHandshake }
 export const iconFor = (name: string): LucideIcon => ICONS[name] ?? Target
 
-export const COMPANY = { ...site.company, phoneHref: `tel:+1${site.company.phone.replace(/\D/g, '')}` }
+// phoneHref is a non-enumerable getter on the JSON object itself, so edits to `phone` flow through.
+export const COMPANY = Object.defineProperty(site.company, 'phoneHref', {
+  get: () => `tel:+1${site.company.phone.replace(/\D/g, '')}`,
+}) as typeof site.company & { phoneHref: string }
 export const SOCIAL = site.social
-export const YOUTUBE = SOCIAL.find((s) => s.label === 'YouTube')?.href ?? ''
+export const youtube = () => SOCIAL.find((s) => s.label === 'YouTube')?.href ?? ''
 export const FAQ = site.faq.items
 
-export const PRACTICES = shared.practices.map((p) => ({ ...p, icon: iconFor(p.icon) }))
+export const practices = () => shared.practices.map((p) => ({ ...p, icon: iconFor(p.icon) }))
 export const GLOBAL_STRATEGY = shared.globalStrategy
 export const GLOBAL_SOURCE = shared.globalSource
 export const PODCASTS = shared.podcasts
 
 export type Product = (typeof productsContent.items)['ph-neutral-cleaners']
 export const PRODUCTS: Record<string, Product> = productsContent.items
-export const PRODUCT_CARDS = Object.entries(PRODUCTS).map(([slug, p]) => ({ slug, ...p.card }))
+export const productCards = () => Object.entries(PRODUCTS).map(([slug, p]) => ({ slug, ...p.card }))

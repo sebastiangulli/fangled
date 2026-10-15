@@ -19,13 +19,12 @@ import {
 import { spotlight, stagger } from '../lib/motion'
 import { PlaybookShowcase } from '../components/Playbook'
 import { DiligenceMini, GlobeMini, OrgMini, PipelineMini, PlaybookMockup } from '../components/Visuals'
-import { COMPANY, GLOBAL_SOURCE, GLOBAL_STRATEGY, PODCASTS, PRACTICES, PRODUCT_CARDS, iconFor } from '../data/site'
+import { COMPANY, GLOBAL_SOURCE, GLOBAL_STRATEGY, PODCASTS, practices, productCards, iconFor } from '../data/site'
 import site from '../content/site.json'
 import home from '../content/home.json'
 
 const CAPABILITIES = home.capabilities
 const CMO_VS_AGENCY = home.cmo.rows
-const WHY = home.why.items.map((w) => ({ ...w, icon: iconFor(w.icon) }))
 
 // Bento layout, in PRACTICES order: marketing, global trade, fractional CMO, beyond growth.
 const TILES: { cls: string; layout?: string; visual: ReactNode }[] = [
@@ -110,7 +109,7 @@ export function Home() {
           intro={home.services.intro}
         />
         <ul onPointerMove={spotlight} className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
-          {PRACTICES.map((p, i) => (
+          {practices().map((p, i) => (
             <li key={p.title} data-reveal style={stagger(i)} className={TILES[i].cls}>
               <Link
                 to={p.to}
@@ -259,7 +258,7 @@ export function Home() {
             intro={home.products.intro}
           />
           <ul onPointerMove={spotlight} className="mt-14 grid gap-5 md:grid-cols-2">
-            {PRODUCT_CARDS.map((p, i) => (
+            {productCards().map((p, i) => (
               <li key={p.slug} data-reveal style={stagger(i)}>
                 <ProductCard product={p} />
               </li>
@@ -275,8 +274,8 @@ export function Home() {
         </div>
         <div className="mt-12">
           <Gallery label="Why Fangled Group">
-            {WHY.map((w) => (
-              <WhyCard key={w.title} {...w} />
+            {home.why.items.map((w) => (
+              <WhyCard key={w.title} {...w} icon={iconFor(w.icon)} />
             ))}
           </Gallery>
         </div>

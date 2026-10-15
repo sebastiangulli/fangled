@@ -1,7 +1,7 @@
 import { Button } from '../components/Button'
 import { CtaPanel, EpisodeGrid, Eyebrow, FeaturedEpisode, PageHeader } from '../components/Sections'
 import { SocialIcon } from '../components/SocialIcon'
-import { PODCASTS, YOUTUBE } from '../data/site'
+import { PODCASTS, youtube } from '../data/site'
 import podcasts from '../content/podcasts.json'
 
 export function Podcasts() {
@@ -12,7 +12,7 @@ export function Podcasts() {
         title={podcasts.title}
         intro={podcasts.intro}
         actions={
-          <Button href={YOUTUBE}>
+          <Button href={youtube()}>
             <SocialIcon name="YouTube" className="h-4.5 w-4.5" />
             {podcasts.subscribeLabel}
           </Button>

@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ArrowUpRight, Blend, ChevronDown, Droplets, Menu, Phone, X } from 'lucide-react'
-import { COMPANY, PRACTICES, PRODUCTS as PRODUCT_PAGES } from '../data/site'
+import { COMPANY, practices, PRODUCTS as PRODUCT_PAGES } from '../data/site'
 import site from '../content/site.json'
 import { Button } from './Button'
 import logoUrl from '../../fangled-group-logo.svg'
 
 const PRODUCT_ICONS = { 'ph-neutral-cleaners': Droplets, 'drum-and-ibc-mixers': Blend } as const
-const PRODUCTS = Object.entries(PRODUCT_PAGES).map(([slug, p]) => ({
+const products = () => Object.entries(PRODUCT_PAGES).map(([slug, p]) => ({
   label: p.navLabel,
   to: `/products/${slug}`,
   icon: PRODUCT_ICONS[slug as keyof typeof PRODUCT_ICONS] ?? Blend,
@@ -19,6 +19,8 @@ const linkCls = ({ isActive }: { isActive: boolean }) =>
   `rounded-full px-3.5 py-2 text-small font-medium transition-colors ${isActive ? 'text-brand' : 'text-ink-2 hover:text-ink'}`
 
 export function Nav() {
+  const PRACTICES = practices()
+  const PRODUCTS = products()
   const [mega, setMega] = useState(false)
   const [mobile, setMobile] = useState(false)
   const [scrolled, setScrolled] = useState(false)

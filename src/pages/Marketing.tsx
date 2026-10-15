@@ -6,7 +6,7 @@ import { Frame, PipelineMini } from '../components/Visuals'
 import { iconFor } from '../data/site'
 import marketing from '../content/marketing.json'
 
-const PILLARS = marketing.pillars.items.map((p) => ({ ...p, icon: iconFor(p.icon) }))
+const pillars = () => marketing.pillars.items.map((p) => ({ ...p, icon: iconFor(p.icon) }))
 const GROUPS = marketing.capabilities.groups
 
 function Capabilities() {
@@ -87,6 +87,7 @@ function Capabilities() {
 }
 
 export function Marketing() {
+  const PILLARS = pillars()
   return (
     <>
       <PageHeader

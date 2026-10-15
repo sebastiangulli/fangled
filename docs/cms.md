@@ -30,3 +30,4 @@ Andrew entra en `https://<tu-dominio>/admin` → *Login with GitHub*.
 - Los íconos se eligen por nombre; si agregás uno, sumalo a `ICONS` en `src/data/site.ts` y a la lista `select` de `config.yml`.
 - Local: `/admin` necesita el login de GitHub en un dominio real; en local editá los JSON a mano.
 - El dominio de producción está fijo en `base_url` de `public/admin/config.yml`; si cambia el dominio, actualizalo ahí y en la OAuth App.
+- **Vista previa en vivo**: el panel derecho de `/admin` renderiza las páginas reales del sitio con el borrador (`src/admin-preview.tsx`, compilado a `dist/admin/preview.js|css` por `vite build --mode admin-preview` dentro de `npm run build`; lo carga `public/admin/register.js`). Los datos derivados deben calcularse en render (funciones como `practices()`), no al importar, para que el preview vea los cambios.

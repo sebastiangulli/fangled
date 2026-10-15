@@ -11,7 +11,7 @@ import {
 import { stagger } from '../lib/motion'
 import { ProductCard } from '../components/ProductCard'
 import { Frame, ProductVisual } from '../components/Visuals'
-import { PRODUCT_CARDS, PRODUCTS } from '../data/site'
+import { productCards, PRODUCTS } from '../data/site'
 import productsContent from '../content/products.json'
 
 const page = productsContent.page
@@ -67,7 +67,7 @@ export function Product() {
       <section className="wrap py-24 md:py-32">
         <SectionHeader eyebrow={page.alsoEyebrow} title={page.alsoTitle} />
         <div data-reveal className="mt-12 max-w-[36rem]">
-          {PRODUCT_CARDS.filter((p) => p.slug !== slug).map((p) => (
+          {productCards().filter((p) => p.slug !== slug).map((p) => (
             <ProductCard key={p.slug} product={p} compact />
           ))}
         </div>

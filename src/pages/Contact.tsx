@@ -6,7 +6,7 @@ import { stagger } from '../lib/motion'
 import { COMPANY } from '../data/site'
 import contact from '../content/contact.json'
 
-const CHANNELS = [
+const channels = () => [
   { icon: Phone, label: contact.channels.call, value: COMPANY.phone, href: COMPANY.phoneHref },
   { icon: Mail, label: contact.channels.email, value: COMPANY.email, href: `mailto:${COMPANY.email}` },
   { icon: MapPin, label: contact.channels.office, value: COMPANY.location },
@@ -17,6 +17,7 @@ const NEXT = contact.next.steps
 const rise = (ms: number) => ({ animationDelay: `${ms}ms` })
 
 export function Contact() {
+  const CHANNELS = channels()
   useEffect(() => {
     document.title = contact.docTitle
   }, [])

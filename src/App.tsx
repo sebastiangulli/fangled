@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { Nav } from './components/Nav'
 import { Footer } from './components/Footer'
 import { ScrollToTop } from './components/ScrollToTop'
+import { useReveal } from './lib/useReveal'
 import { Home } from './pages/Home'
 import { About } from './pages/About'
 import { Marketing } from './pages/Marketing'
@@ -12,30 +12,6 @@ import { Contact } from './pages/Contact'
 import { Privacy } from './pages/Privacy'
 import { Product } from './pages/Product'
 import { NotFound } from './pages/NotFound'
-
-// One observer for every [data-reveal] element, including ones rendered after a route change.
-function useReveal() {
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (!e.isIntersecting) continue
-          e.target.classList.add('is-in')
-          io.unobserve(e.target)
-        }
-      },
-      { rootMargin: '0px 0px -8% 0px' },
-    )
-    const scan = () => document.querySelectorAll('[data-reveal]:not(.is-in)').forEach((el) => io.observe(el))
-    scan()
-    const mo = new MutationObserver(scan)
-    mo.observe(document.body, { childList: true, subtree: true })
-    return () => {
-      io.disconnect()
-      mo.disconnect()
-    }
-  }, [])
-}
 
 function Page({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation()

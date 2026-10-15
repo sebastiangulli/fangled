@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useRef, useState, type ComponentType, type CSSProperties, type ReactNode } from 'react'
 import { ArrowUpRight, Check, Mic, Play, Plus } from 'lucide-react'
-import { COMPANY, FAQ, YOUTUBE } from '../data/site'
+import { COMPANY, FAQ, youtube } from '../data/site'
 import site from '../content/site.json'
 import home from '../content/home.json'
 import podcasts from '../content/podcasts.json'
@@ -378,7 +378,7 @@ function Cover({ i, duration, large = false }: { i: number; duration: string; la
 export function FeaturedEpisode({ episode }: { episode: { title: string; duration: string } }) {
   return (
     <a
-      href={YOUTUBE}
+      href={youtube()}
       target="_blank"
       rel="noreferrer"
       className="group grid overflow-hidden rounded-3xl bg-white p-3 shadow-card ring-1 ring-line transition-shadow duration-300 hover:shadow-float lg:grid-cols-[1.3fr_1fr]"
@@ -400,7 +400,7 @@ export function FeaturedEpisode({ episode }: { episode: { title: string; duratio
 
 export function EpisodeCard({ title, duration, i, className = '' }: { title: string; duration: string; i: number; className?: string }) {
   return (
-    <a href={YOUTUBE} target="_blank" rel="noreferrer" className={`group block ${className}`}>
+    <a href={youtube()} target="_blank" rel="noreferrer" className={`group block ${className}`}>
       <div className="transition-transform duration-500 ease-out group-hover:-translate-y-1">
         <Cover i={i} duration={duration} />
       </div>

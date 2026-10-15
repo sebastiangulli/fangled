@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { ProductVisual } from './Visuals'
-import type { PRODUCT_CARDS } from '../data/site'
+import type { productCards } from '../data/site'
 import products from '../content/products.json'
 
-export function ProductCard({ product, compact = false }: { product: (typeof PRODUCT_CARDS)[number]; compact?: boolean }) {
+export function ProductCard({ product, compact = false }: { product: ReturnType<typeof productCards>[number]; compact?: boolean }) {
   return (
     <Link
       to={`/products/${product.slug}`}
