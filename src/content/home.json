@@ -1,46 +1,5 @@
 {
   "docTitle": "Fangled Group | Strategy-first growth consultancy",
-  "badge": {
-    "tag": "New",
-    "text": "Take the Fractional CMO fit check"
-  },
-  "title": "Turn every touch into an advocate for your brand.",
-  "intro": "Fangled Group is a strategy-first growth consultancy. We research your market, sharpen your value proposition, and build the go-to-market playbook your marketing and sales teams run, at home and abroad.",
-  "promises": [
-    "Free strategy call",
-    "U.S. and global markets",
-    "Fractional or project-based"
-  ],
-  "capabilities": [
-    "Positioning",
-    "Market research",
-    "Voice of customer studies",
-    "Go-to-market playbooks",
-    "Fractional CMO",
-    "Product launch",
-    "Branding & rebranding",
-    "CRM implementation",
-    "Sales training",
-    "Trade shows & events",
-    "Market entry",
-    "Global sourcing",
-    "Exit planning",
-    "PE & M&A research"
-  ],
-  "statement": {
-    "text": "Most marketing starts with what a company wants to say. Ours starts with what the market needs to hear. That’s how a first touch becomes a buyer, and a buyer becomes an advocate.",
-    "linkLabel": "More about our approach"
-  },
-  "deliverable": {
-    "eyebrow": "The deliverable",
-    "title": "One playbook your whole team can run.",
-    "intro": "Every engagement ends in a written go-to-market playbook: what the market told us, who to sell to, why they’ll choose you, and how to launch. Built to be used by sales, not filed away."
-  },
-  "services": {
-    "eyebrow": "What we do",
-    "title": "Four ways we help B2B companies grow",
-    "intro": "Each one starts in the same place: understanding the people you want to reach."
-  },
   "method": {
     "eyebrow": "How we work",
     "title": "The Strategy First Method",
@@ -60,15 +19,31 @@
       }
     ]
   },
+  "globalTrade": {
+    "eyebrow": "Global trade & sourcing",
+    "title": "Plan the entry before you ship a single pallet.",
+    "intro": "From market viability to sourcing, logistics, and regulation, we map the practical route into new markets.",
+    "linkLabel": "Explore global trade & sourcing",
+    "cardTitle": "We also source abroad"
+  },
+  "badge": {
+    "tag": "Newwww",
+    "text": "Take the Fractional CMO fit check"
+  },
+  "products": {
+    "eyebrow": "Disruptive innovation",
+    "title": "Products we’ve brought to market",
+    "intro": "Technical advances still need a clear reason to buy. Here are two we’ve helped launch."
+  },
   "cmo": {
-    "eyebrow": "Fractional CMO",
-    "title": "A senior marketing executive, without the full-time hire.",
-    "intro": "A Fractional CMO joins your leadership team part-time. They lead workshops, read the market and the competition, and own the go-to-market playbook.",
-    "primaryLabel": "Take the fit check",
     "secondaryLabel": "Talk to us",
-    "tableCaption": "How a Fractional CMO differs from a marketing agency",
-    "agencyLabel": "Agency",
+    "eyebrow": "Fractional CMO",
+    "intro": "A Fractional CMO joins your leadership team part-time. They lead workshops, read the market and the competition, and own the go-to-market playbook.",
     "cmoLabel": "Fractional CMO",
+    "agencyLabel": "Agency",
+    "primaryLabel": "Take the fit check",
+    "tableCaption": "How a Fractional CMO differs from a marketing agency",
+    "title": "A senior marketing executive, without the full-time hire.",
     "rows": [
       {
         "row": "Role",
@@ -96,18 +71,6 @@
         "cmo": "Inside your operations"
       }
     ]
-  },
-  "globalTrade": {
-    "eyebrow": "Global trade & sourcing",
-    "title": "Plan the entry before you ship a single pallet.",
-    "intro": "From market viability to sourcing, logistics, and regulation, we map the practical route into new markets.",
-    "linkLabel": "Explore global trade & sourcing",
-    "cardTitle": "We also source abroad"
-  },
-  "products": {
-    "eyebrow": "Disruptive innovation",
-    "title": "Products we’ve brought to market",
-    "intro": "Technical advances still need a clear reason to buy. Here are two we’ve helped launch."
   },
   "why": {
     "eyebrow": "Why Fangled",
@@ -145,10 +108,47 @@
       }
     ]
   },
+  "intro": "Fangled Group is a strategy-first growth consultancy. We research your market, sharpen your value proposition, and build the go-to-market playbook your marketing and sales teams run, at home and abroad.",
+  "statement": {
+    "text": "Most marketing starts with what a company wants to say. Ours starts with what the market needs to hear. That’s how a first touch becomes a buyer, and a buyer becomes an advocate.",
+    "linkLabel": "More about our approach"
+  },
   "podcasts": {
     "eyebrow": "Podcasts",
     "title": "Podcasts and round tables",
     "intro": "Strategy, sales, exit planning, and building brand advocates, with founders and operators.",
     "buttonLabel": "All episodes"
+  },
+  "capabilities": [
+    "Positioning",
+    "Market research",
+    "Voice of customer studies",
+    "Go-to-market playbooks",
+    "Fractional CMO",
+    "Product launch",
+    "Branding & rebranding",
+    "CRM implementation",
+    "Sales training",
+    "Trade shows & events",
+    "Market entry",
+    "Global sourcing",
+    "Exit planning",
+    "PE & M&A research"
+  ],
+  "title": "Turn every touch into an advocate for your brand.",
+  "promises": [
+    "Free strategy call",
+    "U.S. and global markets",
+    "Fractional or project-based"
+  ],
+  "services": {
+    "eyebrow": "What we do",
+    "title": "Four ways we help B2B companies grow",
+    "intro": "Each one starts in the same place: understanding the people you want to reach."
+  },
+  "deliverable": {
+    "eyebrow": "The deliverable",
+    "title": "One playbook your whole team can run.",
+    "intro": "Every engagement ends in a written go-to-market playbook: what the market told us, who to sell to, why they’ll choose you, and how to launch. Built to be used by sales, not filed away."
   }
 }
