@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Built by `vite build --mode admin-preview`
+public/admin/preview.js
+public/admin/preview.css
+.cloudflare
